@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>Nova Pizzaria</h1>
+<div mat-dialog-content>
+    <form class="example-form" [formGroup]="form">
+        <mat-form-field class="example-full-width">
+            <mat-label>Nome da Pizzaria</mat-label>
+            <input matInput placeholder="" formControlName="nomePizzaria" name="pizzariaName">
+        </mat-form-field>
+      
+        <mat-form-field class="example-full-width">
+            <mat-label>Rua do Endereço</mat-label>
+            <input matInput placeholder="" formControlName="ruaPizzaria" name="PizzariaRua">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Número do Endereço</mat-label>
+            <input matInput placeholder="" formControlName="numeroPizzaria" name="pizzariaNumero">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Bairro do Endereço</mat-label>
+            <input matInput placeholder="" formControlName="bairroPizzaria" name="pizzariaBairro">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Cidade do Endereço</mat-label>
+            <input matInput placeholder="" formControlName="cidadePizzaria" name="pizzariaCidade">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Estado do Endereço</mat-label>
+            <input matInput placeholder="" formControlName="estadoPizzaria" name="pizzariaEstado">
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="cancel()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="addPizzaria()">Adicionar</button>
+</div>
