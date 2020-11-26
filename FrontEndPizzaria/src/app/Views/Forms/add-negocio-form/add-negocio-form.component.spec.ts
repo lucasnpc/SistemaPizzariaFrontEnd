@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddPizzariaFormComponent } from './add-pizzaria-form.component';
+import { AddNegocioFormComponent } from './add-negocio-form.component';
 
 describe('AddPizzariaFormComponent', () => {
-  let component: AddPizzariaFormComponent;
-  let fixture: ComponentFixture<AddPizzariaFormComponent>;
+  let component: AddNegocioFormComponent;
+  let fixture: ComponentFixture<AddNegocioFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddPizzariaFormComponent ]
+      declarations: [ AddNegocioFormComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddPizzariaFormComponent);
+    fixture = TestBed.createComponent(AddNegocioFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

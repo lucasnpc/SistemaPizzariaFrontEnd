@@ -10,18 +10,20 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { PaginaInicialComponent } from './Views/pagina-inicial/pagina-inicial.component';
-import { AddPizzariaFormComponent } from './Views/add-pizzaria-form/add-pizzaria-form.component';
+import { AddNegocioFormComponent } from './Views/Forms/add-negocio-form/add-negocio-form.component'
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
+import { LogarSistemaFormComponent } from './Views/Forms/logar-sistema-form/logar-sistema-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     PaginaInicialComponent,
-    AddPizzariaFormComponent
+    AddNegocioFormComponent,
+    LogarSistemaFormComponent
   ],
   imports: [
     HttpClientModule,

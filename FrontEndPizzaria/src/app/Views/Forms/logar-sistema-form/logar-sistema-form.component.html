@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Login no Sistema</h1>
+<div mat-class-container>
+    <form class="example-form" [formGroup]="form">
+        <mat-form-field class="example-full-width">
+            <mat-label>Usuário</mat-label>
+            <input matInput placeholder="" formControlName="userId" name="usuarioId">
+        </mat-form-field>
+      
+        <mat-form-field class="example-full-width">
+            <mat-label>Senha</mat-label>
+            <input type = "password" matInput placeholder="password" formControlName="userSenha" name="usuarioSenha">
+        </mat-form-field>
+    </form>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="logar()" class="buttom-style">Logar</button>
+    <button  (click)="sair()" class="buttom-style">Sair</button>
+</div>

@@ -5,20 +5,20 @@ import { PizzariaService } from 'src/app/Service/pizzaria.service';
 import { UUID } from 'angular2-uuid';
 
 @Component({
-  selector: 'app-add-pizzaria-form',
-  templateUrl: './add-pizzaria-form.component.html',
-  styleUrls: ['./add-pizzaria-form.component.css']
+  selector: 'app-add-negocio-form',
+  templateUrl: './add-negocio-form.component.html',
+  styleUrls: ['./add-negocio-form.component.css']
 })
-export class AddPizzariaFormComponent implements OnInit {
+export class AddNegocioFormComponent implements OnInit {
 
   public form!: FormGroup;
   uuidValue!: string;
 
 
   constructor(
-    public dialogRef: MatDialogRef<AddPizzariaFormComponent>,
+    public dialogRef: MatDialogRef<AddNegocioFormComponent>,
     private fb: FormBuilder,
-    private restApi: PizzariaService,
+    private restApi: PizzariaService
   ) { }
 
   ngOnInit(): void {
@@ -47,5 +47,4 @@ export class AddPizzariaFormComponent implements OnInit {
     this.uuidValue=UUID.UUID();
     return this.uuidValue;
   }
-
 }
