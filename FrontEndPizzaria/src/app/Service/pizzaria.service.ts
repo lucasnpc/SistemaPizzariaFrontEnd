@@ -9,7 +9,7 @@ import { Usuario } from '../Model/usuario.model';
 })
 export class PizzariaService {
 
-  pizzariasGetUserUrl =     "http://localhost:5000/pizzarias/authUser";
+  authUsers =     "http://localhost:5000/user/authUser";
   pizzariasPostUrl =    "http://localhost:5000/pizzarias/post";
 
   httpOptions = {
@@ -23,7 +23,7 @@ export class PizzariaService {
   ) { }
 
   public authUser(usuario: any): Observable<Usuario>{
-    return this.httpClient.post<any>(this.pizzariasGetUserUrl, usuario, this.httpOptions);
+    return this.httpClient.post<any>(this.authUsers, usuario, this.httpOptions);
   }
 
   public postPizzarias(pizzarias: any): Observable<Pizzaria>{
