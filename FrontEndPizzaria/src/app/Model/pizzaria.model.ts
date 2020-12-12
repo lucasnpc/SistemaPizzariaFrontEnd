@@ -1,3 +1,5 @@
+import { Usuario } from "./usuario.model";
+
 export class Pizzaria {
     idPizzaria!:     string;
     nomePizzaria!:   string;
@@ -6,4 +8,5 @@ export class Pizzaria {
     bairroPizzaria!: string;
     cidadePizzaria!: string;
     estadoPizzaria!: string;
+    usuarios!:       any;
 }
