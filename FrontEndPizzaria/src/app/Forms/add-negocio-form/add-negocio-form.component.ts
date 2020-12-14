@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { PizzariaService } from 'src/app/Service/pizzaria.service';
+import { NegocioService } from 'src/app/Service/restaurantespizzarias.service';
 import { UUID } from 'angular2-uuid';
 
 @Component({
@@ -18,7 +18,7 @@ export class AddNegocioFormComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<AddNegocioFormComponent>,
     private fb: FormBuilder,
-    private restApi: PizzariaService
+    private restApi: NegocioService
   ) { }
 
   ngOnInit(): void {
@@ -34,7 +34,7 @@ export class AddNegocioFormComponent implements OnInit {
   }
 
   addPizzaria() {
-    this.restApi.postPizzarias(this.form.value).subscribe(result => { });
+    this.restApi.postNegocios(this.form.value).subscribe(result => { });
     this.dialogRef.close(true);
   }
 

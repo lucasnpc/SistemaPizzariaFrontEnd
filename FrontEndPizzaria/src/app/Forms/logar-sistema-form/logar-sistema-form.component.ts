@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { PizzariaService } from 'src/app/Service/pizzaria.service';
+import { NegocioService, UserService } from 'src/app/Service/restaurantespizzarias.service';
 
 @Component({
   selector: 'app-logar-sistema-form',
@@ -17,7 +17,7 @@ export class LogarSistemaFormComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<LogarSistemaFormComponent>,
     private fb: FormBuilder,
-    private restApi: PizzariaService
+    private restApi: UserService
   ) { }
 
   ngOnInit(): void {
