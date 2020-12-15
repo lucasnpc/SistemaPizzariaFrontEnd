@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { NegocioService } from 'src/app/Service/restaurantespizzarias.service';
+import { NegocioService } from 'src/app/Service/negocio.service';
 import { UUID } from 'angular2-uuid';
 
 @Component({

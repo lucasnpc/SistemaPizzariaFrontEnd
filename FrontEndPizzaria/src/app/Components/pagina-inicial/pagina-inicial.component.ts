@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AddNegocioFormComponent } from '../Forms/add-negocio-form/add-negocio-form.component'
-import { LogarSistemaFormComponent } from '../Forms/logar-sistema-form/logar-sistema-form.component'
+import { AddNegocioFormComponent } from '../../Forms/add-negocio-form/add-negocio-form.component'
+import { LogarSistemaFormComponent } from '../../Forms/logar-sistema-form/logar-sistema-form.component'
 
 
 @Component({

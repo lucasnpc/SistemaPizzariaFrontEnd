@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { NegocioService, UserService } from 'src/app/Service/restaurantespizzarias.service';
+import { UserService } from 'src/app/Service/user.service';
 
 @Component({
   selector: 'app-logar-sistema-form',
