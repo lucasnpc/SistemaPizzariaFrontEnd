@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { LoginModel } from '../models/login.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class LoginService {
-  authUsers = 'https://192.168.100.6:5000/users/authUser';
+  authUsers = environment.url + "users/authUser";
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -13,7 +15,7 @@ export class LoginService {
 
   constructor(private httpClient: HttpClient) {}
 
-  public authUser(usuario: any){
-      return this.httpClient.post<any>(this.authUsers, usuario, this.httpOptions).subscribe();
+  public authUser(login: LoginModel){
+      return this.httpClient.post<any>(this.authUsers, login, this.httpOptions);
   }
 }

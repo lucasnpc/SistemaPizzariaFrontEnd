@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginModel } from '../../models/login.model';
 import { LoginService } from '../../services/login.service';
 
 @Component({
@@ -7,11 +8,16 @@ import { LoginService } from '../../services/login.service';
   styleUrls: ['./login.page.less'],
 })
 export class LoginPage implements OnInit {
-  constructor(private rest: LoginService, private router: Router) {}
+  constructor(private rest: LoginService, private router: Router) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
-  logarSistema(usuario: { usuario: string; senha: string }) {
-    this.rest.authUser(usuario);
+  logarSistema(login: LoginModel) {
+    this.rest.authUser(login).subscribe(result => {
+      if (!result)
+        alert("Usuário inválido");
+      //Continue
+
+    });
   }
 }
