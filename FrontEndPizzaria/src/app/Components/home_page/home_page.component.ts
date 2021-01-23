@@ -1,19 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AddNegocioFormComponent } from '../../Forms/add-negocio-form/add-negocio-form.component'
-import { LogarSistemaFormComponent } from '../../Forms/logar-sistema-form/logar-sistema-form.component'
-
+import { AddNegocioFormComponent } from 'src/app/Forms/add-negocio-form/add-negocio-form.component';
+import { LogarSistemaFormComponent } from 'src/app/Forms/logar-sistema-form/logar-sistema-form.component';
 
 @Component({
-  selector: 'app-pagina-inicial',
-  templateUrl: './pagina-inicial.component.html',
-  styleUrls: ['./pagina-inicial.component.css']
+  selector: 'app-home',
+  templateUrl: 'home_page.component.html',
+  styleUrls: ['home_page.component.css']
 })
-export class PaginaInicialComponent implements OnInit {
+export class HomePageComponent implements OnInit {
 
   constructor(
-    public dialog: MatDialog
-    ) { }
+    public dialog: MatDialog,
+  ) { }
 
   ngOnInit(): void {
   }
@@ -31,5 +30,4 @@ export class PaginaInicialComponent implements OnInit {
       console.log('Dialog Login Fechado');
     });
   }
-
 }

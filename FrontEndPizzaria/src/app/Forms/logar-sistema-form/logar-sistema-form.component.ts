@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/Service/user.service';
 
 @Component({
@@ -17,7 +18,8 @@ export class LogarSistemaFormComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<LogarSistemaFormComponent>,
     private fb: FormBuilder,
-    private restApi: UserService
+    private restApi: UserService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -28,21 +30,23 @@ export class LogarSistemaFormComponent implements OnInit {
     });
   }
 
-  public logar(){
+  public logar() {
     this.restApi.authUser(this.form.value).subscribe(result => {
-      if(result){
+      if (result) {
         localStorage.setItem('Usuário Logado', JSON.stringify(result));
         this.isAutenticado = true;
-        alert('Usuário válido');
+        this.router.navigate(['/menu']);
+        this.dialogRef.close();
       }
-      else{
+      else {
         alert('Usuário inválido');
       }
-     }, error => {console.log(error); alert('Usuário inválido');
+    }, error => {
+      console.log(error); alert('Usuário inválido');
     })
   }
 
-  public sair(){
+  public sair() {
 
   }
 
