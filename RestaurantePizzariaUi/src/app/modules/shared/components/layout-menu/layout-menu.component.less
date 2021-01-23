@@ -1,0 +1,33 @@
+@import "../../../../../styles/_variaveis.less";
+
+.container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+
+    min-height: 100vh;
+}
+
+.sidebar-overlay {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-row: 1;
+    grid-column: 1;
+    transition: .5s;
+    z-index: 2;
+
+    justify-items: center;
+
+    &.visible {
+        background-color: @primary;
+    } 
+}
+
+.content {
+    grid-row: 1;
+    grid-column: 1 / span 2;
+}
+
+.sidebar-toogle {
+    margin: .5em;
+    margin-bottom: 1em;
+}
