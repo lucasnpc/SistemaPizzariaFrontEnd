@@ -26,7 +26,7 @@ export class LoginFormComponent implements OnInit {
     
     if (this.loginForm.valid) {
       var dados = {
-        usuario: this.loginForm.get('nome').value,
+        usuario: this.loginForm.get('usuario').value,
         senha: this.loginForm.get('senha').value,
       }
       this.entrar.emit(dados);
