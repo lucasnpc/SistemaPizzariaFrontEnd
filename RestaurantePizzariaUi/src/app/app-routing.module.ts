@@ -4,19 +4,14 @@ import { LayoutMenuComponent } from './modules/shared/components/layout-menu/lay
 
 const routes: Routes = [
   {
-    path: 'login',
+    path: '',
     loadChildren: () =>
       import('./modules/login/login.module').then((m) => m.LoginModule),
   },
   {
-    path: '',
+    path: 'menu',
     component: LayoutMenuComponent,
     children: [
-      {
-        path: '',
-        loadChildren: () =>
-          import('./modules/login/login.module').then((m) => m.LoginModule),
-      },
     ],
   },
 ];

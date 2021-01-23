@@ -5,10 +5,11 @@ import { RouterModule } from '@angular/router';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [LayoutMenuComponent, SidebarComponent],
-  imports: [CommonModule, RouterModule, MatButtonModule, MatIconModule],
+  imports: [CommonModule, RouterModule, MatButtonModule, MatIconModule, MatToolbarModule],
   exports: [LayoutMenuComponent],
 })
 export class SharedModule {}

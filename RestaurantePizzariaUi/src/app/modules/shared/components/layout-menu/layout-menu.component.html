@@ -1,8 +1,13 @@
 <div class="container">
-    <div class="sidebar-overlay" [class.visible]="sidebarVisible">
+    <mat-toolbar color="primary" class="toolbar">
         <button class="sidebar-toogle" mat-mini-fab color="primary" (click)="sidebarVisible = !sidebarVisible">
             <mat-icon>menu</mat-icon>
         </button>
+        <span class="example-spacer"></span> Menu
+    </mat-toolbar>
+
+    <div class="sidebar-overlay" [class.visible]="sidebarVisible">
+
 
         <rp-sidebar *ngIf="sidebarVisible"></rp-sidebar>
     </div>
