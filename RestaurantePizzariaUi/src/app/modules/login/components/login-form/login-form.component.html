@@ -1,13 +1,16 @@
 <form [formGroup]="loginForm" (ngSubmit)="submitLogin()" class="container">
+    <span></span>
     <mat-form-field>
         <mat-label>Usuário</mat-label>
         <input matInput placeholder="Usuário" formControlName="usuario">
     </mat-form-field>
-    
+
     <mat-form-field>
         <mat-label>Senha</mat-label>
         <input type="password" matInput placeholder="Senha" formControlName="senha">
     </mat-form-field>
-    
+
     <button type="submit" mat-flat-button color="primary">Entrar</button>
+    <span></span>
+    <button mat-flat-button color="primary">Cadastrar seu Negócio</button>
 </form>

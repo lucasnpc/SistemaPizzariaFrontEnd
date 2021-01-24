@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutMenuComponent } from './modules/shared/components/layout-menu/layout-menu.component';
+import { VendasComponent } from './modules/vendas/components/vendas/vendas.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,11 @@ const routes: Routes = [
     path: 'menu',
     component: LayoutMenuComponent,
     children: [
+      {
+        path: 'vendas',
+        loadChildren: () =>
+          import('./modules/vendas/vendas.module').then((m) => m.VendasModule),
+      }
     ],
   },
 ];

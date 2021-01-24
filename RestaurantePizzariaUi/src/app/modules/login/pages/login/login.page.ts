@@ -16,7 +16,7 @@ export class LoginPage implements OnInit {
     this.rest.authUser(login).subscribe(result => {
       if (!result)
         alert("Usuário inválido");
-      //Continue
+      this.router.navigate(['/menu']);
 
     });
   }
