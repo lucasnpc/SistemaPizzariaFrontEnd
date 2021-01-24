@@ -1,22 +1,22 @@
 <div class="container">
 
-    <button mat-button click="transicaoTelas(1)">
+    <button mat-button [routerLink]="['/menu/vendas']">
         <mat-icon svgIcon="sales-point"></mat-icon>
     </button>
     <span></span>
-    <button mat-button click="transicaoTelas(2)">
+    <button mat-button [routerLink]="['/menu/clientes']">
         <mat-icon svgIcon="customer"></mat-icon>
     </button>
     <span></span>
-    <button mat-button click="transicaoTelas(3)">
+    <button mat-button [routerLink]="['/menu/cardapio']">
         <mat-icon svgIcon="menu"></mat-icon>
     </button>
     <span></span>
-    <button mat-button click="transicaoTelas(4)">
+    <button mat-button [routerLink]="['/menu/contas']">
         <mat-icon svgIcon="business-chart"></mat-icon>
     </button>
     <span></span>
-    <button mat-button click="transicaoTelas(5)">
+    <button mat-button [routerLink]="['/menu/funcionarios']">
         <mat-icon svgIcon="workers"></mat-icon>
     </button>
 </div>
