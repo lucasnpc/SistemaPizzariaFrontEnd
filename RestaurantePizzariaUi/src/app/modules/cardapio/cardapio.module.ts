@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ComponentsComponent } from './components/components.component';
 import { CardapioComponent } from './components/cardapio/cardapio.component';
 import { CardapioPage } from './pages/cardapio/cardapio.page';
+import { CardapioRoutingModule } from './cardapio-routing.module';
 
 
 
 @NgModule({
-  declarations: [ComponentsComponent, CardapioComponent, CardapioPage],
+  declarations: [ CardapioComponent, CardapioPage],
   imports: [
-    CommonModule
+    CommonModule,
+    CardapioRoutingModule,
   ]
 })
 export class CardapioModule { }
