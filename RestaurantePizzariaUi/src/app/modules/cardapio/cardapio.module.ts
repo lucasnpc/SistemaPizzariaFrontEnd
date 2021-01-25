@@ -7,10 +7,11 @@ import { CardapioRoutingModule } from './cardapio-routing.module';
 
 
 @NgModule({
-  declarations: [ CardapioComponent, CardapioPage],
+  declarations: [CardapioPage, CardapioComponent],
   imports: [
     CommonModule,
     CardapioRoutingModule,
-  ]
+  ],
+  providers: []
 })
 export class CardapioModule { }

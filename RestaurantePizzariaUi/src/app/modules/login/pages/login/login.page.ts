@@ -14,10 +14,8 @@ export class LoginPage implements OnInit {
 
   logarSistema(login: LoginModel) {
     this.rest.authUser(login).subscribe(result => {
-      if (!result)
-        alert("Usuário inválido");
-      this.router.navigate(['/menu/vendas']);
-
-    });
+      if (result)
+        this.router.navigate(['/menu/vendas']);
+    }, error => { console.log(error); alert("Usuário inválido"); });
   }
 }
