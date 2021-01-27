@@ -5,5 +5,30 @@
     align-items: center;
     justify-items: center;
   
-    height: 100%;
+    
+    margin-top: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 20px;
+  
+    height: 95%;
+    grid-template-rows: 1fr auto;
+  }
+  .container-cardapio{
+    min-width: 50%;
+    max-width: 80%;
+    border-radius: @border-radius;
+    height: 85%;
+    padding: 2em;
+
+    grid-row: 1;
+  }
+  .container-item{
+    min-width: 50%;
+    max-width: 80%;
+    border-radius: @border-radius;
+    height: 55%;
+    padding: 2em;
+    
+    grid-row: 2;
   }
