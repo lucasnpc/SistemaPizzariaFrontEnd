@@ -1,8 +1,12 @@
 <div class="container background-muted">
-    <div class="container-cardapio background">
-        <h1>Aqui vai o cardápio</h1>
-    </div>
-    <div class="container-item background">
-        <h1>Aqui vai o campo para poder inserir, atualizar e deletar itens do cardápio</h1>
+    <div class="content-cardapio">
+        <mat-grid-list cols="3" rowHeight="5rem">
+            <mat-grid-tile [colspan]="3" [rowspan]="6">
+                <h2>Itens do cardápio</h2>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="3" [rowspan]="3">
+                <h2>Área para inserir, atualizar, remover e selecionar itens do cardápio</h2>
+            </mat-grid-tile>
+        </mat-grid-list>
     </div>
 </div>

@@ -2,35 +2,21 @@
 
 .container {
     display: grid;
-    align-items: center;
+    align-items: start;
     justify-items: center;
-
-    margin-top: 10px;
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-bottom: 20px;
   
-    height: 95%;
-    grid-template-rows: auto 1fr;
+    height: 100%;
   }
-.ganhos-container{
+.content-container{
   min-width: 60%;
   max-width: 80%;
-  padding: 2em;
-  border-radius: @border-radius;
-  height: 10%;
+
+  margin-top: 10px;
+
+  padding: 1.2em;
+  max-height: 95%;
 }
-.lista-container{
-  min-width: 60%;
-  max-width: 80%;
-  padding: 2em;
+mat-grid-tile{
+  background: @background;
   border-radius: @border-radius;
-  height: 90%;
-}
-.notificacao-container{
-  min-width: 60%;
-  max-width: 80%;
-  padding: 2em;
-  border-radius: @border-radius;
-  height: 10%;
 }

@@ -1,11 +1,21 @@
 <div class="container background-muted">
-    <div class="ganhos-container background">
-        <h1>Total de ganhos do Mês</h1>
-    </div>
-    <div class="lista-container background">
-        <h1>Listas dos pedidos, comandas e vendas diárias</h1>
-    </div>
-    <div class="notificacao-container background">
-        <h1>Notificacao do WhatsApp</h1>
+    <div class="content-container">
+        <mat-grid-list cols="3" rowHeight="4rem">
+            <mat-grid-tile [colspan]="3" [rowspan]="2">
+                <rp-valor-mes></rp-valor-mes>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="7">
+                <rp-lista-pedidos></rp-lista-pedidos>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="7">
+                <rp-lista-comandas></rp-lista-comandas>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="7">
+                <rp-lista-vendas></rp-lista-vendas>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="3" [rowspan]="2">
+                <rp-notificacao-wpp></rp-notificacao-wpp>
+            </mat-grid-tile>
+        </mat-grid-list>
     </div>
 </div>

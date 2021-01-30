@@ -2,33 +2,18 @@
 
 .container {
     display: grid;
-    align-items: center;
+    align-items: start;
     justify-items: center;
   
-    
-    margin-top: 10px;
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-bottom: 20px;
-  
-    height: 95%;
-    grid-template-rows: 1fr auto;
+    height: 100%;
   }
-  .container-cardapio{
+  .content-cardapio{
     min-width: 60%;
     max-width: 80%;
-    border-radius: @border-radius;
-    height: 85%;
-    padding: 2em;
-
-    grid-row: 1;
+    height: 90%;
+    padding: 1.2em;
   }
-  .container-item{
-    min-width: 60%;
-    max-width: 80%;
+  mat-grid-tile{
+    background: @background;
     border-radius: @border-radius;
-    height: 55%;
-    padding: 2em;
-    
-    grid-row: 2;
   }
