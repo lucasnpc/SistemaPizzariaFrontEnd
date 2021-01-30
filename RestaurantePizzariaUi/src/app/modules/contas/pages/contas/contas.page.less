@@ -1,34 +1,20 @@
 @import "../../../../../styles/_variaveis.less";
 
 .container {
-    display: flex;
-    flex-direction: column;
-    margin: 30px auto;
-    width: 60%;
-    gap: 30px;
+    display: grid;
+    align-items: start;
+    justify-items: center;
   
-    height: 95%;
+    height: 100%;
   }
-.container-grafico{
-  padding: 2em;
+.content-container{
+  min-width: 60%;
+  max-width: 80%;
+
+  padding: 1.2em;
+  max-height: 95%;
+}
+mat-grid-tile{
+  background: @background;
   border-radius: @border-radius;
-  height: 15%;
-}
-.container-lista-contas{
-  min-width: 50%;
-  display: flex;
-  justify-content: space-around;
-  gap: 20px;
-  height: 70%;
-}
-.container-lista-contas > div{
-  width: 100%;
-}
-.container-lista-receber{
-  border-radius: @border-radius;
-  padding: 2em;
-}
-.container-lista-pagar{
-  border-radius: @border-radius;
-  padding: 2em;
 }

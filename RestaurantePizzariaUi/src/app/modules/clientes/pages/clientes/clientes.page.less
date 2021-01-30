@@ -2,32 +2,20 @@
 
 .container {
     display: grid;
-    align-items: center;
+    align-items: start;
     justify-items: center;
-
-    
-    margin-top: 10px;
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-bottom: 20px;
   
-    height: 95%;
-    grid-template-rows: auto 1fr;
+    height: 100%;
   }
 
-  .container-pesquisa{
+  .content-container{
     min-width: 60%;
+    max-width: 80%;
 
-    border-radius: @border-radius;
-    padding: 2em;
-
-    height: 10%;
+    padding: 1.2em;
+    max-height: 95%;
   }
-  .container-clientes{
-    min-width: 60%;
-    
+  mat-grid-tile{
+    background: @background;
     border-radius: @border-radius;
-    padding: 2em;
-
-    height: 85%;
   }

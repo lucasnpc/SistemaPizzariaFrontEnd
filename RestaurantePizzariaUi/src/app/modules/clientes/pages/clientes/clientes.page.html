@@ -1,8 +1,12 @@
 <div class="container background-muted">
-    <div class="container-pesquisa background">
-        <h1>Aqui é a área para pesquisa de clientes pelo nome</h1>
-    </div>
-    <div class="container-clientes background">
-        <h1>Aqui é a área para apresentação dos clientes</h1>
+    <div class="content-container">
+        <mat-grid-list cols="3" rowHeight="4rem">
+            <mat-grid-tile [colspan]="3" [rowspan]="2">
+                <rp-pesquisa-clientes></rp-pesquisa-clientes>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="3" [rowspan]="9">
+                <rp-lista-clientes></rp-lista-clientes>
+            </mat-grid-tile>
+        </mat-grid-list>
     </div>
 </div>
