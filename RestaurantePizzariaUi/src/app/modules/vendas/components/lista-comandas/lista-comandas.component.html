@@ -8,19 +8,19 @@
             <!--- Note that these columns can be defined in any order.
                   The actual rendered columns are set as a property on the row definition" -->
 
-            <!-- Position Column -->
+            <!-- ID Column -->
             <ng-container matColumnDef="position">
                 <th mat-header-cell *matHeaderCellDef> ID </th>
                 <td mat-cell *matCellDef="let element"> {{element.position}} </td>
             </ng-container>
 
-            <!-- Name Column -->
+            <!-- Numero da mesa Column -->
             <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef> N. da Mesa </th>
                 <td mat-cell *matCellDef="let element"> {{element.name}} </td>
             </ng-container>
 
-            <!-- Weight Column -->
+            <!-- Valor Column -->
             <ng-container matColumnDef="weight">
                 <th mat-header-cell *matHeaderCellDef> Valor </th>
                 <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
