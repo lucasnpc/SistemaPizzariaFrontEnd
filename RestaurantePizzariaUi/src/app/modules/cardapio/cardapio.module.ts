@@ -4,16 +4,17 @@ import { CardapioPage } from './pages/cardapio/cardapio.page';
 import { CardapioRoutingModule } from './cardapio-routing.module';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { ItensCardapioComponent } from './components/itens-cardapio/itens-cardapio.component';
-import { ManipularItensComponent } from './components/manipular-itens/manipular-itens.component'
+import {MatListModule} from '@angular/material/list';
 
 
 
 @NgModule({
-  declarations: [CardapioPage, ItensCardapioComponent, ManipularItensComponent],
+  declarations: [CardapioPage, ItensCardapioComponent],
   imports: [
     CommonModule,
     CardapioRoutingModule,
-    MatGridListModule
+    MatGridListModule,
+    MatListModule
   ],
   providers: []
 })
