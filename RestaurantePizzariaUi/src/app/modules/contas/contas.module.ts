@@ -6,6 +6,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { ListaContasPagarComponent } from './components/lista-contas-pagar/lista-contas-pagar.component';
 import { ListaContasReceberComponent } from './components/lista-contas-receber/lista-contas-receber.component';
 import { GraficoContasComponent } from './components/grafico-contas/grafico-contas.component';
+import {MatTableModule} from '@angular/material/table';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
 
@@ -14,7 +16,9 @@ import { GraficoContasComponent } from './components/grafico-contas/grafico-cont
   imports: [
     CommonModule,
     ContasRoutingModule,
-    MatGridListModule
+    MatGridListModule,
+    MatTableModule,
+    NgxChartsModule
   ]
 })
 export class ContasModule { }
