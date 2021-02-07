@@ -1,12 +1,14 @@
 <mat-selection-list #item [multiple]="false">
-    <div mat-subheader>Cardápio</div>
-    <mat-list-option *ngFor="let item of itens" [value]="item">
-        <mat-icon mat-list-icon></mat-icon>
-        <div mat-line>{{item.descricao}}</div>
-        <div mat-line> R$ {{item.preco}} </div>
-    </mat-list-option>
+  <div mat-subheader>Cardápio</div>
+  <mat-list-option *ngFor="let item of itens" [value]="item">
+    <mat-icon mat-list-icon></mat-icon>
+    <div mat-line>{{ item.descricao }}</div>
+    <div mat-line>R$ {{ item.preco }}</div>
+  </mat-list-option>
 </mat-selection-list>
 
-<p>
-    Opção selecionada: {{item.selectedOptions.selected[0]?.value.descricao}}
-</p>
+<div class="item-container">
+  <p>
+    Opção selecionada: {{ item.selectedOptions.selected[0]?.value.descricao }}
+  </p>
+</div>
