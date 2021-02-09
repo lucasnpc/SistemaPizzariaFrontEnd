@@ -10,11 +10,12 @@ import {MatButtonModule} from '@angular/material/button';
 import { CardapioService } from './service/cardapio.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
+import { ItemFormComponent } from './components/item-form/item-form.component';
 
 
 
 @NgModule({
-  declarations: [CardapioPage, ItensCardapioComponent],
+  declarations: [CardapioPage, ItensCardapioComponent, ItemFormComponent],
   imports: [
     CommonModule,
     CardapioRoutingModule,

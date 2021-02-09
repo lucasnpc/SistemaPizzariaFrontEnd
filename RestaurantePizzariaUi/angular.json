@@ -151,5 +151,8 @@
       }
     }
   },
-  "defaultProject": "RestaurantePizzariaUi"
+  "defaultProject": "RestaurantePizzariaUi",
+  "cli": {
+    "analytics": "810ad583-341a-488f-a4e9-52bd8bbfed66"
+  }
 }

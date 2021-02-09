@@ -11,10 +11,9 @@ import { CardapioService } from '../../service/cardapio.service';
 })
 export class ItensCardapioComponent implements OnInit {
   itens: ItemCardapioModel[];
-  cardapioForm: FormGroup;
   itemCount: number;
 
-  constructor(private rest: CardapioService, private fb: FormBuilder) {}
+  constructor(private rest: CardapioService) {}
 
   ngOnInit(): void {
     this.rest.getItens().subscribe((result) => {
@@ -23,35 +22,20 @@ export class ItensCardapioComponent implements OnInit {
     this.rest.getItensCount().subscribe((result) => {
       this.itemCount = result;
     });
-    this.cardapioForm = this.fb.group({
-      id: [{ value: '', disabled: true }, [Validators.required]],
-      descricao: [{ value: '', disabled: false }, [Validators.required]],
-      preco: [{ value: '', disabled: false }, [Validators.required]],
-    });
   }
 
-  adicionarItem() {
-    validateFormFields(this.cardapioForm);
+  adicionarItem(dados: ItemCardapioModel) {
     this.itemCount += 1;
 
-    if (this.cardapioForm.valid) {
-      var dados: ItemCardapioModel = {
-        idItem: this.itemCount,
-        descricao: this.cardapioForm.get('descricao').value,
-        preco: this.cardapioForm.get('preco').value,
-        ingredientes: null,
-      };
-
-      this.rest.postItem(dados).subscribe(
-        (result) => {
-          if (result) console.log('Item adicionado');
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    }
+    this.rest.postItem(dados).subscribe(
+      (result) => {
+        if (result) console.log('Item adicionado');
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
-  alterarItem() {}
-  removerItem() {}
+  alterarItem(dados: ItemCardapioModel) {}
+  removerItem(dados: ItemCardapioModel) {}
 }
