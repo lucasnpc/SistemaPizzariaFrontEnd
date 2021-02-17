@@ -1,18 +1,64 @@
-<div class="container">
-    <mat-toolbar color="primary" class="toolbar">
-        <button class="sidebar-toogle" mat-mini-fab color="primary" (click)="sidebarVisible = !sidebarVisible">
-            <mat-icon>menu</mat-icon>
+<div class="container" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-toolbar color="primary" class="toolbar">
+    <button mat-icon-button (click)="snav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h2>Menu</h2>
+  </mat-toolbar>
+
+  <mat-sidenav-container
+    class="sidenav-container"
+    [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
+  >
+    <mat-sidenav
+      #snav
+      [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="56"
+    >
+      <mat-nav-list>
+        <button
+          mat-button
+          [routerLink]="['/menu/vendas']"
+          class="buttom-nav-style"
+        >
+          <mat-icon svgIcon="sales-point" class="icon-nav-style"></mat-icon
+          >Ponto de Venda
         </button>
-        <span class="example-spacer"></span> Menu
-    </mat-toolbar>
+        <button
+          mat-button
+          [routerLink]="['/menu/clientes']"
+          class="buttom-nav-style"
+        >
+          <mat-icon svgIcon="customer" class="icon-nav-style"></mat-icon
+          >Clientes
+        </button>
+        <button
+          mat-button
+          [routerLink]="['/menu/cardapio']"
+          class="buttom-nav-style"
+        >
+          <mat-icon svgIcon="menu" class="icon-nav-style"></mat-icon>Cardápio
+        </button>
+        <button
+          mat-button
+          [routerLink]="['/menu/contas']"
+          class="buttom-nav-style"
+        >
+          <mat-icon svgIcon="business-chart" class="icon-nav-style"></mat-icon
+          >Contas
+        </button>
+        <button
+          mat-button
+          [routerLink]="['/menu/funcionarios']"
+          class="buttom-nav-style"
+        >
+          <mat-icon svgIcon="workers" class="icon-nav-style"></mat-icon
+          >Funcionários
+        </button>
+      </mat-nav-list>
+    </mat-sidenav>
 
-    <div class="sidebar-overlay" [class.visible]="sidebarVisible">
-
-
-        <rp-sidebar *ngIf="sidebarVisible"></rp-sidebar>
-    </div>
-
-    <div class="content background-muted">
-        <router-outlet></router-outlet>
-    </div>
+    <mat-sidenav-content> <router-outlet></router-outlet> </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>

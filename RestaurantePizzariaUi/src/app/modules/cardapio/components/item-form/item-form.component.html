@@ -1,7 +1,7 @@
-<mat-grid-list cols="3" rowHeight="4rem">
+<mat-grid-list cols="3" rowHeight="3.5rem">
   <mat-grid-tile [colspan]="3" [rowspan]="1">
     <form [formGroup]="cardapioForm" class="container">
-      <mat-form-field>
+      <mat-form-field appearance="standard">
         <mat-label>ID</mat-label>
         <input
           matInput
@@ -10,7 +10,7 @@
           value='{{ item ? item.idItem :  "" }}'
         />
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field appearance="standard">
         <mat-label>Descrição</mat-label>
         <input
           matInput
@@ -20,7 +20,7 @@
         />
       </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field appearance="standard">
         <mat-label>Preço</mat-label>
         <input
           type="number"
