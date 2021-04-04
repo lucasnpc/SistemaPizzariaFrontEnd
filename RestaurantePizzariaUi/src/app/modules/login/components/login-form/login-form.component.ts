@@ -10,6 +10,7 @@ import { LoginModel } from '../../models/login.model';
 })
 export class LoginFormComponent implements OnInit {
   @Output() entrar = new EventEmitter<LoginModel>();
+  @Output() cadastrar = new EventEmitter<Boolean>();
 
   loginForm: FormGroup;
 
@@ -24,14 +25,17 @@ export class LoginFormComponent implements OnInit {
 
   submitLogin() {
     validateFormFields(this.loginForm);
-    
+
     if (this.loginForm.valid) {
       var dados: LoginModel = {
-        idPizzaria: "",
+        idPizzaria: '',
         userId: this.loginForm.get('usuario').value,
         userSenha: this.loginForm.get('senha').value,
-      }
+      };
       this.entrar.emit(dados);
     }
+  }
+  abrirCadastro() {    
+    this.cadastrar.emit(true);
   }
 }

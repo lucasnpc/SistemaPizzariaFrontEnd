@@ -20,12 +20,16 @@ const routes: Routes = [
       {
         path: 'clientes',
         loadChildren: () =>
-          import('./modules/clientes/clientes.module').then((m) => m.ClientesModule),
+          import('./modules/clientes/clientes.module').then(
+            (m) => m.ClientesModule
+          ),
       },
       {
         path: 'cardapio',
         loadChildren: () =>
-          import('./modules/cardapio/cardapio.module').then((m) => m.CardapioModule),
+          import('./modules/cardapio/cardapio.module').then(
+            (m) => m.CardapioModule
+          ),
       },
       {
         path: 'contas',
@@ -35,9 +39,18 @@ const routes: Routes = [
       {
         path: 'funcionarios',
         loadChildren: () =>
-          import('./modules/funcionarios/funcionarios.module').then((m) => m.FuncionariosModule),
+          import('./modules/funcionarios/funcionarios.module').then(
+            (m) => m.FuncionariosModule
+          ),
       },
     ],
+  },
+  {
+    path: 'cadastro',
+    loadChildren: () =>
+      import('./modules/cadastro/cadastro.module').then(
+        (m) => m.CardapioModule
+      ),
   },
 ];
 
@@ -45,4 +58,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

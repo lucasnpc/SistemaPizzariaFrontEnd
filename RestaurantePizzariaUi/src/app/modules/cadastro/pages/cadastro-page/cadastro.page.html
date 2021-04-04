@@ -1,0 +1,100 @@
+<div class="container">
+  <mat-horizontal-stepper linear #stepper>
+    <mat-step [stepControl]="formCadastroNegocio" label="Cadastre seu negócio">
+      <form
+        [formGroup]="formCadastroNegocio"
+        class="form-container background-muted"
+      >
+        <mat-form-field>
+          <mat-label>Nome</mat-label>
+          <input
+            matInput
+            formControlName="nomeNegocio"
+            placeholder="Razão Social"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Rua</mat-label>
+          <input
+            matInput
+            formControlName="ruaNegocio"
+            placeholder="Rua do Endereço"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Número</mat-label>
+          <input
+            matInput
+            formControlName="numeroNegocio"
+            placeholder="Número do Endereço"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Bairro</mat-label>
+          <input
+            matInput
+            formControlName="bairroNegocio"
+            placeholder="Bairro do Endereço"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Cidade</mat-label>
+          <input
+            matInput
+            formControlName="cidadeNegocio"
+            placeholder="Cidade do Endereço"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Estado</mat-label>
+          <input
+            matInput
+            formControlName="estadoNegocio"
+            placeholder="Estado do Endereço"
+            required
+          />
+        </mat-form-field>
+      </form>
+      <div>
+        <button mat-button matStepperNext>Próximo</button>
+      </div>
+    </mat-step>
+    <mat-step [stepControl]="formCadastroUsuario" label="Cadastre seu usuário">
+      <form [formGroup]="formCadastroUsuario">
+        <mat-form-field>
+          <mat-label>Usuário</mat-label>
+          <input
+            matInput
+            formControlName="usuario"
+            placeholder="ID do usuário"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Senha</mat-label>
+          <input
+            matInput
+            formControlName="senha"
+            placeholder="Senha do usuário"
+            required
+          />
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Anterior</button>
+          <button mat-button matStepperNext>Próximo</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step label="Finalize o cadastro">
+      <div>
+        <button mat-button matStepperPrevious>Anterior</button>
+        <button mat-button>Finalizar</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

@@ -8,14 +8,23 @@ import { LoginService } from '../../services/login.service';
   styleUrls: ['./login.page.less'],
 })
 export class LoginPage implements OnInit {
-  constructor(private rest: LoginService, private router: Router) { }
+  constructor(private rest: LoginService, private router: Router) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   logarSistema(login: LoginModel) {
-    this.rest.authUser(login).subscribe(result => {
-      if (result)
-        this.router.navigate(['/menu/vendas']);
-    }, error => { console.log(error); alert("Usuário inválido"); });
+    this.rest.authUser(login).subscribe(
+      (result) => {
+        if (result) this.router.navigate(['/menu/vendas']);
+      },
+      (error) => {
+        console.log(error);
+        alert('Usuário inválido');
+      }
+    );
+  }
+  abrirCadastro(abreCadastro: Boolean) {
+    if (!abreCadastro) return;
+    this.router.navigate(['/cadastro']);
   }
 }
