@@ -1,6 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { validateFormFields } from 'src/app/core/utils/form-helper';
 import { LoginModel } from '../../models/login.model';
 
 @Component({
@@ -24,18 +23,14 @@ export class LoginFormComponent implements OnInit {
   }
 
   submitLogin() {
-    validateFormFields(this.loginForm);
-
-    if (this.loginForm.valid) {
-      var dados: LoginModel = {
-        idPizzaria: '',
-        userId: this.loginForm.get('usuario').value,
-        userSenha: this.loginForm.get('senha').value,
-      };
-      this.entrar.emit(dados);
-    }
+    var dados: LoginModel = {
+      idPizzaria: '',
+      userId: this.loginForm.get('usuario').value,
+      userSenha: this.loginForm.get('senha').value,
+    };
+    this.entrar.emit(dados);
   }
-  abrirCadastro() {    
+  abrirCadastro() {
     this.cadastrar.emit(true);
   }
 }

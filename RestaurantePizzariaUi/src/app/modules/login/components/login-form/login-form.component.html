@@ -15,9 +15,9 @@
     />
   </mat-form-field>
 
-  <button type="submit" mat-flat-button color="primary">Entrar</button>
+  <button type="submit" [disabled]="!loginForm.valid" mat-flat-button color="primary">Entrar</button>
   <span></span>
-  <button (click)="abrirCadastro()" mat-flat-button color="primary">
+  <button (click)="abrirCadastro()"  mat-flat-button color="primary">
     Cadastrar seu Negócio
   </button>
 </form>
