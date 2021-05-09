@@ -30,7 +30,4 @@ export class LoginFormComponent implements OnInit {
     };
     this.entrar.emit(dados);
   }
-  abrirCadastro() {
-    this.cadastrar.emit(true);
-  }
 }

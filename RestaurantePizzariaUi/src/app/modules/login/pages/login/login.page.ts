@@ -23,8 +23,4 @@ export class LoginPage implements OnInit {
       }
     );
   }
-  abrirCadastro(abreCadastro: Boolean) {
-    if (!abreCadastro) return;
-    this.router.navigate(['/cadastro']);
-  }
 }
