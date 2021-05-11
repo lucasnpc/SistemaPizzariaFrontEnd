@@ -2,16 +2,56 @@
 
 .container {
   height: 100vh;
+  background-color: #278df6;
 }
 
 .form-container {
-  width: 300px;
+  width: 50%;
+  height: 550px;
+  display: grid;
   padding: 10px;
-  height: 420px;
   border-radius: @border-radius;
+  margin-left: 25%;
 }
 mat-form-field {
-  width: 250px;
-  margin-bottom: 15px;
   margin-left: 25px;
+  margin-right: 25px;
+}
+button.mat-stepper-next {
+  position: absolute;
+  width: 15%;
+  height: 72px;
+  background: #00dd31;
+  border-radius: 16px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 550;
+  font-size: 22px;
+  line-height: 22px;
+  border: 0px;
+
+  color: #ffffff;
+
+  left: 60%;
+  top: 720px;
+}
+button.mat-stepper-previous {
+  position: absolute;
+  width: 15%;
+  height: 72px;
+  background: #FA4B4B;
+  border-radius: 16px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 550;
+  font-size: 22px;
+  line-height: 22px;
+  border: 0px;
+
+  color: #ffffff;
+
+  left: 26%;
+  top: 720px;
 }
