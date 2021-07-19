@@ -1,10 +1,4 @@
 <div class="container" [class.example-is-mobile]="mobileQuery.matches">
-  <mat-toolbar color="primary" class="toolbar">
-    <button mat-icon-button>
-      <mat-icon>menu</mat-icon>
-    </button>
-    <h2>Menu</h2>
-  </mat-toolbar>
 
   <mat-sidenav-container
     class="sidenav-container"
@@ -17,7 +11,10 @@
       fixedTopGap="56"
       opened
     >
-      <mat-nav-list>
+    <mat-nav-list>
+      <button mat-icon-button class="user-button">
+      </button>
+      <h2>@usuario</h2>
         <button
           mat-button
           *ngFor="let button of buttons"
