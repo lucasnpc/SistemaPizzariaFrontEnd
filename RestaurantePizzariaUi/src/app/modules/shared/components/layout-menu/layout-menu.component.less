@@ -3,15 +3,17 @@
 .container {
   display: flex;
   flex-direction: column;
-  position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
 }
 
-h2{
-    margin-left: 13px;
+h2 {
+  margin-left: 13px;
+}
+.mat-list-base{
+  padding-top: 0px;
 }
 
 .example-is-mobile .toolbar {
@@ -35,7 +37,25 @@ h2{
   margin-right: 15px;
 }
 .buttom-nav-style {
-  width: 100%;
-  text-align: left;
-  margin-top: 8px;
+  width: 180px;
+  height: 70px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 28px;
+  background-color: #278df6;
+  border-radius: 16px;
+  margin-top: 10px;
+}
+.buttom-nav-style-unselected {
+  width: 180px;
+  height: 70px;
+  color: #C4C4C4;
+  text-align: center;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 28px;
+  background-color: @background;
+  border-radius: 16px;
+  margin-top: 10px;
 }

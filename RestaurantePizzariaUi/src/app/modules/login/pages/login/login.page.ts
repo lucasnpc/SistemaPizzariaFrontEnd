@@ -15,7 +15,7 @@ export class LoginPage implements OnInit {
   logarSistema(login: LoginModel) {
     this.rest.authUser(login).subscribe(
       (result) => {
-        if (result) this.router.navigate(['/menu/vendas']);
+        if (result) this.router.navigate(['/menu/dashboard']);
       },
       (error) => {
         console.log(error);

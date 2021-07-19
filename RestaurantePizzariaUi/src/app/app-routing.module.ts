@@ -13,7 +13,14 @@ const routes: Routes = [
     component: LayoutMenuComponent,
     children: [
       {
-        path: 'vendas',
+        path: 'dashboard',
+        loadChildren: () =>
+          import('./modules/dashboard/dashboard.module').then(
+            (m) => m.DashboardModule
+          ),
+      },
+      {
+        path: 'caixa',
         loadChildren: () =>
           import('./modules/vendas/vendas.module').then((m) => m.VendasModule),
       },

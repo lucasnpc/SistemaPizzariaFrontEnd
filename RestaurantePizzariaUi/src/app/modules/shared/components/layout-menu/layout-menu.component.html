@@ -1,6 +1,6 @@
 <div class="container" [class.example-is-mobile]="mobileQuery.matches">
   <mat-toolbar color="primary" class="toolbar">
-    <button mat-icon-button (click)="snav.toggle()">
+    <button mat-icon-button>
       <mat-icon>menu</mat-icon>
     </button>
     <h2>Menu</h2>
@@ -15,46 +15,22 @@
       [mode]="mobileQuery.matches ? 'over' : 'side'"
       [fixedInViewport]="mobileQuery.matches"
       fixedTopGap="56"
+      opened
     >
       <mat-nav-list>
         <button
           mat-button
-          [routerLink]="['/menu/vendas']"
+          *ngFor="let button of buttons"
+          [routerLink]="[button.routerLink]"
           class="buttom-nav-style"
+          (click)="clickEvent(button)"
+          [ngClass]="
+            selectedButton == button
+              ? 'buttom-nav-style'
+              : 'buttom-nav-style-unselected'
+          "
         >
-          <mat-icon svgIcon="sales-point" class="icon-nav-style"></mat-icon
-          >Ponto de Venda
-        </button>
-        <button
-          mat-button
-          [routerLink]="['/menu/clientes']"
-          class="buttom-nav-style"
-        >
-          <mat-icon svgIcon="customer" class="icon-nav-style"></mat-icon
-          >Clientes
-        </button>
-        <button
-          mat-button
-          [routerLink]="['/menu/cardapio']"
-          class="buttom-nav-style"
-        >
-          <mat-icon svgIcon="menu" class="icon-nav-style"></mat-icon>Cardápio
-        </button>
-        <button
-          mat-button
-          [routerLink]="['/menu/contas']"
-          class="buttom-nav-style"
-        >
-          <mat-icon svgIcon="business-chart" class="icon-nav-style"></mat-icon
-          >Contas
-        </button>
-        <button
-          mat-button
-          [routerLink]="['/menu/funcionarios']"
-          class="buttom-nav-style"
-        >
-          <mat-icon svgIcon="workers" class="icon-nav-style"></mat-icon
-          >Funcionários
+          {{button.name}}
         </button>
       </mat-nav-list>
     </mat-sidenav>
