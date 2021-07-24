@@ -7,9 +7,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
+import { TopBarComponent } from './components/top-bar/top-bar.component';
 
 @NgModule({
-  declarations: [LayoutMenuComponent],
+  declarations: [LayoutMenuComponent, TopBarComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -19,6 +20,6 @@ import {MatListModule} from '@angular/material/list';
     MatSidenavModule,
     MatListModule
   ],
-  exports: [LayoutMenuComponent],
+  exports: [LayoutMenuComponent, TopBarComponent],
 })
 export class SharedModule {}

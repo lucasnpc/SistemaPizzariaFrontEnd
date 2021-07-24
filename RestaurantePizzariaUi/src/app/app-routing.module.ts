@@ -22,7 +22,7 @@ const routes: Routes = [
       {
         path: 'caixa',
         loadChildren: () =>
-          import('./modules/vendas/vendas.module').then((m) => m.VendasModule),
+          import('./modules/caixa/caixa.module').then((m) => m.CaixaModule),
       },
       {
         path: 'clientes',

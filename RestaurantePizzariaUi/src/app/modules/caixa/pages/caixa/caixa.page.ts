@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  templateUrl: './vendas.page.html',
-  styleUrls: ['./vendas.page.less']
+  templateUrl: './caixa.page.html',
+  styleUrls: ['./caixa.page.less']
 })
-export class VendasPage implements OnInit {
+export class CaixaPage implements OnInit {
 
   constructor() { }
 
