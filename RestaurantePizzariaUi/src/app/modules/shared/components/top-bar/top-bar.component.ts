@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -16,6 +16,7 @@ const SEARCH_BUTTON = `<svg width="40" height="40" viewBox="0 0 40 40" fill="non
 })
 export class TopBarComponent implements OnInit {
   @ViewChild('search') searchBar: ElementRef;
+  @Output() openDialog = new EventEmitter();
 
   filled = false;
 
@@ -36,5 +37,9 @@ export class TopBarComponent implements OnInit {
       this.filled = true;
     }
     this.searchBar.nativeElement.focus();
+  }
+
+  addSomething(){
+    this.openDialog.emit();
   }
 }

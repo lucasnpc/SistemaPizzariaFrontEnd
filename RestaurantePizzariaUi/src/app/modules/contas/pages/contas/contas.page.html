@@ -1,15 +1,18 @@
 <div class="container background-muted">
-    <div class="content-container">
-        <mat-grid-list cols="4" rowHeight="4rem">
-            <mat-grid-tile [colspan]="4" [rowspan]="3">
-                <rp-grafico-contas></rp-grafico-contas>
-            </mat-grid-tile>
-            <mat-grid-tile [colspan]="2" [rowspan]="8">
-                <rp-lista-contas-pagar></rp-lista-contas-pagar>
-            </mat-grid-tile>
-            <mat-grid-tile [colspan]="2" [rowspan]="8">
-                <rp-lista-contas-receber></rp-lista-contas-receber>
-            </mat-grid-tile>
-        </mat-grid-list>
-    </div>
+  <div class="content-container">
+    <mat-grid-list cols="4" rowHeight="4rem">
+      <mat-grid-tile [colspan]="4" [rowspan]="2">
+        <rp-top-bar (openDialog)="openDialog()"></rp-top-bar>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="4" [rowspan]="3">
+        <rp-grafico-contas></rp-grafico-contas>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="2" [rowspan]="8">
+        <rp-lista-contas-pagar></rp-lista-contas-pagar>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="2" [rowspan]="8">
+        <rp-lista-contas-receber></rp-lista-contas-receber>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
 </div>

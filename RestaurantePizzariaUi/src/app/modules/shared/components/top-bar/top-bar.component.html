@@ -4,5 +4,5 @@
       <input #search type="search" [placeholder]="filled?'Pesquisar':''" [ngClass]="{'filled':filled}" 
            (click)="filled=true" (blur)="filled=search.value?true:false">
     </form>
-    <button mat-button class="add-button">Adicionar</button>
+    <button mat-button class="add-button" (click)="addSomething()">Adicionar</button>
   </div>

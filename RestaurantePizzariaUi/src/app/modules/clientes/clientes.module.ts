@@ -4,16 +4,21 @@ import { ClientesPage } from './pages/clientes/clientes.page';
 import { ClientesRoutingModule } from './clientes-routing.module';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ListaClientesComponent } from './components/lista-clientes/lista-clientes.component';
-import {MatTableModule} from '@angular/material/table';
-import {MatCardModule} from '@angular/material/card';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatTableModule } from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import {MatButtonModule} from '@angular/material/button';
-
-
+import { MatButtonModule } from '@angular/material/button';
+import { SharedModule } from '../shared/shared.module';
+import { DialogAddInClientesComponent } from './components/dialog-add-in-clientes/dialog-add-in-clientes.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
-  declarations: [ClientesPage, ListaClientesComponent],
+  declarations: [
+    ClientesPage,
+    ListaClientesComponent,
+    DialogAddInClientesComponent,
+  ],
   imports: [
     CommonModule,
     ClientesRoutingModule,
@@ -22,7 +27,9 @@ import {MatButtonModule} from '@angular/material/button';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
-  ]
+    MatButtonModule,
+    SharedModule,
+    MatDialogModule,
+  ],
 })
-export class ClientesModule { }
+export class ClientesModule {}

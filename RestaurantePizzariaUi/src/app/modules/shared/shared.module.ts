@@ -5,8 +5,8 @@ import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatListModule} from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 
 @NgModule({
@@ -18,7 +18,7 @@ import { TopBarComponent } from './components/top-bar/top-bar.component';
     MatIconModule,
     MatToolbarModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
   ],
   exports: [LayoutMenuComponent, TopBarComponent],
 })
