@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { CaixaRoutingModule } from './caixa-routing.module';
 import { CaixaPage } from './pages/caixa/caixa.page';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { ListaPedidosComponent } from './components/list-saidas/lista-pedidos.component';
-import { ListaComandasComponent } from './components/list-entradas/lista-comandas.component';
-import { ListaVendasComponent } from './components/lista-vendas/lista-vendas.component';
+import { ListSaidasComponent } from './components/list-saidas/list-saidas.component';
+import { ListEntradasComponent } from './components/list-entradas/list-entradas.component';
+import { CaixaBalanceComponent } from './components/caixa-balance/caixa-balance.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
@@ -18,9 +18,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [
     CaixaPage,
-    ListaPedidosComponent,
-    ListaComandasComponent,
-    ListaVendasComponent,
+    ListSaidasComponent,
+    ListEntradasComponent,
+    CaixaBalanceComponent,
     DialogAddInCaixaComponent,
   ],
   imports: [

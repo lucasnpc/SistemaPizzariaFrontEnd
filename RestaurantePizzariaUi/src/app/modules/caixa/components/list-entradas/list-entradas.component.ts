@@ -13,11 +13,11 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 
 @Component({
-  selector: 'rp-lista-comandas',
-  templateUrl: './lista-comandas.component.html',
-  styleUrls: ['./lista-comandas.component.less']
+  selector: 'rp-list-entradas',
+  templateUrl: './list-entradas.component.html',
+  styleUrls: ['./list-entradas.component.less']
 })
-export class ListaComandasComponent implements OnInit {
+export class ListEntradasComponent implements OnInit {
 
   constructor() { }
 

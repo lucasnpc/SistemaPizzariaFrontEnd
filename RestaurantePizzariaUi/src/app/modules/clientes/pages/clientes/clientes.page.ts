@@ -7,6 +7,8 @@ import { DialogAddInClientesComponent } from '../../components/dialog-add-in-cli
   styleUrls: ['./clientes.page.less'],
 })
 export class ClientesPage implements OnInit {
+  filterEvent: Event;
+
   constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {}
@@ -17,5 +19,8 @@ export class ClientesPage implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog clientes result: ${result}`);
     });
+  }
+  applyFilter(event: Event) {
+    this.filterEvent = event;
   }
 }

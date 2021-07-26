@@ -12,6 +12,8 @@ import { SharedModule } from '../shared/shared.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogAddInContasComponent } from './components/dialog-add-in-contas/dialog-add-in-contas.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { ContasBalanceComponent } from './components/contas-balance/contas-balance.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
     ListaContasReceberComponent,
     GraficoContasComponent,
     DialogAddInContasComponent,
+    ContasBalanceComponent,
   ],
   imports: [
     CommonModule,
@@ -30,6 +33,7 @@ import { MatButtonModule } from '@angular/material/button';
     SharedModule,
     MatDialogModule,
     MatButtonModule,
+    MatCardModule,
   ],
 })
 export class ContasModule {}
