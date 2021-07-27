@@ -1,6 +1,5 @@
 <mat-card class="card-style">
-  <mat-card-header>
-  </mat-card-header>
+  <mat-card-header> </mat-card-header>
   <mat-card-content>
     <table mat-table [dataSource]="dataSource">
       <!--- Note that these columns can be defined in any order.
@@ -9,7 +8,9 @@
       <!-- ID Column -->
       <ng-container matColumnDef="id_cliente">
         <th mat-header-cell *matHeaderCellDef>ID</th>
-        <td class="item-border-left" mat-cell *matCellDef="let element">{{ element.id_cliente }}</td>
+        <td class="item-border-left" mat-cell *matCellDef="let element">
+          {{ element.id_cliente }}
+        </td>
       </ng-container>
       <!-- Nome Column -->
       <ng-container matColumnDef="nome">
@@ -39,11 +40,18 @@
       <!-- Telefone Column -->
       <ng-container matColumnDef="telefone">
         <th mat-header-cell *matHeaderCellDef>Telefone</th>
-        <td class="item-border-right" mat-cell *matCellDef="let element">{{ element.telefone }}</td>
+        <td class="item-border-right" mat-cell *matCellDef="let element">
+          {{ element.telefone }}
+        </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      <tr
+        mat-row
+        (click)="setRow(row)"
+        [ngClass]="{ rowSelected: clickedRow == row }"
+        *matRowDef="let row; columns: displayedColumns"
+      ></tr>
 
       <tr class="mat-row" *matNoDataRow>
         <td class="mat-cell" colspan="4">

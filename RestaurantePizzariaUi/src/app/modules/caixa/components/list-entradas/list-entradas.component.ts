@@ -19,6 +19,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class ListEntradasComponent implements OnInit {
 
+  clickedRow: PeriodicElement;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -26,4 +28,7 @@ export class ListEntradasComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'weight'];
   dataSource = ELEMENT_DATA;
 
+  setRow(row: PeriodicElement) {
+    this.clickedRow = row;
+  }
 }

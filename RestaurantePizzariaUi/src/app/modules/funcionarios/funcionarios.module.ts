@@ -14,7 +14,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DialogAddInFuncionariosComponent } from './components/dialog-add-in-funcionarios/dialog-add-in-funcionarios.component';
 
 @NgModule({
-  declarations: [FuncionariosPage, ListaFuncionariosComponent, DialogAddInFuncionariosComponent],
+  declarations: [
+    FuncionariosPage,
+    ListaFuncionariosComponent,
+    DialogAddInFuncionariosComponent,
+  ],
   imports: [
     CommonModule,
     FuncionariosRoutingModule,

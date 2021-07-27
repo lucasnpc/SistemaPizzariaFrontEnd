@@ -94,6 +94,7 @@ const ELEMENT_DATA: Cliente[] = [
 export class ListaClientesComponent implements OnInit {
   @Input() filterEvent: Event;
   filterValue: String;
+  clickedRow: Cliente;
 
   constructor() {}
 
@@ -117,5 +118,9 @@ export class ListaClientesComponent implements OnInit {
   applyFilter(event: Event) {
     this.filterValue = (event.target as HTMLInputElement).value.toString();
     this.dataSource.filter = this.filterValue.trim().toLowerCase();
+  }
+
+  setRow(row: Cliente) {
+    this.clickedRow = row;
   }
 }

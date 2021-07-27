@@ -85,6 +85,7 @@ const ELEMENT_DATA: Funcionario[] = [
 export class ListaFuncionariosComponent implements OnInit {
   @Input() filterEvent: Event;
   filterValue: String;
+  clickedRow: Funcionario;
 
   constructor() {}
 
@@ -111,5 +112,9 @@ export class ListaFuncionariosComponent implements OnInit {
   applyFilter(event: Event) {
     this.filterValue = (event.target as HTMLInputElement).value.toString();
     this.dataSource.filter = this.filterValue.trim().toLowerCase();
+  }
+
+  setRow(row: Funcionario) {
+    this.clickedRow = row;
   }
 }
