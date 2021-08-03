@@ -15,10 +15,10 @@ export class ItensCardapioComponent implements OnInit {
 
   ngOnInit(): void {
     this.rest.getItens().subscribe((result) => {
-      this.itens = result;
+      this.itens = result.data;
     });
     this.rest.getItensCount().subscribe((result) => {
-      this.itemCount = result;
+      this.itemCount = result.data;
     });
   }
 

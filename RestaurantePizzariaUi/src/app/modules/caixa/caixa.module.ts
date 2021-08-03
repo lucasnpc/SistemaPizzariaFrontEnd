@@ -14,6 +14,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { SharedModule } from '../shared/shared.module';
 import { DialogAddInCaixaComponent } from './components/dialog-add-in-caixa/dialog-add-in-caixa.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { CardapioService } from '../cardapio/service/cardapio.service';
+import { HttpClientModule } from '@angular/common/http';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,11 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatIconModule,
     SharedModule,
     MatDialogModule,
+    MatInputModule,
+    MatListModule,
+    HttpClientModule,
+    MatSelectModule,
   ],
-  providers: [],
+  providers: [CardapioService],
 })
 export class CaixaModule {}

@@ -35,7 +35,7 @@ export class ItemFormComponent implements OnInit {
         idItem: 0,
         descricao: this.cardapioForm.get('descricao').value,
         preco: this.cardapioForm.get('preco').value,
-        ingredientes: null,
+        selected: false
       };
     }
     this.adicionar.emit(dados);

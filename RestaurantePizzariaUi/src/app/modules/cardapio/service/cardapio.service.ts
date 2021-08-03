@@ -18,11 +18,11 @@ export class CardapioService {
   constructor(private httpClient: HttpClient) {}
 
   public getItens(){
-    return this.httpClient.get<ItemCardapioModel[]>(this.get);
+    return this.httpClient.get<{data: ItemCardapioModel[]}>(this.get);
   }
 
   public getItensCount(){
-    return this.httpClient.get<number>(this.getItemCount);
+    return this.httpClient.get<{data: number}>(this.getItemCount);
   }
 
   public postItem(item: ItemCardapioModel) {
