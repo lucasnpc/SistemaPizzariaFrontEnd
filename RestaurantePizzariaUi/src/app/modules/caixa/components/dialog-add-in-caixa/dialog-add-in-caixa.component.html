@@ -50,7 +50,6 @@
         >
           <mat-icon mat-list-icon></mat-icon>
           <div mat-line>{{ item.descricao }}</div>
-          <div mat-line>R$ {{ item.preco }}</div>
         </mat-list-option>
       </mat-selection-list>
     </mat-dialog-content>
@@ -59,7 +58,7 @@
 
 <mat-dialog-actions align="end">
   <button mat-button [mat-dialog-close]="false">Cancelar</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>
+  <button mat-button (click)="openDialogInvoice()">
     Finalizar
   </button>
 </mat-dialog-actions>

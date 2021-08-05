@@ -1,8 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ItemCardapioModel } from 'src/app/modules/cardapio/models/item-cardapio.model';
 import { CardapioService } from 'src/app/modules/cardapio/service/cardapio.service';
+import { DialogInvoiceComponent } from '../dialog-invoice/dialog-invoice.component';
 
 const SEARCH_BUTTON = `<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M16.6667 28.3333C23.11 28.3333 28.3333 23.11 28.3333 16.6667C28.3333 10.2233 23.11 5 16.6667 5C10.2233 5 5 10.2233 5 16.6667C5 23.11 10.2233 28.3333 16.6667 28.3333Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -11,7 +13,7 @@ const SEARCH_BUTTON = `<svg width="40" height="40" viewBox="0 0 40 40" fill="non
 `;
 
 interface Desks {
-  name: string
+  name: string;
 }
 
 @Component({
@@ -27,23 +29,24 @@ export class DialogAddInCaixaComponent implements OnInit {
   itemCount: number;
 
   desks: Desks[] = [
-    {name: 'Mesa - Delivery'},
-    {name: 'Mesa - Balcão'},
-    {name: 'Mesa - 1'},
-    {name: 'Mesa - 2'},
-    {name: 'Mesa - 3'},
-    {name: 'Mesa - 4'},
-    {name: 'Mesa - 5'},
-    {name: 'Mesa - 6'},
-    {name: 'Mesa - 7'},
-    {name: 'Mesa - 8'},
-    {name: 'Mesa - 9'},
+    { name: 'Mesa - Delivery' },
+    { name: 'Mesa - Balcão' },
+    { name: 'Mesa - 1' },
+    { name: 'Mesa - 2' },
+    { name: 'Mesa - 3' },
+    { name: 'Mesa - 4' },
+    { name: 'Mesa - 5' },
+    { name: 'Mesa - 6' },
+    { name: 'Mesa - 7' },
+    { name: 'Mesa - 8' },
+    { name: 'Mesa - 9' },
   ];
 
   constructor(
     iconRegistry: MatIconRegistry,
     sanitizer: DomSanitizer,
-    private rest: CardapioService
+    private rest: CardapioService,
+    private dialog: MatDialog
   ) {
     iconRegistry.addSvgIconLiteral(
       'search-button',
@@ -70,9 +73,19 @@ export class DialogAddInCaixaComponent implements OnInit {
   applyFilter(event: Event) {
     //this.filter.emit(event);
   }
+  openDialogInvoice() {
+    this.itens.forEach(function (item) {
+      if (item.selected == true) console.log(item);
+    });
 
-  addIndex(index: number){
-    this.itemIndex.push(index)
-    console.log(this.itemIndex);
+    const dialogRef = this.dialog.open(DialogInvoiceComponent, {
+      data: this.itens.filter(function (item) {
+        return item.selected == true;
+      }),
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Invoice dialog closed ${result}`);
+    });
   }
 }

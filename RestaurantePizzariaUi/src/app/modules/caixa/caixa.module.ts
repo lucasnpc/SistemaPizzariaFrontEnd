@@ -19,6 +19,8 @@ import { MatListModule } from '@angular/material/list';
 import { CardapioService } from '../cardapio/service/cardapio.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSelectModule } from '@angular/material/select';
+import { DialogInvoiceComponent } from './components/dialog-invoice/dialog-invoice.component';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { MatSelectModule } from '@angular/material/select';
     ListEntradasComponent,
     CaixaBalanceComponent,
     DialogAddInCaixaComponent,
+    DialogInvoiceComponent,
   ],
   imports: [
     CommonModule,
@@ -43,6 +46,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatListModule,
     HttpClientModule,
     MatSelectModule,
+    MatRadioModule,
   ],
   providers: [CardapioService],
 })

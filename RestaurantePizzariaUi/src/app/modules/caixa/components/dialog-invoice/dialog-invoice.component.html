@@ -1,0 +1,33 @@
+<div class="gray-top-bar" mat-dialog-title></div>
+<div mat-dialog-content>
+  <p class="payement-way">Forma de Pagamento</p>
+  <mat-radio-group
+    aria-labelledby="example-radio-group-label"
+    class="example-radio-group"
+  >
+    <mat-radio-button
+      class="example-radio-button"
+      *ngFor="let payement of payements"
+      [value]="payement"
+    >
+      {{ payement }}
+    </mat-radio-button>
+  </mat-radio-group>
+  <mat-selection-list id="item" [multiple]="false">
+    <p class="order">Pedido:</p>
+    <mat-list-option
+      #item
+      *ngFor="let item of data; let i = index"
+      [value]="item"
+    >
+      <mat-icon mat-list-icon></mat-icon>
+      <div mat-line>{{ item.descricao }}: R$ {{ item.preco }}</div>
+    </mat-list-option>
+  </mat-selection-list>
+  <p class="total">Valor total: R$ {{ total }}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="false" cdkFocusInitial>
+    Efetuar Pagamento
+  </button>
+</div>
