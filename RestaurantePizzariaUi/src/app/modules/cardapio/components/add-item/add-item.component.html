@@ -1,0 +1,42 @@
+<mat-grid-list cols="4" rowHeight="4rem">
+  <mat-grid-tile mat-dialog-title [colspan]="4" [rowspan]="1">
+    <div class="gray-bar-large">
+      <h2>Registro de Itens no Cardápio</h2>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="4" [rowspan]="8">
+    <mat-dialog-content>
+      <form [formGroup]="formRegisterItems">
+        <mat-form-field appearance="outline">
+          <mat-label>Preço</mat-label>
+          <input
+            matInput
+            currencyMask
+            class="example-right-align"
+            formControlName="preco"
+            placeholder="0"
+            [options]="{ prefix: '', thousands: '', decimal: '.' }"
+            required
+          />
+          <span matPrefix>R$&nbsp;</span>
+        </mat-form-field>
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Descrição</mat-label>
+          <input
+            matInput
+            formControlName="descricao"
+            placeholder="Descrição do Item"
+            required
+          />
+        </mat-form-field>
+      </form>
+    </mat-dialog-content>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="4" [rowspan]="1">
+    <mat-dialog-actions align="end">
+      <button mat-button (click)="addItem()" [mat-dialog-close]="true">
+        Registrar
+      </button>
+    </mat-dialog-actions>
+  </mat-grid-tile>
+</mat-grid-list>

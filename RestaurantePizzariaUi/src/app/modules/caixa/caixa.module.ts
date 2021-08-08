@@ -21,6 +21,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatSelectModule } from '@angular/material/select';
 import { DialogInvoiceComponent } from './components/dialog-invoice/dialog-invoice.component';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatTabsModule } from '@angular/material/tabs';
+import { AddInflowComponent } from './components/add-inflow/add-inflow.component';
+import { AddExpenseComponent } from './components/add-expense/add-expense.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 
 @NgModule({
   declarations: [
@@ -30,6 +36,8 @@ import { MatRadioModule } from '@angular/material/radio';
     CaixaBalanceComponent,
     DialogAddInCaixaComponent,
     DialogInvoiceComponent,
+    AddInflowComponent,
+    AddExpenseComponent,
   ],
   imports: [
     CommonModule,
@@ -47,6 +55,11 @@ import { MatRadioModule } from '@angular/material/radio';
     HttpClientModule,
     MatSelectModule,
     MatRadioModule,
+    MatTabsModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CurrencyMaskModule,
   ],
   providers: [CardapioService],
 })

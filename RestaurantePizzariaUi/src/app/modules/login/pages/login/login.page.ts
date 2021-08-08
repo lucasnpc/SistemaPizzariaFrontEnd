@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginModel } from '../../models/login.model';
+import { Usuario } from '../../models/usuario.model';
 import { LoginService } from '../../services/login.service';
 
 @Component({
@@ -12,9 +12,11 @@ export class LoginPage implements OnInit {
 
   ngOnInit(): void {}
 
-  logarSistema(login: LoginModel) {
+  logarSistema(login: Usuario) {
     this.rest.authUser(login).subscribe(
       (result) => {
+        console.log(result);
+        
         if (result) this.router.navigate(['/menu/dashboard']);
       },
       (error) => {

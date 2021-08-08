@@ -1,0 +1,108 @@
+<mat-grid-list cols="4" rowHeight="4rem">
+  <mat-grid-tile mat-dialog-title [colspan]="4" [rowspan]="1">
+    <div class="gray-bar-large">
+      <h2>Registro de Funcionários</h2>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="4" [rowspan]="8">
+    <mat-dialog-content>
+      <form [formGroup]="formRegisterEmployees">
+        <mat-form-field appearance="outline">
+          <mat-label>CPF</mat-label>
+          <input matInput formControlName="cpf" placeholder="CPF" required />
+        </mat-form-field>
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Nome</mat-label>
+          <input matInput formControlName="nome" placeholder="Nome" required />
+        </mat-form-field>
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Rua de enredeço</mat-label>
+          <input matInput formControlName="rua" placeholder="Rua" required />
+        </mat-form-field>
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Número de endereço</mat-label>
+          <input
+            matInput
+            formControlName="numero"
+            placeholder="Número"
+            required
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Bairro de endereço</mat-label>
+          <input
+            matInput
+            formControlName="bairro"
+            placeholder="Bairro"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Cidade de enredeço</mat-label>
+          <input
+            matInput
+            formControlName="cidade"
+            placeholder="Cidade"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Telefone</mat-label>
+          <input
+            matInput
+            formControlName="telefone"
+            placeholder="Telefone"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Cargo</mat-label>
+          <input
+            matInput
+            formControlName="cargo"
+            placeholder="Cargo"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Data de Admissão</mat-label>
+          <input
+            matInput
+            [matDatepicker]="pickAdmissionDate"
+            formControlName="dataAdmissao"
+            placeholder="Data de Admissão"
+            required
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="pickAdmissionDate"
+          ></mat-datepicker-toggle>
+          <mat-datepicker touchUi #pickAdmissionDate></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Data de Nascimento</mat-label>
+          <input
+            matInput
+            [matDatepicker]="pickBornDate"
+            formControlName="dataNascimento"
+            placeholder="Data de Nascimento"
+            required
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="pickBornDate"
+          ></mat-datepicker-toggle>
+          <mat-datepicker touchUi #pickBornDate></mat-datepicker>
+        </mat-form-field>
+      </form>
+    </mat-dialog-content>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="4" [rowspan]="1">
+    <mat-dialog-actions align="end">
+      <button mat-button (click)="addEmployee()" [mat-dialog-close]="true">
+        Registrar
+      </button>
+    </mat-dialog-actions>
+  </mat-grid-tile>
+</mat-grid-list>

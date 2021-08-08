@@ -10,13 +10,20 @@ import { MatButtonModule } from '@angular/material/button';
 import { CardapioService } from './service/cardapio.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
-import { ItemFormComponent } from './components/item-form/item-form.component';
 import { SharedModule } from '../shared/shared.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogAddInCardapioComponent } from './components/dialog-add-in-cardapio/dialog-add-in-cardapio.component';
+import { AddItemComponent } from './components/add-item/add-item.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 
 @NgModule({
-  declarations: [CardapioPage, ItensCardapioComponent, ItemFormComponent, DialogAddInCardapioComponent],
+  declarations: [
+    CardapioPage,
+    ItensCardapioComponent,
+    DialogAddInCardapioComponent,
+    AddItemComponent,
+  ],
   imports: [
     CommonModule,
     CardapioRoutingModule,
@@ -29,6 +36,8 @@ import { DialogAddInCardapioComponent } from './components/dialog-add-in-cardapi
     MatInputModule,
     SharedModule,
     MatDialogModule,
+    MatFormFieldModule,
+    CurrencyMaskModule,
   ],
   providers: [CardapioService],
 })

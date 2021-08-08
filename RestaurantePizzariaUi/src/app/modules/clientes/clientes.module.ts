@@ -12,12 +12,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from '../shared/shared.module';
 import { DialogAddInClientesComponent } from './components/dialog-add-in-clientes/dialog-add-in-clientes.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { AddClienteComponent } from './components/add-cliente/add-cliente.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     ClientesPage,
     ListaClientesComponent,
     DialogAddInClientesComponent,
+    AddClienteComponent,
   ],
   imports: [
     CommonModule,
@@ -30,6 +33,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatButtonModule,
     SharedModule,
     MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
 })
 export class ClientesModule {}

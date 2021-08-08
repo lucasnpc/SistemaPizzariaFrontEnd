@@ -6,13 +6,3 @@
     <div mat-line>R$ {{ item.preco }}</div>
   </mat-list-option>
 </mat-selection-list>
-
-<div class="item-container">
-  <rp-item-form
-    [item]="item.selectedOptions.selected[0]?.value"
-    (adicionar)="adicionarItem($event)"
-    (alterar)="alterarItem($event)"
-    (remover)="removerItem($event)"
-  >
-  </rp-item-form>
-</div>
