@@ -29,7 +29,7 @@
     <mat-dialog-content>
       <mat-form-field appearance="fill">
         <mat-label>Mesas disponíveis</mat-label>
-        <mat-select>
+        <mat-select #select>
           <mat-option *ngFor="let desk of desks" [value]="desk.name">
             {{ desk.name }}
           </mat-option>

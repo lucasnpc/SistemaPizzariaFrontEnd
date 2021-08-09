@@ -1,4 +1,4 @@
-export interface Entrada {
+export class Entrada {
   idEntrada: string;
   numeroMesa: string;
   itensCardapio: string[];

@@ -1,6 +1,6 @@
-export class Usuario {
-  idNegocio: string;
+export interface Usuario {
   usuarioId: string;
+  idNegocio: string;
   senha: string;
   tipoUsuario: string;
 }

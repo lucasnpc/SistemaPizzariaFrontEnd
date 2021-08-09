@@ -1,7 +1,10 @@
 <div class="container">
   <mat-horizontal-stepper linear #stepper class="container background-muted">
-    <mat-step [stepControl]="formCadastroNegocio" label="Cadastre seu negócio">
-      <form [formGroup]="formCadastroNegocio" class="form-container background">
+    <mat-step [stepControl]="formBusinessRegister" label="Cadastre seu negócio">
+      <form
+        [formGroup]="formBusinessRegister"
+        class="form-container background"
+      >
         <mat-form-field appearance="outline">
           <mat-label>Nome</mat-label>
           <input
@@ -59,12 +62,14 @@
       </form>
 
       <div>
-        <button mat-button matStepperNext>Próximo</button>
+        <button mat-button matStepperNext (click)="setBusiness()">
+          Próximo
+        </button>
       </div>
     </mat-step>
-    <mat-step [stepControl]="formCadastroUsuario" label="Cadastre seu usuário">
-      <form [formGroup]="formCadastroUsuario" class="form-container background">
-        <mat-form-field>
+    <mat-step [stepControl]="formUserRegister" label="Cadastre seu usuário">
+      <form [formGroup]="formUserRegister" class="form-container background">
+        <mat-form-field appearance="outline">
           <mat-label>Usuário</mat-label>
           <input
             matInput
@@ -73,10 +78,11 @@
             required
           />
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-label>Senha</mat-label>
           <input
             matInput
+            type="password"
             formControlName="senha"
             placeholder="Senha do usuário"
             required
@@ -85,12 +91,28 @@
       </form>
 
       <button mat-button matStepperPrevious>Anterior</button>
-      <button mat-button matStepperNext>Próximo</button>
+      <button mat-button matStepperNext (click)="setUser()">Próximo</button>
     </mat-step>
     <mat-step label="Finalize o cadastro">
+      <div class="result-container">
+        <span *ngIf="negocio != null">
+          <div class="nome">Nome do negócio: {{negocio.nome}}</div>
+          <div class="cidade">Cidade sede do Negócio: {{negocio.cidade}}</div>
+          <div class="estado">Estado sede do Negócio: {{negocio.estado}}</div>
+        </span>
+        <span *ngIf="usuario != null">
+          <div class="usuario">
+            Identificador do usuário: {{usuario.usuarioId}}
+          </div>
+        </span>
+      </div>
       <div>
-        <button mat-button matStepperPrevious>Anterior</button>
-        <button mat-button>Finalizar</button>
+        <button mat-button class="reset-button" (click)="stepper.reset()">
+          Resetar
+        </button>
+        <button mat-button class="finish-button" (click)="finishRegistration()">
+          Finalizar
+        </button>
       </div>
     </mat-step>
   </mat-horizontal-stepper>

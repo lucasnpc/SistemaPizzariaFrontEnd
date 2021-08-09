@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
+import { MatDialogRef } from '@angular/material/dialog';
+import { ContaAPagar } from '../../models/contas-pagar.model';
+import { ContasService } from '../../service/contas.service';
+import { DialogAddInContasComponent } from '../dialog-add-in-contas/dialog-add-in-contas.component';
 
 @Component({
   selector: 'rp-add-bill-to-pay',
@@ -15,6 +19,8 @@ export class AddBillToPayComponent implements OnInit {
     valor: ['', Validators.required],
     tipoServico: ['', Validators.required],
   });
+  @ViewChild('selectEhFixa') ehFixa: any;
+  @ViewChild('selectTypeService') tipoServico: any;
 
   options = ['Sim', 'Não'];
   services = [
@@ -24,13 +30,34 @@ export class AddBillToPayComponent implements OnInit {
     'Manutenção',
     'Transporte',
   ];
-  constructor(private fb: FormBuilder, dateAdapter: DateAdapter<any>) {
+  constructor(
+    private fb: FormBuilder,
+    dateAdapter: DateAdapter<any>,
+    private rest: ContasService,
+    public dialogRef: MatDialogRef<DialogAddInContasComponent>
+  ) {
     dateAdapter.setLocale('pt-br');
   }
 
   ngOnInit(): void {}
 
   addBillToPay() {
-    console.log('Add bills to pay');
+    var ehFixa;
+    if (this.formRegisterBillsToPay.get('ehFixa').value == 'Sim') ehFixa = true;
+    else ehFixa = false;
+
+    var dados: ContaAPagar = {
+      idConta: '2',
+      ehFixa: ehFixa,
+      descricao: this.formRegisterBillsToPay.get('descricao').value,
+      dataPagamento: this.formRegisterBillsToPay.get('dataPagamento').value,
+      valor: this.formRegisterBillsToPay.get('valor').value,
+      tipoServico: this.formRegisterBillsToPay.get('tipoServico').value,
+    };
+    console.log(dados);
+
+    this.rest.postBillToPay(dados).subscribe((result) => {
+      if (result.success) this.dialogRef.close();
+    });
   }
 }

@@ -49,7 +49,12 @@
   </mat-grid-tile>
   <mat-grid-tile [colspan]="4" [rowspan]="1">
     <mat-dialog-actions align="end">
-      <button mat-button (click)="addBillToReceive()" [mat-dialog-close]="true">
+      <button
+        mat-button
+        (click)="addBillToReceive()"
+        type="submit"
+        [disabled]="!formRegisterBillsToReceive.valid"
+      >
         Registrar
       </button>
     </mat-dialog-actions>

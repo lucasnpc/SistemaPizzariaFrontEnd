@@ -1,90 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-
-export interface Cliente {
-  id_cliente: String;
-  nome: String;
-  rua: String;
-  numero: String;
-  bairro: String;
-  cidade: String;
-  telefone: String;
-}
-
-const ELEMENT_DATA: Cliente[] = [
-  {
-    id_cliente: '123.456.789-50',
-    nome: 'Hydrogen',
-    rua: 'Rua Lucas',
-    numero: '121',
-    bairro: 'Cidade Alta',
-    cidade: 'Campos',
-    telefone: '(12)91822-9090',
-  },
-  {
-    id_cliente: '2',
-    nome: 'Oxygen',
-    rua: 'Rua Oxygen',
-    numero: '112',
-    bairro: 'Cidade Baixo',
-    cidade: 'Campos',
-    telefone: '(12)991232-9090',
-  },
-  {
-    id_cliente: '3',
-    nome: 'Nitrogen',
-    rua: 'Rua Lucas',
-    numero: '451',
-    bairro: 'Bahamas',
-    cidade: 'Campos',
-    telefone: '(12)99822-9320',
-  },
-  {
-    id_cliente: '443.223.112-54',
-    nome: 'Hydrogen',
-    rua: 'Rua Lucas',
-    numero: '121',
-    bairro: 'Cidade Alta',
-    cidade: 'Campos',
-    telefone: '(11)99822-9090',
-  },
-  {
-    id_cliente: '5',
-    nome: 'Heiliar',
-    rua: 'Rua Nove',
-    numero: '123',
-    bairro: 'Play Hard',
-    cidade: 'Campos',
-    telefone: '(12)99822-9320',
-  },
-  {
-    id_cliente: '6',
-    nome: 'Metastase',
-    rua: 'Rua Lucas',
-    numero: '1241',
-    bairro: 'PlayerUnckown',
-    cidade: 'Campos',
-    telefone: '(12)95822-9090',
-  },
-  {
-    id_cliente: '7',
-    nome: 'Barry Allen',
-    rua: 'Rua Doze',
-    numero: '1121',
-    bairro: 'Cidade Alta',
-    cidade: 'Campos',
-    telefone: '(12)99122-9090',
-  },
-  {
-    id_cliente: '8',
-    nome: 'Lucão',
-    rua: 'Rua do 71',
-    numero: '1221',
-    bairro: 'Cidade Alta',
-    cidade: 'Campos',
-    telefone: '(12)99822-9090',
-  },
-];
+import { Cliente } from '../../models/clientes.model';
+import { ClienteService } from '../../service/cliente.service';
 
 @Component({
   selector: 'rp-lista-clientes',
@@ -94,26 +11,31 @@ const ELEMENT_DATA: Cliente[] = [
 export class ListaClientesComponent implements OnInit {
   @Input() filterEvent: Event;
   filterValue: String;
+  clientes: Cliente[];
   clickedRow: Cliente;
+  dataSource: any;
 
-  constructor() {}
+  constructor(private rest: ClienteService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.rest.getCustomers().subscribe((result) => {
+      this.clientes = result.data;
+      this.dataSource = new MatTableDataSource(this.clientes);
+    });
+  }
 
   ngOnChanges() {
     if (this.filterEvent != null) this.applyFilter(this.filterEvent);
   }
 
   displayedColumns: string[] = [
-    'id_cliente',
+    'telefone',
     'nome',
     'rua',
     'numero',
     'bairro',
     'cidade',
-    'telefone',
   ];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   applyFilter(event: Event) {
     this.filterValue = (event.target as HTMLInputElement).value.toString();

@@ -9,12 +9,8 @@
       <form [formGroup]="formRegisterBillsToPay">
         <mat-form-field appearance="outline">
           <mat-label>Conta fixa?</mat-label>
-          <mat-select>
-            <mat-option
-              *ngFor="let option of options"
-              [value]="option"
-              formControlName="ehFixa"
-            >
+          <mat-select #selectEhFixa formControlName="ehFixa" required>
+            <mat-option *ngFor="let option of options" [value]="option">
               {{ option }}
             </mat-option>
           </mat-select>
@@ -58,12 +54,8 @@
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Tipo de serviço</mat-label>
-          <mat-select>
-            <mat-option
-              *ngFor="let service of services"
-              [value]="service"
-              formControlName="tipoServico"
-            >
+          <mat-select #selectTypeService formControlName="tipoServico" required>
+            <mat-option *ngFor="let service of services" [value]="service">
               {{ service }}
             </mat-option>
           </mat-select>
@@ -73,7 +65,12 @@
   </mat-grid-tile>
   <mat-grid-tile [colspan]="4" [rowspan]="1">
     <mat-dialog-actions align="end">
-      <button mat-button (click)="addBillToPay()" [mat-dialog-close]="true">
+      <button
+        mat-button
+        (click)="addBillToPay()"
+        type="submit"
+        [disabled]="!formRegisterBillsToPay.valid"
+      >
         Registrar
       </button>
     </mat-dialog-actions>

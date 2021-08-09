@@ -27,6 +27,7 @@ import { AddExpenseComponent } from './components/add-expense/add-expense.compon
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { CaixaService } from './service/caixa.service';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,6 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
     ReactiveFormsModule,
     CurrencyMaskModule,
   ],
-  providers: [CardapioService],
+  providers: [CardapioService, CaixaService],
 })
 export class CaixaModule {}

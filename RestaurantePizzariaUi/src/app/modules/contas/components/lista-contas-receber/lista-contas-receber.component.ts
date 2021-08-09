@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
-export interface ContaReceber {
-  descricao: string;
-  valor: number;
-}
+import { MatTableDataSource } from '@angular/material/table';
+import { ContaAReceber } from '../../models/contas-receber.model';
+import { ContasService } from '../../service/contas.service';
 
 @Component({
   selector: 'rp-lista-contas-receber',
@@ -11,30 +9,43 @@ export interface ContaReceber {
   styleUrls: ['./lista-contas-receber.component.less'],
 })
 export class ListaContasReceberComponent implements OnInit {
-  clickedRow: ContaReceber;
+  contas: ContaAReceber[];
+  dataSource: any;
+  clickedRow: ContaAReceber;
 
-  constructor() {}
+  constructor(private rest: ContasService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.rest.getBillsToReceive().subscribe((result) => {
+      this.contas = result.data;
+      this.dataSource = new MatTableDataSource(this.contas);
+    });
+  }
 
-  displayedColumns = ['descricao', 'valor'];
-  contas: ContaReceber[] = [
-    { descricao: 'Beach ball', valor: 4 },
-    { descricao: 'Towel', valor: 5 },
-    { descricao: 'Frisbee', valor: 2 },
-    { descricao: 'Sunscreen', valor: 4 },
-    { descricao: 'Cooler', valor: 25 },
-    { descricao: 'Swim suit', valor: 15 },
-  ];
+  displayedColumns = ['Descrição', 'Data de Recebimento', 'Valor'];
 
   /** Gets the total cost of all transactions. */
   valorTotalReceber() {
-    return this.contas
-      .map((t) => t.valor)
-      .reduce((acc, value) => acc + value, 0);
+    if (this.contas != null)
+      return this.contas
+        .map((t) => t.valor)
+        .reduce((acc, value) => acc + value, 0);
+    return 0;
   }
 
-  setRow(row: ContaReceber) {
+  setRow(row: ContaAReceber) {
     this.clickedRow = row;
+  }
+
+  formatDate(date: Date) {
+    var d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [day, month, year].join('-');
   }
 }

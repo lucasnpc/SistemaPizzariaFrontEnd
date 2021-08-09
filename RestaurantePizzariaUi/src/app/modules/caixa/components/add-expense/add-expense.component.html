@@ -6,9 +6,7 @@
   </mat-grid-tile>
   <mat-grid-tile [colspan]="4" [rowspan]="8">
     <mat-dialog-content>
-      <form
-        [formGroup]="formRegisterExpenses"
-      >
+      <form [formGroup]="formRegisterExpenses">
         <mat-form-field appearance="outline">
           <mat-label>Descrição</mat-label>
           <input
@@ -36,7 +34,12 @@
   </mat-grid-tile>
   <mat-grid-tile [colspan]="4" [rowspan]="1">
     <mat-dialog-actions align="end">
-      <button mat-button (click)="addExpense()" [mat-dialog-close]="true">
+      <button
+        mat-button
+        (click)="addExpense()"
+        type="submit"
+        [disabled]="!formRegisterExpenses.valid"
+      >
         Registrar
       </button>
     </mat-dialog-actions>

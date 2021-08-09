@@ -4,6 +4,7 @@
   <mat-radio-group
     aria-labelledby="example-radio-group-label"
     class="example-radio-group"
+    [(ngModel)]="payementForm"
   >
     <mat-radio-button
       class="example-radio-button"
@@ -17,17 +18,21 @@
     <p class="order">Pedido:</p>
     <mat-list-option
       #item
-      *ngFor="let item of data; let i = index"
+      *ngFor="let item of data.itensCardapio; let i = index"
       [value]="item"
     >
       <mat-icon mat-list-icon></mat-icon>
       <div mat-line>{{ item.descricao }}: R$ {{ item.preco }}</div>
     </mat-list-option>
   </mat-selection-list>
-  <p class="total">Valor total: R$ {{ total }}</p>
+  <p class="total">Valor total: R$ {{ data.valorConta }}</p>
 </div>
 <div mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="false" cdkFocusInitial>
+  <button
+    mat-button
+    (click)="addInflow()"
+    cdkFocusInitial
+  >
     Efetuar Pagamento
   </button>
 </div>

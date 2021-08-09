@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { Saida } from '../../models/saida.venda';
+import { CaixaService } from '../../service/caixa.service';
 
 export interface PeriodicElement {
   name: string;
@@ -20,23 +23,21 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./list-saidas.component.less'],
 })
 export class ListSaidasComponent implements OnInit {
-  clickedRow: PeriodicElement;
+  saidas: Saida[];
+  clickedRow: Saida;
+  dataSource: any;
 
-  constructor() {}
+  constructor(private rest: CaixaService) {}
 
-  ngOnInit(): void {}
-  displayedColumns: string[] = [
-    'id',
-    'rua',
-    'numero',
-    'bairro',
-    'cidade',
-    'cliente',
-    'valor',
-  ];
-  dataSource = ELEMENT_DATA;
+  ngOnInit(): void {
+    this.rest.getExpenses().subscribe((result) => {
+      this.saidas = result.data;
+      this.dataSource = new MatTableDataSource(this.saidas);
+    });
+  }
+  displayedColumns: string[] = ['Descrição', 'Valor'];
 
-  setRow(row: PeriodicElement) {
+  setRow(row: Saida) {
     this.clickedRow = row;
   }
 }

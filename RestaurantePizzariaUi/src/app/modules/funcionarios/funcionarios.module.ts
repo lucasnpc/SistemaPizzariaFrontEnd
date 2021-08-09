@@ -16,6 +16,8 @@ import { AddFuncionarioComponent } from './components/add-funcionario/add-funcio
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { HttpClientModule } from '@angular/common/http';
+import { FuncionarioService } from './service/funcionario.service';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    HttpClientModule,
   ],
+  providers: [FuncionarioService],
 })
 export class FuncionariosModule {}

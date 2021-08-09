@@ -1,6 +1,6 @@
 export interface ItemCardapioModel {
-  idItem: number;
+  idItem: string;
   preco: number;
-  descricao: String;
+  descricao: string;
   selected: boolean;
 }

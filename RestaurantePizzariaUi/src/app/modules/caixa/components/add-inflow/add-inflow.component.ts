@@ -23,10 +23,12 @@ interface Desks {
 })
 export class AddInflowComponent implements OnInit {
   @ViewChild('search') searchBar: ElementRef;
+  @ViewChild('select') selectedDesk: any;
   filled = false;
   itemIndex: number[];
   itens: ItemCardapioModel[];
   itemCount: number;
+  total: number;
 
   desks: Desks[] = [
     { name: 'Mesa - Delivery' },
@@ -81,11 +83,22 @@ export class AddInflowComponent implements OnInit {
     if (!itensSelected.length) {
       return;
     }
+    const num = itensSelected
+      .map((x) => Number(x.preco))
+      .reduce((a, b) => a + b, 0);
+    this.total = +num.toFixed(2);
 
+    //To improve idEntrada
     const dialogRef = this.dialog.open(DialogInvoiceComponent, {
-      data: this.itens.filter(function (item) {
-        return item.selected == true;
-      }),
+      data: {
+        idEntrada: String(+this.itemCount + 2),
+        numeroMesa: this.selectedDesk.value,
+        itensCardapio: this.itens.filter(function (item) {
+          return item.selected == true;
+        }),
+        valorConta: this.total,
+        formaPagamento: '',
+      },
     });
 
     dialogRef.afterClosed().subscribe((result) => {

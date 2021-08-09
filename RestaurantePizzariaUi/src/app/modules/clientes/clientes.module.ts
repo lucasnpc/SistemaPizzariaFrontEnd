@@ -14,6 +14,8 @@ import { DialogAddInClientesComponent } from './components/dialog-add-in-cliente
 import { MatDialogModule } from '@angular/material/dialog';
 import { AddClienteComponent } from './components/add-cliente/add-cliente.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ClienteService } from './service/cliente.service';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
+  providers: [ClienteService],
 })
 export class ClientesModule {}

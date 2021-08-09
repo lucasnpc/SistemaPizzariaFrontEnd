@@ -23,6 +23,8 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { HttpClientModule } from '@angular/common/http';
+import { ContasService } from './service/contas.service';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    HttpClientModule,
   ],
+  providers: [ContasService],
 })
 export class ContasModule {}
