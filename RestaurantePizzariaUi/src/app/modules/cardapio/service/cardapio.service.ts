@@ -25,7 +25,7 @@ export class CardapioService {
     return this.httpClient.get<{data: number}>(this.getItemCount);
   }
 
-  public postItem(item: ItemCardapioModel) {
+  public postItem(item: any) {
     return this.httpClient.post<any>(this.post, item, this.httpOptions);
   }
 }

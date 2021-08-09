@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { ContaAReceber } from '../../models/contas-receber.model';
 import { ContasService } from '../../service/contas.service';
 import { DialogAddInContasComponent } from '../dialog-add-in-contas/dialog-add-in-contas.component';
 
@@ -30,8 +29,7 @@ export class AddBillToReceiveComponent implements OnInit {
   ngOnInit(): void {}
 
   addBillToReceive() {
-    var dados: ContaAReceber = {
-      idConta: '2',
+    var dados = {
       valor: this.formRegisterBillsToReceive.get('valor').value,
       descricao: this.formRegisterBillsToReceive.get('descricao').value,
       dataRecebimento:

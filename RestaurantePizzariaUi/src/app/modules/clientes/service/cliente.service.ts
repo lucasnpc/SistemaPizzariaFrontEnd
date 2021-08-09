@@ -19,7 +19,7 @@ export class ClienteService {
   getCustomers() {
     return this.httpClient.get<{ data: Cliente[] }>(this.getClientes);
   }
-  postCustomer(cliente: Cliente) {
+  postCustomer(cliente: any) {
     return this.httpClient.post<any>(
       this.postCliente,
       cliente,

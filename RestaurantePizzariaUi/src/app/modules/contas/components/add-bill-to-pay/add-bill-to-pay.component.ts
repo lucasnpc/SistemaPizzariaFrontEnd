@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { ContaAPagar } from '../../models/contas-pagar.model';
 import { ContasService } from '../../service/contas.service';
 import { DialogAddInContasComponent } from '../dialog-add-in-contas/dialog-add-in-contas.component';
 
@@ -46,8 +45,7 @@ export class AddBillToPayComponent implements OnInit {
     if (this.formRegisterBillsToPay.get('ehFixa').value == 'Sim') ehFixa = true;
     else ehFixa = false;
 
-    var dados: ContaAPagar = {
-      idConta: '2',
+    var dados = {
       ehFixa: ehFixa,
       descricao: this.formRegisterBillsToPay.get('descricao').value,
       dataPagamento: this.formRegisterBillsToPay.get('dataPagamento').value,

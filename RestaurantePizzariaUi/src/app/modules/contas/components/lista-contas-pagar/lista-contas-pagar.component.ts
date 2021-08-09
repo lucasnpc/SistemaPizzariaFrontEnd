@@ -28,7 +28,7 @@ export class ListaContasPagarComponent implements OnInit {
   valorTotalPagar() {
     if (this.contas != null)
       return this.contas
-        .map((t) => t.valor)
+        .map((t) => +t.valor)
         .reduce((acc, value) => acc + value, 0);
     return 0;
   }

@@ -25,14 +25,14 @@ export class CaixaService {
   getExpenses() {
     return this.httpClient.get<{ data: Saida[] }>(this.getSaidas);
   }
-  postInflow(entrada: Entrada) {
+  postInflow(entrada: any) {
     return this.httpClient.post<any>(
       this.postEntrada,
       entrada,
       this.httpOptions
     );
   }
-  postExpense(saida: Saida) {
+  postExpense(saida: any) {
     return this.httpClient.post<any>(this.postSaida, saida, this.httpOptions);
   }
 }

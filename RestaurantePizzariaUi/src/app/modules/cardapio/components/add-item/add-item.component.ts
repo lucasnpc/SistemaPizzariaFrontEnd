@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { ItemCardapioModel } from '../../models/item-cardapio.model';
 import { CardapioService } from '../../service/cardapio.service';
 import { DialogAddInCardapioComponent } from '../dialog-add-in-cardapio/dialog-add-in-cardapio.component';
 
@@ -25,11 +24,9 @@ export class AddItemComponent implements OnInit {
   ngOnInit(): void {}
 
   addItem() {
-    var dados: ItemCardapioModel = {
-      idItem: '7',
+    var dados = {
       preco: this.formRegisterItems.get('preco').value,
       descricao: this.formRegisterItems.get('descricao').value,
-      selected: null,
     };
     this.rest.postItem(dados).subscribe((result) => {
       if (result.success) this.dialogRef.close();

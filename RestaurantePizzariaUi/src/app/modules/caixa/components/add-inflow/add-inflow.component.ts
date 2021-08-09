@@ -91,7 +91,6 @@ export class AddInflowComponent implements OnInit {
     //To improve idEntrada
     const dialogRef = this.dialog.open(DialogInvoiceComponent, {
       data: {
-        idEntrada: String(+this.itemCount + 2),
         numeroMesa: this.selectedDesk.value,
         itensCardapio: this.itens.filter(function (item) {
           return item.selected == true;

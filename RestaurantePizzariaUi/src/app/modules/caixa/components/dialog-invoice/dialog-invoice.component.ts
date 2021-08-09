@@ -27,7 +27,6 @@ export class DialogInvoiceComponent implements OnInit {
 
     this.data.formaPagamento = this.payementForm;
     const entrada = {
-      idEntrada: this.data.idEntrada,
       numeroMesa: this.data.numeroMesa,
       itensCardapio: this.data.itensCardapio.map(
         (item: { descricao: string }) => item.descricao

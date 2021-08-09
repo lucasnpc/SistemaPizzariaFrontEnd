@@ -26,8 +26,7 @@ export class AddExpenseComponent implements OnInit {
 
   addExpense() {
     console.log('Add expense');
-    var dados: Saida = {
-      idSaida: '3',
+    var dados = {
       descricao: this.formRegisterExpenses.get('descricao').value,
       valor: this.formRegisterExpenses.get('valor').value,
     };

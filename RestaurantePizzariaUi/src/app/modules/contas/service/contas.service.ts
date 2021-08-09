@@ -26,14 +26,14 @@ export class ContasService {
       this.getContasAReceber
     );
   }
-  postBillToPay(contaAPagar: ContaAPagar) {
+  postBillToPay(contaAPagar: any) {
     return this.httpClient.post<any>(
       this.postContasAPagar,
       contaAPagar,
       this.httpOptions
     );
   }
-  postBillToReceive(contaAReceber: ContaAReceber) {
+  postBillToReceive(contaAReceber: any) {
     return this.httpClient.post<any>(
       this.postContasAReceber,
       contaAReceber,

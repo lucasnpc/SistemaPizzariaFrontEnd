@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Cliente } from '../../models/clientes.model';
 import { ClienteService } from '../../service/cliente.service';
 import { DialogAddInClientesComponent } from '../dialog-add-in-clientes/dialog-add-in-clientes.component';
 
@@ -29,8 +28,7 @@ export class AddClienteComponent implements OnInit {
   ngOnInit(): void {}
 
   addClient() {
-    var dados: Cliente = {
-      idCliente: '2',
+    var dados = {
       telefone: this.formRegisterClients.get('telefone').value,
       nome: this.formRegisterClients.get('nome').value,
       numero: this.formRegisterClients.get('numero').value,
