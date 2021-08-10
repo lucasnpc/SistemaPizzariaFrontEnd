@@ -80,7 +80,7 @@ export class AddInflowComponent implements OnInit {
       return item.selected == true;
     });
 
-    if (!itensSelected.length) {
+    if (!itensSelected.length || this.selectedDesk.value == null) {
       return;
     }
     const num = itensSelected
@@ -88,7 +88,6 @@ export class AddInflowComponent implements OnInit {
       .reduce((a, b) => a + b, 0);
     this.total = +num.toFixed(2);
 
-    //To improve idEntrada
     const dialogRef = this.dialog.open(DialogInvoiceComponent, {
       data: {
         numeroMesa: this.selectedDesk.value,

@@ -4,7 +4,7 @@ export interface PeriodicElement {
   total: number;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [{ total: 45.9 }];
+const ELEMENT_DATA: PeriodicElement[] = [{ total: 0 }];
 
 @Component({
   selector: 'rp-caixa-balance',
