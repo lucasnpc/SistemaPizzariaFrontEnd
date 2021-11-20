@@ -1,1 +1,17 @@
-<p>gains works!</p>
+<mat-grid-list cols="2" rowHeight="50px">
+    <mat-grid-tile [colspan]="1" [rowspan]="2">
+        <p class="gains-style">Ganhos</p>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="2">
+        <p class="update-date-style" style="text-align: end;">Alterar data</p>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2" [rowspan]="2">
+        <div class="see-gains">Entradas:  R$ {{gains}}</div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2" [rowspan]="2">
+        <div class="see-expenses">Saídas: R$ {{expenses}}</div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2" [rowspan]="2">
+        <div class="see-total">Total: R$ {{total}}</div>
+    </mat-grid-tile>
+</mat-grid-list>
