@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { DashboardPage } from './pages/dashboard/dashboard.page';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { SharedModule } from '../shared/shared.module';
@@ -10,6 +10,9 @@ import { ConcludedOrdersComponent } from './components/concluded-orders/conclude
 import { GainsComponent } from './components/gains/gains.component';
 import { InformativeGraphComponent } from './components/informative-graph/informative-graph.component';
 import { MatButtonModule } from '@angular/material/button';
+import { DashboardDetailPage } from './pages/dashboard-detail/dashboard-detail.page';
+import LocalePT from '@angular/common/locales/pt';
+registerLocaleData(LocalePT);
 
 @NgModule({
   declarations: [
@@ -19,6 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
     ConcludedOrdersComponent,
     GainsComponent,
     InformativeGraphComponent,
+    DashboardDetailPage,
   ],
   imports: [
     CommonModule,

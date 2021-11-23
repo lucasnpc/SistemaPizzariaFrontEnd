@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="content-container">
+    <mat-grid-list cols="3" rowHeight="4rem" [gutterSize]="'8.2px'">
+      <mat-grid-tile [colspan]="3" [rowspan]="1">
+        <p>{{todayDate | date : 'longDate' : '': 'pt-BR'}}</p>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="3" [rowspan]="3"
+        ><p>Pedidos {{orders}}</p>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="3" [rowspan]="3"
+        ><p>Pedidos Ativos {{activeOrders}}</p>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="3" [rowspan]="3"
+        ><p>Pedidos Concluídos {{concludedOrders}}</p>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>
