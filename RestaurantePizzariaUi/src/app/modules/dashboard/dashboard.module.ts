@@ -10,6 +10,7 @@ import { ConcludedOrdersComponent } from './components/concluded-orders/conclude
 import { GainsComponent } from './components/gains/gains.component';
 import { InformativeGraphComponent } from './components/informative-graph/informative-graph.component';
 import { MatButtonModule } from '@angular/material/button';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { DashboardDetailPage } from './pages/dashboard-detail/dashboard-detail.page';
 import LocalePT from '@angular/common/locales/pt';
 registerLocaleData(LocalePT);
@@ -30,6 +31,7 @@ registerLocaleData(LocalePT);
     SharedModule,
     MatGridListModule,
     MatButtonModule,
+    NgxChartsModule,
   ],
 })
 export class DashboardModule {}

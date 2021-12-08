@@ -1,8 +1,24 @@
-<mat-grid-list cols="2" rowHeight="50px">
-    <mat-grid-tile [colspan]="1" [rowspan]="2">
-        <p class="date-style">Outubro de 2021</p>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="1" [rowspan]="2">
-        <p class="update-date-style" style="text-align: end;">Alterar data</p>
-    </mat-grid-tile>
+<mat-grid-list cols="2" rowHeight="4rem">
+  <mat-grid-tile [colspan]="1" [rowspan]="1">
+    <p class="date-style">Outubro de 2021</p>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="1" [rowspan]="1">
+    <p class="update-date-style" style="text-align: end">Alterar data</p>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="2" [rowspan]="6">
+    <ngx-charts-bar-vertical
+      [scheme]="colorScheme"
+      [results]="single"
+      [gradient]="gradient"
+      [xAxis]="showXAxis"
+      [yAxis]="showYAxis"
+      [legend]="showLegend"
+      [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel"
+      [xAxisLabel]="xAxisLabel"
+      [yAxisLabel]="yAxisLabel"
+      (select)="onSelect($event)"
+    >
+    </ngx-charts-bar-vertical>
+  </mat-grid-tile>
 </mat-grid-list>

@@ -6,7 +6,6 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { ListaContasPagarComponent } from './components/lista-contas-pagar/lista-contas-pagar.component';
 import { ListaContasReceberComponent } from './components/lista-contas-receber/lista-contas-receber.component';
 import { MatTableModule } from '@angular/material/table';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { SharedModule } from '../shared/shared.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogAddInContasComponent } from './components/dialog-add-in-contas/dialog-add-in-contas.component';
@@ -41,7 +40,6 @@ import { ContasService } from './service/contas.service';
     ContasRoutingModule,
     MatGridListModule,
     MatTableModule,
-    NgxChartsModule,
     SharedModule,
     MatDialogModule,
     MatButtonModule,
