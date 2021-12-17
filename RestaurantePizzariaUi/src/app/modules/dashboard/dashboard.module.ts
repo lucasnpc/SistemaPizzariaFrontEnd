@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import { DashboardPage } from './pages/dashboard/dashboard.page';
 import { DashboardRoutingModule } from './dashboard-routing.module';
@@ -10,8 +11,11 @@ import { ConcludedOrdersComponent } from './components/concluded-orders/conclude
 import { GainsComponent } from './components/gains/gains.component';
 import { InformativeGraphComponent } from './components/informative-graph/informative-graph.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { DashboardDetailPage } from './pages/dashboard-detail/dashboard-detail.page';
+import { DashboardService } from './service/dashboard.service';
 import LocalePT from '@angular/common/locales/pt';
 registerLocaleData(LocalePT);
 
@@ -27,11 +31,15 @@ registerLocaleData(LocalePT);
   ],
   imports: [
     CommonModule,
+    HttpClientModule,
     DashboardRoutingModule,
     SharedModule,
     MatGridListModule,
     MatButtonModule,
     NgxChartsModule,
+    MatMenuModule,
+    MatIconModule,
   ],
+  providers: [DashboardService],
 })
 export class DashboardModule {}

@@ -1,18 +1,29 @@
 <mat-grid-list cols="2" rowHeight="4rem">
   <mat-grid-tile [colspan]="1" [rowspan]="1">
-    <p class="date-style">Outubro de 2021</p>
+    <p>{{ todayDate | date: "mediumDate":"":"pt-BR" }}</p>
   </mat-grid-tile>
   <mat-grid-tile [colspan]="1" [rowspan]="1">
-    <p class="update-date-style" style="text-align: end">Alterar data</p>
+    <p style="text-align: end">
+      <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="selectTopDesksGraph()">
+          Top 3 Mesas
+        </button>
+        <button mat-menu-item (click)="selectTopItemsGraph()">
+          Itens mais vendidos
+        </button>
+      </mat-menu>
+    </p>
   </mat-grid-tile>
   <mat-grid-tile [colspan]="2" [rowspan]="6">
     <ngx-charts-bar-vertical
       [scheme]="colorScheme"
-      [results]="single"
+      [results]="data"
       [gradient]="gradient"
       [xAxis]="showXAxis"
       [yAxis]="showYAxis"
       [legend]="showLegend"
+      [legendTitle]="'Legenda'"
       [showXAxisLabel]="showXAxisLabel"
       [showYAxisLabel]="showYAxisLabel"
       [xAxisLabel]="xAxisLabel"
@@ -20,5 +31,13 @@
       (select)="onSelect($event)"
     >
     </ngx-charts-bar-vertical>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="1" [rowspan]="1">
+    <p>
+      <button mat-button>
+        Exportar
+        <mat-icon svgIcon="export-icon"></mat-icon>
+      </button>
+    </p>
   </mat-grid-tile>
 </mat-grid-list>
