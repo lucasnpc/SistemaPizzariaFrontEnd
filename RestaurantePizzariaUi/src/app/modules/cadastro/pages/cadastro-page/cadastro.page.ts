@@ -11,6 +11,7 @@ import { CadastroService } from '../../service/cadastro.service';
 export class CadastroPage implements OnInit {
   formBusinessRegister = this.fb.group({
     nomeNegocio: ['', Validators.required],
+    cnpjNegocio: ['', Validators.required],
     ruaNegocio: ['', Validators.required],
     numeroNegocio: ['', Validators.required],
     bairroNegocio: ['', Validators.required],
@@ -18,8 +19,9 @@ export class CadastroPage implements OnInit {
     estadoNegocio: ['', Validators.required],
   });
   formUserRegister = this.fb.group({
-    usuario: ['', Validators.required],
-    senha: ['', Validators.required],
+    userName: ['', Validators.required],
+    password: ['', Validators.required],
+    confirmPassword: ['', Validators.required],
   });
 
   usuario: Usuario;
@@ -33,10 +35,11 @@ export class CadastroPage implements OnInit {
 
   ngOnInit(): void {}
 
-  setBusiness() {
+  saveBusiness() {
     if (this.formBusinessRegister != null) {
       this.negocio = {
         nome: this.formBusinessRegister.get('nomeNegocio').value,
+        cnpj: this.formBusinessRegister.get('cnpjNegocio').value,
         rua: this.formBusinessRegister.get('ruaNegocio').value,
         numero: this.formBusinessRegister.get('numeroNegocio').value,
         bairro: this.formBusinessRegister.get('bairroNegocio').value,
@@ -48,9 +51,9 @@ export class CadastroPage implements OnInit {
   setUser() {
     if (this.formUserRegister != null) {
       this.usuario = {
-        usuarioId: this.formUserRegister.get('usuario').value,
+        usuarioId: this.formUserRegister.get('userName').value,
         idNegocio: '',
-        senha: this.formUserRegister.get('senha').value,
+        senha: this.formUserRegister.get('password').value,
         tipoUsuario: 'Atendente',
       };
     }

@@ -2,25 +2,34 @@
 
 .container {
   height          : 100vh;
-  background-color: #278df6;
+  background-color: #FFFFFF;
 }
 
 .form-container {
-  width        : 50%;
-  display      : grid;
+  width        : 90%;
   padding      : 10px;
-  border-radius: @border-radius;
-  margin-left  : 25%;
+  margin-left  : 5%;
+  border       : 2px solid #848684;
+  box-sizing   : border-box;
+  border-radius: 16px;
 }
 
 mat-form-field {
-  margin-left : 25px;
-  margin-right: 25px;
+  width: 100%;
+}
+
+p {
+  font-weight: 900;
+  font-size  : 18px;
+  line-height: 28px;
+
+  color: #848684;
+
 }
 
 button.mat-stepper-next {
   position     : absolute;
-  width        : 14%;
+  width        : 10%;
   height       : 72px;
   background   : #00dd31;
   border-radius: 16px;
@@ -34,13 +43,13 @@ button.mat-stepper-next {
 
   color: #ffffff;
 
-  left: 61.6%;
-  top : 720px;
+  margin-left: 5%;
+  top        : 85%;
 }
 
 button.mat-stepper-previous {
   position     : absolute;
-  width        : 14%;
+  width        : 10%;
   height       : 72px;
   background   : #fa4b4b;
   border-radius: 16px;
@@ -54,13 +63,13 @@ button.mat-stepper-previous {
 
   color: #ffffff;
 
-  left: 25.6%;
-  top : 720px;
+  margin-left: 16%;
+  top        : 85%;
 }
 
 .reset-button {
   position     : absolute;
-  width        : 14%;
+  width        : 10%;
   height       : 72px;
   background   : #fa4b4b;
   border-radius: 16px;
@@ -74,13 +83,13 @@ button.mat-stepper-previous {
 
   color: #ffffff;
 
-  left: 25.6%;
-  top : 720px;
+  margin-left: 16%;
+  top        : 85%;
 }
 
 .finish-button {
   position     : absolute;
-  width        : 14%;
+  width        : 10%;
   height       : 72px;
   background   : #00dd31;
   border-radius: 16px;
@@ -94,17 +103,21 @@ button.mat-stepper-previous {
 
   color: #ffffff;
 
-  left: 61.6%;
-  top : 720px;
+  margin-left: 5%;
+  top        : 85%;
 }
 
 .result-container {
-  width           : 50%;
-  background-color: whitesmoke;
-  display         : grid;
-  padding         : 10px;
-  border-radius   : @border-radius;
-  margin-left     : 25%;
+  width          : 90%;
+  background     : #FFFFFF;
+  border         : 2px solid #848684;
+  box-sizing     : border-box;
+  border-radius  : 16px;
+  display        : grid;
+  justify-content: center;
+  padding        : 10px;
+  border-radius  : @border-radius;
+  margin-left    : 5%;
 }
 
 span {
@@ -113,40 +126,13 @@ span {
   margin-right: 25px;
 }
 
-.nome {
-  margin-top : 25px;
-  font-weight: 900;
-  font-size  : 36px;
-  line-height: 56px;
+.result-label {
+  font-weight: 600;
+  font-size  : 28px;
+  line-height: 37px;
+  text-align : left;
 
-  color: #000000;
-}
 
-.cidade {
-  margin-top : 25px;
-  font-weight: 900;
-  font-size  : 36px;
-  line-height: 56px;
+  color: #848684;
 
-  color: #000000;
-
-}
-
-.estado {
-  margin-top : 25px;
-  font-weight: 900;
-  font-size  : 36px;
-  line-height: 56px;
-
-  color: #000000;
-
-}
-
-.usuario {
-  margin-top : 25px;
-  font-weight: 900;
-  font-size  : 36px;
-  line-height: 56px;
-
-  color: #000000;
 }
