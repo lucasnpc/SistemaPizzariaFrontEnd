@@ -1,6 +1,6 @@
 <mat-grid-list cols="2" rowHeight="4rem">
   <mat-grid-tile [colspan]="1" [rowspan]="1">
-    <p>{{ todayDate | date: "mediumDate":"":"pt-BR" }}</p>
+    <p>{{ todayDate }}</p>
   </mat-grid-tile>
   <mat-grid-tile [colspan]="1" [rowspan]="1">
     <p style="text-align: end">
@@ -34,7 +34,7 @@
   </mat-grid-tile>
   <mat-grid-tile [colspan]="1" [rowspan]="1">
     <p>
-      <button mat-button>
+      <button mat-button (click)="exportData()">
         Exportar
         <mat-icon svgIcon="export-icon"></mat-icon>
       </button>
