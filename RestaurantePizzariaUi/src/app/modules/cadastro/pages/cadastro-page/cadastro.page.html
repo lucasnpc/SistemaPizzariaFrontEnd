@@ -144,8 +144,8 @@
     <mat-step label="Finalize o cadastro">
       <div class="result-container">
         <span *ngIf="negocio != null && usuario != null">
-          <p class="result-label">Nome da empresa: {{negocio.nome}}</p>
-          <p class="result-label">Nome do Usuário: {{usuario.usuarioId}}</p>
+          <p class="result-label">Nome da empresa: {{negocio.razaoSocial}}</p>
+          <p class="result-label">Nome do Usuário: {{usuario.email}}</p>
           <p class="result-label">CNPJ/CPF: {{negocio.cnpj}}</p>
           <p class="result-label">
             Endereço: {{negocio.rua}}, {{negocio.numero}}, {{negocio.rua}},

@@ -24,10 +24,10 @@ export class LoginFormComponent implements OnInit {
 
   submitLogin() {
     var dados: Usuario = {
-      usuarioId: this.loginForm.get('usuario').value,
-      idNegocio: '',
-      senha: this.loginForm.get('senha').value,
-      tipoUsuario: 'Atendente',
+      email: this.loginForm.get('usuario').value,
+      businessCnpj: '',
+      password: this.loginForm.get('senha').value,
+      userType: 'Atendente',
     };
     this.entrar.emit(dados);
   }

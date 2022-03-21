@@ -1,6 +1,6 @@
 export interface Usuario {
-  usuarioId: string;
-  idNegocio: string;
-  senha: string;
-  tipoUsuario: string;
+  email: string;
+  businessCnpj: string;
+  password: string;
+  userType: string;
 }

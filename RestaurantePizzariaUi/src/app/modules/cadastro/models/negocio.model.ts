@@ -1,6 +1,6 @@
 export interface Negocio {
-  idNegocio: string;
-  nome: string;
+  cnpj: string;
+  razaoSocial: string;
   rua: string;
   numero: string;
   bairro: string;

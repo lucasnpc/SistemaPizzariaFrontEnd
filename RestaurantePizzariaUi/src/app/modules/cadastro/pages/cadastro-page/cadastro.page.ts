@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/modules/login/models/usuario.model';
+import { Negocio } from '../../models/negocio.model';
 import { CadastroService } from '../../service/cadastro.service';
 
 @Component({
@@ -25,20 +26,20 @@ export class CadastroPage implements OnInit {
   });
 
   usuario: Usuario;
-  negocio: any;
+  negocio: Negocio;
 
   constructor(
     private fb: FormBuilder,
     private rest: CadastroService,
     private router: Router
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   saveBusiness() {
     if (this.formBusinessRegister != null) {
       this.negocio = {
-        nome: this.formBusinessRegister.get('nomeNegocio').value,
+        razaoSocial: this.formBusinessRegister.get('nomeNegocio').value,
         cnpj: this.formBusinessRegister.get('cnpjNegocio').value,
         rua: this.formBusinessRegister.get('ruaNegocio').value,
         numero: this.formBusinessRegister.get('numeroNegocio').value,
@@ -51,17 +52,17 @@ export class CadastroPage implements OnInit {
   setUser() {
     if (this.formUserRegister != null) {
       this.usuario = {
-        usuarioId: this.formUserRegister.get('userName').value,
-        idNegocio: '',
-        senha: this.formUserRegister.get('password').value,
-        tipoUsuario: 'Atendente',
+        email: this.formUserRegister.get('userName').value,
+        businessCnpj: '',
+        password: this.formUserRegister.get('password').value,
+        userType: 'Atendente',
       };
     }
   }
   finishRegistration() {
     this.rest.postBusiness(this.negocio).subscribe((result) => {
       if (result.success) {
-        this.usuario.idNegocio = result.businessId;
+        this.usuario.businessCnpj = result.businessId;
         this.rest.postUser(this.usuario).subscribe((result) => {
           if (result.success) {
             alert('Negócio e usuário cadastrado');
