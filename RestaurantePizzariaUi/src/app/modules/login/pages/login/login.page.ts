@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Usuario } from '../../models/usuario.model';
+import { User } from '../../models/usuario.model';
 import { LoginService } from '../../services/login.service';
 
 @Component({
@@ -12,7 +12,7 @@ export class LoginPage implements OnInit {
 
   ngOnInit(): void {}
 
-  logarSistema(login: Usuario) {
+  logarSistema(login: User) {
     this.rest.authUser(login).subscribe(
       (result) => {
         console.log(result);

@@ -1,9 +1,9 @@
-export interface Negocio {
+export interface Business {
   cnpj: string;
-  razaoSocial: string;
-  rua: string;
-  numero: string;
-  bairro: string;
-  cidade: string;
-  estado: string;
+  corporateName: string;
+  street: string;
+  number: string;
+  district: string;
+  city: string;
+  state: string;
 }

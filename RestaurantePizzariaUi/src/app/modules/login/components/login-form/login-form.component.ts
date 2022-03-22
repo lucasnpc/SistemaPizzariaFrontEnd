@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Usuario } from '../../models/usuario.model';
+import { User } from '../../models/usuario.model';
 
 @Component({
   selector: 'rp-login-form',
@@ -8,7 +8,7 @@ import { Usuario } from '../../models/usuario.model';
   styleUrls: ['./login-form.component.less'],
 })
 export class LoginFormComponent implements OnInit {
-  @Output() entrar = new EventEmitter<Usuario>();
+  @Output() entrar = new EventEmitter<User>();
   @Output() cadastrar = new EventEmitter<Boolean>();
 
   loginForm: FormGroup;
@@ -23,7 +23,7 @@ export class LoginFormComponent implements OnInit {
   }
 
   submitLogin() {
-    var dados: Usuario = {
+    var dados: User = {
       email: this.loginForm.get('usuario').value,
       businessCnpj: '',
       password: this.loginForm.get('senha').value,

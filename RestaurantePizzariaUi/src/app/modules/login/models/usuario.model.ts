@@ -1,4 +1,4 @@
-export interface Usuario {
+export interface User {
   email: string;
   businessCnpj: string;
   password: string;

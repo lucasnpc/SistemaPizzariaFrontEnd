@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Usuario } from 'src/app/modules/login/models/usuario.model';
-import { Negocio } from '../../models/negocio.model';
+import { User } from 'src/app/modules/login/models/usuario.model';
+import { Business } from '../../models/negocio.model';
 import { CadastroService } from '../../service/cadastro.service';
 
 @Component({
@@ -10,6 +10,7 @@ import { CadastroService } from '../../service/cadastro.service';
   styleUrls: ['./cadastro.page.less'],
 })
 export class CadastroPage implements OnInit {
+
   formBusinessRegister = this.fb.group({
     nomeNegocio: ['', Validators.required],
     cnpjNegocio: ['', Validators.required],
@@ -25,52 +26,58 @@ export class CadastroPage implements OnInit {
     confirmPassword: ['', Validators.required],
   });
 
-  usuario: Usuario;
-  negocio: Negocio;
+  usuario: User;
+  negocio: Business;
 
   constructor(
     private fb: FormBuilder,
-    private rest: CadastroService,
+    private service: CadastroService,
     private router: Router
   ) { }
 
   ngOnInit(): void { }
 
-  saveBusiness() {
+  setBusiness() {
     if (this.formBusinessRegister != null) {
       this.negocio = {
-        razaoSocial: this.formBusinessRegister.get('nomeNegocio').value,
+        corporateName: this.formBusinessRegister.get('nomeNegocio').value,
         cnpj: this.formBusinessRegister.get('cnpjNegocio').value,
-        rua: this.formBusinessRegister.get('ruaNegocio').value,
-        numero: this.formBusinessRegister.get('numeroNegocio').value,
-        bairro: this.formBusinessRegister.get('bairroNegocio').value,
-        cidade: this.formBusinessRegister.get('cidadeNegocio').value,
-        estado: this.formBusinessRegister.get('estadoNegocio').value,
+        street: this.formBusinessRegister.get('ruaNegocio').value,
+        number: this.formBusinessRegister.get('numeroNegocio').value,
+        district: this.formBusinessRegister.get('bairroNegocio').value,
+        city: this.formBusinessRegister.get('cidadeNegocio').value,
+        state: this.formBusinessRegister.get('estadoNegocio').value,
       };
     }
   }
+
   setUser() {
     if (this.formUserRegister != null) {
       this.usuario = {
         email: this.formUserRegister.get('userName').value,
-        businessCnpj: '',
+        businessCnpj: this.negocio.cnpj,
         password: this.formUserRegister.get('password').value,
-        userType: 'Atendente',
+        userType: 'Administrador',
       };
     }
   }
+
   finishRegistration() {
-    this.rest.postBusiness(this.negocio).subscribe((result) => {
-      if (result.success) {
-        this.usuario.businessCnpj = result.businessId;
-        this.rest.postUser(this.usuario).subscribe((result) => {
-          if (result.success) {
-            alert('Negócio e usuário cadastrado');
-            this.router.navigate(['']);
-          }
-        });
-      }
-    });
-    console.log('finish register');
+    try {
+      this.service.postBusiness(this.negocio).subscribe((result) => {
+        if (result.success) {
+          this.service.postUser(this.usuario).subscribe((result) => {
+            if (result.success) {
+              alert('Negócio e usuário cadastrado');
+              this.router.navigate(['']);
+            }
+          });
+        }
+      });
+    } catch (error) {
+      console.log(error);
+      alert("Algum erro inesperado aconteceu")
+    }
   }
+
 }

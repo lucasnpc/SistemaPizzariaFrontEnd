@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Usuario } from '../../login/models/usuario.model';
-import { Negocio } from '../models/negocio.model';
+import { User } from '../../login/models/usuario.model';
+import { Business } from '../models/negocio.model';
 
 @Injectable()
 export class CadastroService {
@@ -16,19 +16,19 @@ export class CadastroService {
     }),
   };
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   getBusiness() {
-    return this.httpClient.get<{ data: Negocio[] }>(this.getNegocio);
+    return this.httpClient.get<{ data: Business[] }>(this.getNegocio);
   }
-  postBusiness(negocio: Negocio) {
+  postBusiness(negocio: Business) {
     return this.httpClient.post<any>(
       this.postNegocio,
       negocio,
       this.httpOptions
     );
   }
-  postUser(usuario: Usuario) {
+  postUser(usuario: User) {
     return this.httpClient.post<any>(
       this.postUsuario,
       usuario,

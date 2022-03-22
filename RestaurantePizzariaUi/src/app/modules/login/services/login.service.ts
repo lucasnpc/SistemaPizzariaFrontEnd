@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Usuario } from '../models/usuario.model';
+import { User } from '../models/usuario.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable()
@@ -15,7 +15,7 @@ export class LoginService {
 
   constructor(private httpClient: HttpClient) {}
 
-  public authUser(login: Usuario){
+  public authUser(login: User){
       return this.httpClient.post<any>(this.authUsers, login, this.httpOptions);
   }
 }
