@@ -27,7 +27,7 @@ export class LoginFormComponent implements OnInit {
       email: this.loginForm.get('usuario').value,
       businessCnpj: '',
       password: this.loginForm.get('senha').value,
-      userType: 'Atendente',
+      userType: '',
     };
     this.entrar.emit(dados);
   }
