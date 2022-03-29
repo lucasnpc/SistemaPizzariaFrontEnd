@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { ItemCardapioModel } from '../models/item-cardapio.model';
+import { MenuItem } from '../models/menu-item.model';
 
 @Injectable()
 export class CardapioService {
@@ -18,7 +18,7 @@ export class CardapioService {
   constructor(private httpClient: HttpClient) {}
 
   public getItens(){
-    return this.httpClient.get<{data: ItemCardapioModel[]}>(this.get);
+    return this.httpClient.get<{data: MenuItem[]}>(this.get);
   }
 
   public getItensCount(){

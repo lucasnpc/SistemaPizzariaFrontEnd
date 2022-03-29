@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Saida } from '../../models/saida.venda';
+import { Expense } from '../../models/expense.model';
 import { CaixaService } from '../../service/caixa.service';
 import { DialogAddInCaixaComponent } from '../dialog-add-in-caixa/dialog-add-in-caixa.component';
 

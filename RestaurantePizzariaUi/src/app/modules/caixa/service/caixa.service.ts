@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Entrada } from '../models/entrada.model';
-import { Saida } from '../models/saida.venda';
+import { Gain } from '../models/gain.model';
+import { Expense } from '../models/expense.model';
 
 @Injectable()
 export class CaixaService {
@@ -20,10 +20,10 @@ export class CaixaService {
   constructor(private httpClient: HttpClient) {}
 
   getInflows() {
-    return this.httpClient.get<{ data: Entrada[] }>(this.getEntradas);
+    return this.httpClient.get<{ data: Gain[] }>(this.getEntradas);
   }
   getExpenses() {
-    return this.httpClient.get<{ data: Saida[] }>(this.getSaidas);
+    return this.httpClient.get<{ data: Expense[] }>(this.getSaidas);
   }
   postInflow(entrada: any) {
     return this.httpClient.post<any>(

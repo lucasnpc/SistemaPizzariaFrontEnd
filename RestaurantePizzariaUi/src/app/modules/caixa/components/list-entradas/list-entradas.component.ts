@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { Entrada } from '../../models/entrada.model';
+import { Gain } from '../../models/gain.model';
 import { CaixaService } from '../../service/caixa.service';
 
 @Component({
@@ -9,9 +9,9 @@ import { CaixaService } from '../../service/caixa.service';
   styleUrls: ['./list-entradas.component.less'],
 })
 export class ListEntradasComponent implements OnInit {
-  entradas: Entrada[];
+  entradas: Gain[];
   dataSource: any;
-  clickedRow: Entrada;
+  clickedRow: Gain;
 
   constructor(private rest: CaixaService) {}
 
@@ -23,7 +23,7 @@ export class ListEntradasComponent implements OnInit {
   }
   displayedColumns: string[] = ['N. Mesa', 'Valor Conta', 'Forma de pagamento'];
 
-  setRow(row: Entrada) {
+  setRow(row: Gain) {
     this.clickedRow = row;
   }
 }

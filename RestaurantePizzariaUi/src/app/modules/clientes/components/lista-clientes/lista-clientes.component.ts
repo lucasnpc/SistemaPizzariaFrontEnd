@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { Cliente } from '../../models/clientes.model';
+import { Client } from '../../models/client.model';
 import { ClienteService } from '../../service/cliente.service';
 
 @Component({
@@ -11,11 +11,11 @@ import { ClienteService } from '../../service/cliente.service';
 export class ListaClientesComponent implements OnInit {
   @Input() filterEvent: Event;
   filterValue: String;
-  clientes: Cliente[];
-  clickedRow: Cliente;
+  clientes: Client[];
+  clickedRow: Client;
   dataSource: any;
 
-  constructor(private rest: ClienteService) {}
+  constructor(private rest: ClienteService) { }
 
   ngOnInit(): void {
     this.rest.getCustomers().subscribe((result) => {
@@ -42,7 +42,7 @@ export class ListaClientesComponent implements OnInit {
     this.dataSource.filter = this.filterValue.trim().toLowerCase();
   }
 
-  setRow(row: Cliente) {
+  setRow(row: Client) {
     this.clickedRow = row;
   }
 }

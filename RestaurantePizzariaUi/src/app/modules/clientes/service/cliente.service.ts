@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Cliente } from '../models/clientes.model';
+import { Client } from '../models/client.model';
 
 @Injectable()
 export class ClienteService {
@@ -14,10 +14,10 @@ export class ClienteService {
     }),
   };
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   getCustomers() {
-    return this.httpClient.get<{ data: Cliente[] }>(this.getClientes);
+    return this.httpClient.get<{ data: Client[] }>(this.getClientes);
   }
   postCustomer(cliente: any) {
     return this.httpClient.post<any>(

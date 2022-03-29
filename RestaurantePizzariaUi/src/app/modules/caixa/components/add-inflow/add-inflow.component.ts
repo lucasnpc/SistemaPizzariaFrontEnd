@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ItemCardapioModel } from 'src/app/modules/cardapio/models/item-cardapio.model';
+import { MenuItem } from 'src/app/modules/cardapio/models/menu-item.model';
 import { CardapioService } from 'src/app/modules/cardapio/service/cardapio.service';
 import { DialogInvoiceComponent } from '../dialog-invoice/dialog-invoice.component';
 
@@ -26,7 +26,7 @@ export class AddInflowComponent implements OnInit {
   @ViewChild('select') selectedDesk: any;
   filled = false;
   itemIndex: number[];
-  itens: ItemCardapioModel[];
+  itens: MenuItem[];
   itemCount: number;
   total: number;
 
@@ -84,7 +84,7 @@ export class AddInflowComponent implements OnInit {
       return;
     }
     const num = itensSelected
-      .map((x) => Number(x.preco))
+      .map((x) => Number(x.price))
       .reduce((a, b) => a + b, 0);
     this.total = +num.toFixed(2);
 

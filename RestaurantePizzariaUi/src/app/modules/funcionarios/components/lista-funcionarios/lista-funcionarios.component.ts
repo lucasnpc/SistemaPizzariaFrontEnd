@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { Funcionario } from '../../models/funcionarios.model';
+import { Employee } from '../../models/employee.model';
 import { FuncionarioService } from '../../service/funcionario.service';
 
 @Component({
@@ -11,9 +11,9 @@ import { FuncionarioService } from '../../service/funcionario.service';
 export class ListaFuncionariosComponent implements OnInit {
   @Input() filterEvent: Event;
   filterValue: String;
-  funcionarios: Funcionario[];
+  funcionarios: Employee[];
   dataSource: any;
-  clickedRow: Funcionario;
+  clickedRow: Employee;
 
   constructor(private rest: FuncionarioService) {}
 
@@ -46,8 +46,8 @@ export class ListaFuncionariosComponent implements OnInit {
     this.dataSource.filter = this.filterValue.trim().toLowerCase();
   }
 
-  setRow(row: Funcionario) {
-    console.log(this.formatDate(row.dataAdmissao));
+  setRow(row: Employee) {
+    console.log(this.formatDate(row.admissionDate));
     this.clickedRow = row;
   }
   

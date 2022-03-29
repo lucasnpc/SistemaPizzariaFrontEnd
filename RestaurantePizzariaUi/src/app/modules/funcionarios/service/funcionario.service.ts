@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Funcionario } from '../models/funcionarios.model';
+import { Employee } from '../models/employee.model';
 
 @Injectable()
 export class FuncionarioService {
@@ -17,9 +17,9 @@ export class FuncionarioService {
   constructor(private httpClient: HttpClient) {}
 
   getEmployees() {
-    return this.httpClient.get<{ data: Funcionario[] }>(this.getFuncionarios);
+    return this.httpClient.get<{ data: Employee[] }>(this.getFuncionarios);
   }
-  postEmployee(cliente: Funcionario) {
+  postEmployee(cliente: Employee) {
     return this.httpClient.post<any>(
       this.postFuncionario,
       cliente,

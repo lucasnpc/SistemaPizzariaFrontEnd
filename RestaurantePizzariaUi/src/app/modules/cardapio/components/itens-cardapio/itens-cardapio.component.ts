@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ItemCardapioModel } from '../../models/item-cardapio.model';
+import { MenuItem } from '../../models/menu-item.model';
 import { CardapioService } from '../../service/cardapio.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { CardapioService } from '../../service/cardapio.service';
   styleUrls: ['./itens-cardapio.component.less'],
 })
 export class ItensCardapioComponent implements OnInit {
-  itens: ItemCardapioModel[];
+  itens: MenuItem[];
   itemCount: number;
 
   constructor(private rest: CardapioService) {}
@@ -22,7 +22,7 @@ export class ItensCardapioComponent implements OnInit {
     });
   }
 
-  adicionarItem(dados: ItemCardapioModel) {
+  adicionarItem(dados: MenuItem) {
     this.itemCount += 1;
 
     this.rest.postItem(dados).subscribe(
@@ -34,6 +34,6 @@ export class ItensCardapioComponent implements OnInit {
       }
     );
   }
-  alterarItem(dados: ItemCardapioModel) {}
-  removerItem(dados: ItemCardapioModel) {}
+  alterarItem(dados: MenuItem) {}
+  removerItem(dados: MenuItem) {}
 }

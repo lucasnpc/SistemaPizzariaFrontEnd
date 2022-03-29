@@ -2,7 +2,7 @@
   <div mat-subheader class="title">Cardápio</div>
   <mat-list-option *ngFor="let item of itens" [value]="item">
     <mat-icon mat-list-icon></mat-icon>
-    <div mat-line>{{ item.descricao }}</div>
-    <div mat-line>R$ {{ item.preco }}</div>
+    <div mat-line>{{ item.description }}</div>
+    <div mat-line>R$ {{ item.price }}</div>
   </mat-list-option>
 </mat-selection-list>

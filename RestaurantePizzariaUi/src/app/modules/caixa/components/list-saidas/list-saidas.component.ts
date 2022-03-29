@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { Saida } from '../../models/saida.venda';
+import { Expense } from '../../models/expense.model';
 import { CaixaService } from '../../service/caixa.service';
 
 export interface PeriodicElement {
@@ -23,8 +23,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./list-saidas.component.less'],
 })
 export class ListSaidasComponent implements OnInit {
-  saidas: Saida[];
-  clickedRow: Saida;
+  saidas: Expense[];
+  clickedRow: Expense;
   dataSource: any;
 
   constructor(private rest: CaixaService) {}
@@ -37,7 +37,7 @@ export class ListSaidasComponent implements OnInit {
   }
   displayedColumns: string[] = ['Descrição', 'Valor'];
 
-  setRow(row: Saida) {
+  setRow(row: Expense) {
     this.clickedRow = row;
   }
 }

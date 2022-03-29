@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Funcionario } from '../../models/funcionarios.model';
+import { Employee } from '../../models/employee.model';
 import { FuncionarioService } from '../../service/funcionario.service';
 import { DialogAddInFuncionariosComponent } from '../dialog-add-in-funcionarios/dialog-add-in-funcionarios.component';
 
@@ -34,21 +34,25 @@ export class AddFuncionarioComponent implements OnInit {
     dateAdapter.setLocale('pt-br');
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   addEmployee() {
-    var dados: Funcionario = {
+    var dados: Employee = {
       cpf: this.formRegisterEmployees.get('cpf').value,
-      nome: this.formRegisterEmployees.get('nome').value,
-      rua: this.formRegisterEmployees.get('rua').value,
-      numero: this.formRegisterEmployees.get('numero').value,
-      bairro: this.formRegisterEmployees.get('bairro').value,
-      cidade: this.formRegisterEmployees.get('cidade').value,
-      telefone: this.formRegisterEmployees.get('telefone').value,
-      cargo: this.formRegisterEmployees.get('cargo').value,
-      dataAdmissao: this.formRegisterEmployees.get('dataAdmissao').value,
-      dataNascimento: this.formRegisterEmployees.get('dataNascimento').value,
-      status: 'Ativo',
+      name: this.formRegisterEmployees.get('nome').value,
+      street: this.formRegisterEmployees.get('rua').value,
+      number: this.formRegisterEmployees.get('numero').value,
+      district: this.formRegisterEmployees.get('bairro').value,
+      city: this.formRegisterEmployees.get('cidade').value,
+      phone: this.formRegisterEmployees.get('telefone').value,
+      role: this.formRegisterEmployees.get('cargo').value,
+      admissionDate: this.formRegisterEmployees.get('dataAdmissao').value,
+      birthDate: this.formRegisterEmployees.get('dataNascimento').value,
+      terminationDate: null,
+      salary: 0,
+      isOutsource: false,
+      isActive: true,
+      businessCnpj: ''
     };
 
     this.rest.postEmployee(dados).subscribe((result) => {
