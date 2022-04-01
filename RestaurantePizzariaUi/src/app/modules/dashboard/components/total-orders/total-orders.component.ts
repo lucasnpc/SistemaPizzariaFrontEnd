@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DashboardService } from '../../service/dashboard.service';
 
 @Component({
   selector: 'rp-total-orders',
@@ -8,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 export class TotalOrdersComponent implements OnInit {
   totalOrders = 15;
 
-  constructor() {}
+  constructor(private rest: DashboardService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.rest.getTotalOrders().subscribe((result) => {
+      this.totalOrders = result.data;
+    });
+  }
 }

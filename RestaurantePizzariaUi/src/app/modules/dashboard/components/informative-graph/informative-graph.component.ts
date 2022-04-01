@@ -87,7 +87,7 @@ export class InformativeGraphComponent implements OnInit {
       ],
       body: this.data,
     });
-    doc.save(this.todayDate.toString()+'.pdf');
+    doc.save(this.todayDate.toString() + '.pdf');
     doc.close;
   }
 }
