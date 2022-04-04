@@ -13,6 +13,9 @@ export class DashboardService {
   getMenuTopItens = environment.url + 'caixa/getTopMenuItems';
   getMesasTopVendas = environment.url + 'caixa/getTopSalesDesks';
 
+  getTotalEntradas = environment.url + 'dashboard/getTotalEntradas';
+  getTotalSaidas = environment.url + 'dashboard/getTotalSaidas';
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -40,4 +43,13 @@ export class DashboardService {
   getTopSalesDesks() {
     return this.httpClient.get<{ data: any[] }>(this.getMesasTopVendas);
   }
+
+  getTotalGains(){
+    return this.httpClient.get<{data: number}>(this.getTotalEntradas);
+  }
+
+  getTotalExpenses(){
+    return this.httpClient.get<{data: number}>(this.getTotalSaidas);
+  }
+
 }
