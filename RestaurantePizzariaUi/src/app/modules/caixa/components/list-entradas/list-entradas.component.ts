@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { BusinessStorage } from 'src/app/core/utils/business-storage';
 import { Gain } from '../../models/gain.model';
 import { CaixaService } from '../../service/caixa.service';
 
@@ -13,10 +14,10 @@ export class ListEntradasComponent implements OnInit {
   dataSource: any;
   clickedRow: Gain;
 
-  constructor(private rest: CaixaService) {}
+  constructor(private rest: CaixaService, private storage: BusinessStorage) { }
 
   ngOnInit(): void {
-    this.rest.getInflows().subscribe((result) => {
+    this.rest.getInflows(this.storage.get("businessCnpj")).subscribe((result) => {
       this.entradas = result.data;
       this.dataSource = new MatTableDataSource(this.entradas);
     });

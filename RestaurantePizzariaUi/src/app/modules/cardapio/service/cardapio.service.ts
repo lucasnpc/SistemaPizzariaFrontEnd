@@ -17,12 +17,12 @@ export class CardapioService {
 
   constructor(private httpClient: HttpClient) {}
 
-  public getItens(){
-    return this.httpClient.get<{data: MenuItem[]}>(this.get);
+  public getItens(cnpj: string){
+    return this.httpClient.get<{data: MenuItem[]}>(this.get, { params: {businessCnpj: cnpj} });
   }
 
-  public getItensCount(){
-    return this.httpClient.get<{data: number}>(this.getItemCount);
+  public getItensCount(cnpj: string){
+    return this.httpClient.get<{data: number}>(this.getItemCount, { params: {businessCnpj: cnpj} });
   }
 
   public postItem(item: any) {

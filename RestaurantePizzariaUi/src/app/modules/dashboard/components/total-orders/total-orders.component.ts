@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BusinessStorage } from 'src/app/core/utils/business-storage';
 import { DashboardService } from '../../service/dashboard.service';
 
 @Component({
@@ -9,10 +10,11 @@ import { DashboardService } from '../../service/dashboard.service';
 export class TotalOrdersComponent implements OnInit {
   totalOrders = 15;
 
-  constructor(private rest: DashboardService) { }
+  constructor(private rest: DashboardService, private storage: BusinessStorage) { }
 
   ngOnInit(): void {
-    this.rest.getTotalOrders().subscribe((result) => {
+
+    this.rest.getTotalOrders(this.storage.get("businessCnpj")).subscribe((result) => {
       this.totalOrders = result.data;
     });
   }

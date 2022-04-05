@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BusinessStorage } from 'src/app/core/utils/business-storage';
 import { MenuItem } from '../../models/menu-item.model';
 import { CardapioService } from '../../service/cardapio.service';
 
@@ -11,13 +12,13 @@ export class ItensCardapioComponent implements OnInit {
   itens: MenuItem[];
   itemCount: number;
 
-  constructor(private rest: CardapioService) {}
+  constructor(private rest: CardapioService, private storage: BusinessStorage) { }
 
   ngOnInit(): void {
-    this.rest.getItens().subscribe((result) => {
+    this.rest.getItens(this.storage.get("businessCnpj")).subscribe((result) => {
       this.itens = result.data;
     });
-    this.rest.getItensCount().subscribe((result) => {
+    this.rest.getItensCount(this.storage.get("businessCnpj")).subscribe((result) => {
       this.itemCount = result.data;
     });
   }
@@ -34,6 +35,6 @@ export class ItensCardapioComponent implements OnInit {
       }
     );
   }
-  alterarItem(dados: MenuItem) {}
-  removerItem(dados: MenuItem) {}
+  alterarItem(dados: MenuItem) { }
+  removerItem(dados: MenuItem) { }
 }

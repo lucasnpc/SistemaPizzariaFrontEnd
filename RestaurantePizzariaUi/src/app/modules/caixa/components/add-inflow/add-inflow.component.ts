@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { BusinessStorage } from 'src/app/core/utils/business-storage';
 import { MenuItem } from 'src/app/modules/cardapio/models/menu-item.model';
 import { CardapioService } from 'src/app/modules/cardapio/service/cardapio.service';
 import { DialogInvoiceComponent } from '../dialog-invoice/dialog-invoice.component';
@@ -48,7 +49,8 @@ export class AddInflowComponent implements OnInit {
     iconRegistry: MatIconRegistry,
     sanitizer: DomSanitizer,
     private rest: CardapioService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private storage: BusinessStorage
   ) {
     iconRegistry.addSvgIconLiteral(
       'search-button',
@@ -57,10 +59,10 @@ export class AddInflowComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.rest.getItens().subscribe((result) => {
+    this.rest.getItens(this.storage.get("businessCnpj")).subscribe((result) => {
       this.itens = result.data;
     });
-    this.rest.getItensCount().subscribe((result) => {
+    this.rest.getItensCount(this.storage.get("businessCnpj")).subscribe((result) => {
       this.itemCount = result.data;
     });
   }

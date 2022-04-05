@@ -16,8 +16,8 @@ export class FuncionarioService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getEmployees() {
-    return this.httpClient.get<{ data: Employee[] }>(this.getFuncionarios);
+  getEmployees(cnpj: string) {
+    return this.httpClient.get<{ data: Employee[] }>(this.getFuncionarios, { params: {businessCnpj: cnpj} });
   }
   postEmployee(cliente: Employee) {
     return this.httpClient.post<any>(

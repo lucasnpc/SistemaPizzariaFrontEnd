@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BusinessStorage } from 'src/app/core/utils/business-storage';
 import { Order } from '../../models/order.model';
 import { DashboardService } from '../../service/dashboard.service';
 
@@ -12,10 +13,10 @@ export class ConcludedOrdersComponent implements OnInit {
 
   totalConcludedOrders = 15;
 
-  constructor(private rest: DashboardService) { }
+  constructor(private rest: DashboardService, private storage: BusinessStorage) { }
 
   ngOnInit(): void {
-    this.rest.getConcludedOrders().subscribe((result) => {
+    this.rest.getConcludedOrders(this.storage.get("businessCnpj")).subscribe((result) => {
       this.concludedOrders = result.data;
       this.totalConcludedOrders = this.concludedOrders.length
     });

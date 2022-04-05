@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { BusinessStorage } from 'src/app/core/utils/business-storage';
 import { Employee } from '../../models/employee.model';
 import { FuncionarioService } from '../../service/funcionario.service';
 
@@ -15,10 +16,10 @@ export class ListaFuncionariosComponent implements OnInit {
   dataSource: any;
   clickedRow: Employee;
 
-  constructor(private rest: FuncionarioService) {}
+  constructor(private rest: FuncionarioService, private storage: BusinessStorage) { }
 
   ngOnInit(): void {
-    this.rest.getEmployees().subscribe((result) => {
+    this.rest.getEmployees(this.storage.get("businessCnpj")).subscribe((result) => {
       this.funcionarios = result.data;
       this.dataSource = new MatTableDataSource(this.funcionarios);
     });
@@ -50,7 +51,7 @@ export class ListaFuncionariosComponent implements OnInit {
     console.log(this.formatDate(row.admissionDate));
     this.clickedRow = row;
   }
-  
+
   formatDate(date: Date) {
     var d = new Date(date),
       month = '' + (d.getMonth() + 1),

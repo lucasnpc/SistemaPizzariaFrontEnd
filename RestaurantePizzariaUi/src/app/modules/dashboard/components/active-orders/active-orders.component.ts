@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BusinessStorage } from 'src/app/core/utils/business-storage';
 import { Order } from '../../models/order.model';
 import { DashboardService } from '../../service/dashboard.service';
 
@@ -12,10 +13,10 @@ export class ActiveOrdersComponent implements OnInit {
 
   totalActiveOrders = 15
 
-  constructor(private rest: DashboardService) { }
+  constructor(private rest: DashboardService, private storage: BusinessStorage) { }
 
   ngOnInit(): void {
-    this.rest.getActiveOrders().subscribe((result) => {
+    this.rest.getActiveOrders(this.storage.get("businessCnpj")).subscribe((result) => {
       this.activeOrders = result.data;
       this.totalActiveOrders = this.activeOrders.length
     });

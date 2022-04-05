@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { BusinessStorage } from 'src/app/core/utils/business-storage';
 import { Client } from '../../models/client.model';
 import { ClienteService } from '../../service/cliente.service';
 
@@ -15,10 +16,10 @@ export class ListaClientesComponent implements OnInit {
   clickedRow: Client;
   dataSource: any;
 
-  constructor(private rest: ClienteService) { }
+  constructor(private rest: ClienteService, private storage: BusinessStorage) { }
 
   ngOnInit(): void {
-    this.rest.getCustomers().subscribe((result) => {
+    this.rest.getCustomers(this.storage.get("businessCnpj")).subscribe((result) => {
       this.clientes = result.data;
       this.dataSource = new MatTableDataSource(this.clientes);
     });

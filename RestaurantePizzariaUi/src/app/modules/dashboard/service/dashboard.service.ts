@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Order } from '../models/order.model';
@@ -24,32 +24,32 @@ export class DashboardService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getTotalOrders() {
-    return this.httpClient.get<{ data: number }>(this.getPedidosTotal)
+  getTotalOrders(cnpj: string) {
+    return this.httpClient.get<{ data: number }>(this.getPedidosTotal, { params: {businessCnpj: cnpj} })
   }
 
-  getActiveOrders() {
-    return this.httpClient.get<{ data: Order[] }>(this.getPedidosAtivos)
+  getActiveOrders(cnpj: string) {
+    return this.httpClient.get<{ data: Order[] }>(this.getPedidosAtivos, { params: {businessCnpj: cnpj} })
   }
 
-  getConcludedOrders() {
-    return this.httpClient.get<{ data: Order[] }>(this.getPedidosConcluidos)
+  getConcludedOrders(cnpj: string) {
+    return this.httpClient.get<{ data: Order[] }>(this.getPedidosConcluidos, { params: {businessCnpj: cnpj} })
   }
 
-  getTopMenuItems() {
-    return this.httpClient.get<{ data: any[] }>(this.getMenuTopItens);
+  getTopMenuItems(cnpj: string) {
+    return this.httpClient.get<{ data: any[] }>(this.getMenuTopItens, { params: {businessCnpj: cnpj} });
   }
 
-  getTopSalesDesks() {
-    return this.httpClient.get<{ data: any[] }>(this.getMesasTopVendas);
+  getTopSalesDesks(cnpj: string) {
+    return this.httpClient.get<{ data: any[] }>(this.getMesasTopVendas, { params: {businessCnpj: cnpj} });
   }
 
-  getTotalGains(){
-    return this.httpClient.get<{data: number}>(this.getTotalEntradas);
+  getTotalGains(cnpj: string) {
+    return this.httpClient.get<{ data: number }>(this.getTotalEntradas, { params: {businessCnpj: cnpj} });
   }
 
-  getTotalExpenses(){
-    return this.httpClient.get<{data: number}>(this.getTotalSaidas);
+  getTotalExpenses(cnpj: string) {
+    return this.httpClient.get<{ data: number }>(this.getTotalSaidas, { params: {businessCnpj: cnpj} });
   }
 
 }
