@@ -6,14 +6,14 @@
       <mat-nav-list>
         <button mat-icon-button class="user-button">
         </button>
-        <h2>{{userRole}}</h2>
-        <button mat-button *ngFor="let button of buttons" [routerLink]="[button.routerLink]" class="buttom-nav-style"
-          (click)="clickEvent(button)" [ngClass]="
-            selectedButton == button
+        <h3>{{userRole}}</h3>
+        <button mat-button *ngFor="let option of options" [routerLink]="[option.routerLink]" class="buttom-nav-style"
+          (click)="clickEvent(option)" [ngClass]="
+            selectedOption == option
               ? 'buttom-nav-style'
               : 'buttom-nav-style-unselected'
           ">
-          {{button.name}}
+          {{option.name}}
         </button>
       </mat-nav-list>
     </mat-sidenav>

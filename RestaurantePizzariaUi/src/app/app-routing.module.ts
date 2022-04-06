@@ -13,6 +13,11 @@ const routes: Routes = [
     component: LayoutMenuComponent,
     children: [
       {
+        path: 'inicio',
+        loadChildren: () =>
+          import('./modules/inicio/inicio.module').then((m) => m.InicioModule)
+      },
+      {
         path: 'dashboard',
         loadChildren: () =>
           import('./modules/dashboard/dashboard.module').then(
@@ -39,7 +44,7 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'contas',
+        path: 'compras',
         loadChildren: () =>
           import('./modules/contas/contas.module').then((m) => m.ContasModule),
       },
@@ -50,6 +55,11 @@ const routes: Routes = [
             (m) => m.FuncionariosModule
           ),
       },
+      {
+        path: 'fornecedores',
+        loadChildren: () =>
+          import('./modules/fornecedores/fornecedores.module').then((m) => m.FornecedoresModule)
+      }
     ],
   },
   {
@@ -65,4 +75,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

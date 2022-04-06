@@ -11,15 +11,17 @@ import { BusinessStorage } from 'src/app/core/utils/business-storage';
 export class LayoutMenuComponent implements OnInit {
   userRole = "teste";
   mobileQuery: MediaQueryList;
-  buttons = [
+  options = [
+    { name: 'Início', routerLink: 'inicio' },
     { name: 'Dashboard', routerLink: 'dashboard' },
     { name: 'Caixa', routerLink: 'caixa' },
     { name: 'Clientes', routerLink: 'clientes' },
     { name: 'Cardápio', routerLink: 'cardapio' },
-    { name: 'Contas', routerLink: 'contas' },
+    { name: 'Compras', routerLink: 'compras' },
     { name: 'Funcionários', routerLink: 'funcionarios' },
+    { name: 'Fornecedores', routerLink: 'fornecedores' },
   ];
-  selectedButton: any;
+  selectedOption: any;
 
   private _mobileQueryListener: () => void;
 
@@ -38,24 +40,30 @@ export class LayoutMenuComponent implements OnInit {
   ngOnInit(): void {
     this.userRole = this.storage.get("userRole");
     switch (this.router.url) {
+      case 'menu/inicio':
+        this.selectedOption = this.options[0]
+        break;
       case '/menu/dashboard':
-        this.selectedButton = this.buttons[0];
+        this.selectedOption = this.options[1];
         break;
       case '/menu/caixa':
-        this.selectedButton = this.buttons[1];
+        this.selectedOption = this.options[2];
         break;
       case '/menu/clientes':
-        this.selectedButton = this.buttons[2];
+        this.selectedOption = this.options[3];
         break;
       case '/menu/cardapio':
-        this.selectedButton = this.buttons[3];
+        this.selectedOption = this.options[4];
         break;
-      case '/menu/contas':
-        this.selectedButton = this.buttons[4];
+      case '/menu/compras':
+        this.selectedOption = this.options[5];
         break;
       case '/menu/funcionarios':
-        this.selectedButton = this.buttons[5];
+        this.selectedOption = this.options[6];
         break;
+        case 'menu/fornecedores':
+          this.selectedOption = this.options[7];
+          break;
     }
   }
 
@@ -64,6 +72,6 @@ export class LayoutMenuComponent implements OnInit {
   }
 
   clickEvent(button: any) {
-    this.selectedButton = button;
+    this.selectedOption = button;
   }
 }

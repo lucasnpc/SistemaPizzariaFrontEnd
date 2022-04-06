@@ -1,0 +1,17 @@
+<div class="container background-muted">
+    <div class="content-container">
+      <mat-grid-list cols="3" rowHeight="4rem">
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
+          <rp-top-bar (openDialog)="openDialog()" (filter)="applyFilter($event)"></rp-top-bar>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3" [rowspan]="9">
+          <p>Inicio Workss!!!!</p>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1"> </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1"> </mat-grid-tile>
+      </mat-grid-list>
+      <button mat-button class="button-editar">Editar</button>
+      <button mat-button class="button-excluir">Excluir</button>
+    </div>
+  </div>
+  
