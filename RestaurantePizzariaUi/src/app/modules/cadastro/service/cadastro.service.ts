@@ -6,7 +6,6 @@ import { Business } from '../models/negocio.model';
 
 @Injectable()
 export class CadastroService {
-  getNegocio = environment.url + 'negocios/getNegocio';
   postNegocio = environment.url + 'negocios/postNegocio';
   postUsuario = environment.url + 'usuario/postUsuario';
 
@@ -18,11 +17,8 @@ export class CadastroService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getBusiness() {
-    return this.httpClient.get<{ data: Business[] }>(this.getNegocio);
-  }
   postBusiness(negocio: Business) {
-    return this.httpClient.post<any>(
+    return this.httpClient.post<any>( 
       this.postNegocio,
       negocio,
       this.httpOptions

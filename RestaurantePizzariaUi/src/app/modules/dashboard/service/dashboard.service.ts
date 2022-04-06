@@ -10,8 +10,8 @@ export class DashboardService {
   getPedidosAtivos = environment.url + 'dashboard/getPedidosAtivos';
   getPedidosConcluidos = environment.url + 'dashboard/getPedidosConcluidos'
 
-  getMenuTopItens = environment.url + 'caixa/getTopMenuItems';
-  getMesasTopVendas = environment.url + 'caixa/getTopSalesDesks';
+  getMenuTopItens = environment.url + 'dashboard/getMenuTopItens';
+  getMesasTopVendas = environment.url + 'dashboard/getMesasTopVendas';
 
   getTotalEntradas = environment.url + 'dashboard/getTotalEntradas';
   getTotalSaidas = environment.url + 'dashboard/getTotalSaidas';
