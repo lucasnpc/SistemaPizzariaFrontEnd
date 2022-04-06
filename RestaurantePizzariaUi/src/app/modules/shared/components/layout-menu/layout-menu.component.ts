@@ -1,6 +1,7 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BusinessStorage } from 'src/app/core/utils/business-storage';
 
 @Component({
   selector: 'rp-layout-menu',
@@ -8,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./layout-menu.component.less'],
 })
 export class LayoutMenuComponent implements OnInit {
+  userRole = "teste";
   mobileQuery: MediaQueryList;
   buttons = [
     { name: 'Dashboard', routerLink: 'dashboard' },
@@ -26,13 +28,15 @@ export class LayoutMenuComponent implements OnInit {
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
-    private router: Router
+    private router: Router,
+    private storage: BusinessStorage
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addEventListener('change', this._mobileQueryListener);
   }
   ngOnInit(): void {
+    this.userRole = this.storage.get("userRole");
     switch (this.router.url) {
       case '/menu/dashboard':
         this.selectedButton = this.buttons[0];

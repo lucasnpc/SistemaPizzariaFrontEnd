@@ -11,14 +11,20 @@
       <ng-container matColumnDef="Descrição">
         <th mat-header-cell *matHeaderCellDef>Descrição</th>
         <td class="item-border-left" mat-cell *matCellDef="let element">
-          {{ element.descricao }}
+          {{ element.description }}
         </td>
       </ng-container>
 
       <!-- Valor gasto Column -->
       <ng-container matColumnDef="Valor">
         <th mat-header-cell *matHeaderCellDef>Valor</th>
-        <td class="item-border-right" mat-cell *matCellDef="let element">{{ element.valor }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.value }}</td>
+      </ng-container>
+
+      <!-- Data gasto Column -->
+      <ng-container matColumnDef="Data do gasto">
+        <th mat-header-cell *matHeaderCellDef>Data do gasto</th>
+        <td class="item-border-right" mat-cell *matCellDef="let element">{{ element.expenseDate | date: 'dd-MM-yyyy' }}</td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

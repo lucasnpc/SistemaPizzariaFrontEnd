@@ -19,7 +19,7 @@ export class CaixaService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getInflows(cnpj: string) {
+  getGains(cnpj: string) {
     return this.httpClient.get<{ data: Gain[] }>(this.getEntradas, { params: {businessCnpj: cnpj} });
   }
   getExpenses(cnpj: string) {
