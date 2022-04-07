@@ -1,0 +1,12 @@
+<mat-grid-list cols="3" rowHeight="4rem">
+    <mat-grid-tile class="gray-background" [colspan]="3" [rowspan]="1">
+        <h2>Abrir Mesa</h2>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="3" [rowspan]="9">
+       
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1"> </mat-grid-tile>
+    <mat-grid-tile [colspan]="2" [rowspan]="1"> </mat-grid-tile>
+</mat-grid-list>
+<button mat-button class="button-cancel" (click)="cancelAttendance()">Cancelar</button>
+<button mat-button class="button-begin" (click)="initializeOrder()">Iniciar</button>

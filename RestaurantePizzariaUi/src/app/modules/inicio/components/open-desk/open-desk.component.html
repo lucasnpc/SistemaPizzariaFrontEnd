@@ -1,0 +1,14 @@
+<mat-grid-list cols="3" rowHeight="4rem">
+    <mat-grid-tile class="gray-background" [colspan]="3" [rowspan]="1">
+        <h2>Início</h2>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="3" [rowspan]="9">
+        <button mat-icon-button class="button-open-desk" (click)="openDesk()">
+            <mat-icon svgIcon="door-open">
+            </mat-icon>
+            <p>Abrir mesa</p>
+        </button>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1"> </mat-grid-tile>
+    <mat-grid-tile [colspan]="2" [rowspan]="1"> </mat-grid-tile>
+</mat-grid-list>

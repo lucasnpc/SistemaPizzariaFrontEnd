@@ -7,10 +7,18 @@ import { SharedModule } from '../shared/shared.module';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTabsModule } from '@angular/material/tabs';
+import { OpenDeskComponent } from './components/open-desk/open-desk.component';
+import { ChooseDeskComponent } from './components/choose-desk/choose-desk.component';
+import { CreateOrderComponent } from './components/create-order/create-order.component';
 
 @NgModule({
   declarations: [
-    InicioPage
+    InicioPage,
+    OpenDeskComponent,
+    ChooseDeskComponent,
+    CreateOrderComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +26,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     SharedModule,
     MatGridListModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    MatIconModule,
+    MatTabsModule
   ],
   providers: [InicioService]
 })

@@ -40,7 +40,7 @@ export class LayoutMenuComponent implements OnInit {
   ngOnInit(): void {
     this.userRole = this.storage.get("userRole");
     switch (this.router.url) {
-      case 'menu/inicio':
+      case '/menu/inicio':
         this.selectedOption = this.options[0]
         break;
       case '/menu/dashboard':
@@ -61,9 +61,9 @@ export class LayoutMenuComponent implements OnInit {
       case '/menu/funcionarios':
         this.selectedOption = this.options[6];
         break;
-        case 'menu/fornecedores':
-          this.selectedOption = this.options[7];
-          break;
+      case '/menu/fornecedores':
+        this.selectedOption = this.options[7];
+        break;
     }
   }
 
