@@ -7,10 +7,10 @@
           <rp-open-desk [index]="selected" (indexChanged)="changeIndex($event)"></rp-open-desk>
         </div>
         <div *ngIf="selected==1">
-          <rp-choose-desk [index]="selected" (indexChanged)="changeIndex($event)"></rp-choose-desk>
+          <rp-choose-desk [index]="selected" (indexChanged)="changeIndex($event)" (deskChoosed)="setDesk($event)"></rp-choose-desk>
         </div>
         <div *ngIf="selected==2">
-          <rp-create-order [index]="selected" (indexChanged)="changeIndex($event)"></rp-create-order>
+          <rp-create-order [index]="selected" [desk]="desk" (indexChanged)="changeIndex($event)"></rp-create-order>
         </div>
       </mat-tab>
     </mat-tab-group>

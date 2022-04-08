@@ -12,6 +12,9 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { OpenDeskComponent } from './components/open-desk/open-desk.component';
 import { ChooseDeskComponent } from './components/choose-desk/choose-desk.component';
 import { CreateOrderComponent } from './components/create-order/create-order.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,11 @@ import { CreateOrderComponent } from './components/create-order/create-order.com
     MatButtonModule,
     MatDialogModule,
     MatIconModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSelectModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [InicioService]
 })

@@ -46,7 +46,7 @@ const routes: Routes = [
       {
         path: 'compras',
         loadChildren: () =>
-          import('./modules/contas/contas.module').then((m) => m.ContasModule),
+          import('./modules/compras/compras.module').then((m) => m.ComprasModule),
       },
       {
         path: 'funcionarios',

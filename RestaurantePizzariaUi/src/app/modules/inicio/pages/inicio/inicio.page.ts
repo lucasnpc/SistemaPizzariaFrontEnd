@@ -14,6 +14,7 @@ export class InicioPage implements OnInit {
 
   tabs = ['First', 'Second', 'Third'];
   selected = 0;
+  desk = '';
 
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIconLiteral('door-open', sanitizer.bypassSecurityTrustHtml(DOOR_OPEN))
@@ -23,6 +24,11 @@ export class InicioPage implements OnInit {
 
   changeIndex(index: number) {
     this.selected = index
+  }
+
+  setDesk(deskChoosed: string) {
+    this.desk = deskChoosed;
+    console.log(this.desk);
   }
 
 }

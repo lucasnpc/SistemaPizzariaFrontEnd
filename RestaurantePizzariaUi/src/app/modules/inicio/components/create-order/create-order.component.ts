@@ -8,19 +8,19 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class CreateOrderComponent implements OnInit {
   @Input() index: number;
   @Output() indexChanged = new EventEmitter<number>();
-  desk: string = "123";
+  @Input() desk: string;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  createOrder(){
+  createOrder() {
     console.log("CreateOrder");
-    
+
   }
 
-  cancelAttendance(){
+  cancelAttendance() {
     this.index = 0;
     this.indexChanged.emit(this.index)
   }
