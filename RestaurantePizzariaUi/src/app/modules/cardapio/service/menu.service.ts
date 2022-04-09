@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { MenuItem } from '../models/menu-item.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class CardapioService {
   post = environment.url + 'itens/postItem';
   get = environment.url + 'itens/getItem';

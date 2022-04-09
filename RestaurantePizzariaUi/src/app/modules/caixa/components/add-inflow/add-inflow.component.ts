@@ -4,7 +4,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { BusinessStorage } from 'src/app/core/utils/business-storage';
 import { MenuItem } from 'src/app/modules/cardapio/models/menu-item.model';
-import { CardapioService } from 'src/app/modules/cardapio/service/cardapio.service';
+import { CardapioService } from 'src/app/modules/cardapio/service/menu.service';
 import { DialogInvoiceComponent } from '../dialog-invoice/dialog-invoice.component';
 
 const SEARCH_BUTTON = `<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">

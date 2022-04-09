@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BusinessStorage } from 'src/app/core/utils/business-storage';
 import { MenuItem } from '../../models/menu-item.model';
-import { CardapioService } from '../../service/cardapio.service';
+import { CardapioService } from '../../service/menu.service';
 
 @Component({
   selector: 'rp-itens-cardapio',

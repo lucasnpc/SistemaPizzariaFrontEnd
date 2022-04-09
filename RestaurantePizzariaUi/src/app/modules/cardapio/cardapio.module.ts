@@ -7,7 +7,7 @@ import { ItensCardapioComponent } from './components/itens-cardapio/itens-cardap
 import { MatListModule } from '@angular/material/list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { CardapioService } from './service/cardapio.service';
+import { CardapioService } from './service/menu.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
 import { SharedModule } from '../shared/shared.module';
