@@ -23,9 +23,10 @@ export class OrderListitemComponent implements OnInit {
   }
 
   lessItemQuantity() {
-    if (this.itemQuantity > 0)
+    if (this.itemQuantity > 0) {
       this.itemQuantity--
-    this.emitOrder(false)
+      this.emitOrder(false)
+    }
   }
 
   increaseItemQuantity() {

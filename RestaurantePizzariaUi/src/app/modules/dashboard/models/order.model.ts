@@ -1,4 +1,4 @@
-export class Order{
+export class Order {
     orderId: number;
     itemId: number;
     itemQuantity: number;

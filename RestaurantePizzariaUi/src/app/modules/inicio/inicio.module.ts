@@ -19,6 +19,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { HttpClientModule } from '@angular/common/http';
 import { MatListModule } from '@angular/material/list';
 import { OrderListitemComponent } from './components/order-listitem/order-listitem.component';
+import { OpenDeskDialogComponent } from './components/open-desk-dialog/open-desk-dialog.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { OrderListitemComponent } from './components/order-listitem/order-listit
     OpenDeskComponent,
     ChooseDeskComponent,
     CreateOrderComponent,
-    OrderListitemComponent
+    OrderListitemComponent,
+    OpenDeskDialogComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +45,8 @@ import { OrderListitemComponent } from './components/order-listitem/order-listit
     ReactiveFormsModule,
     MatAutocompleteModule,
     HttpClientModule,
-    MatListModule
+    MatListModule,
+    MatDialogModule
   ],
   providers: [InicioService]
 })

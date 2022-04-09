@@ -14,14 +14,14 @@
             </mat-autocomplete>
         </mat-form-field>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="3" [rowspan]="8">
+    <mat-grid-tile [colspan]="3" [rowspan]="7">
         <mat-selection-list #item [multiple]="false">
             <mat-list-option *ngFor="let item of selectedItems" [value]="item">
                 <rp-order-listitem [item]="item" [desk]="desk" (lessOrder)="lessOrder($event)" (sumOrder)="sumOrder($event)"></rp-order-listitem>
             </mat-list-option>
         </mat-selection-list>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="3" [rowspan]="1"> </mat-grid-tile>
+    <mat-grid-tile [colspan]="3" [rowspan]="2"> </mat-grid-tile>
 </mat-grid-list>
 <span>
     <p class="total-hint">Total</p>
