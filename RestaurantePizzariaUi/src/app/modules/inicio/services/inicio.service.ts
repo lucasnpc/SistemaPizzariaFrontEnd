@@ -18,7 +18,7 @@ export class InicioService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public getItens(cnpj: string) {
+  public getItems(cnpj: string) {
     return this.httpClient.get<{ data: MenuItem[] }>(this.get, { params: { businessCnpj: cnpj } });
   }
 }

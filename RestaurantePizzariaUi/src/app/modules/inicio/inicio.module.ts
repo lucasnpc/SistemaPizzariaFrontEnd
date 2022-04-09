@@ -17,13 +17,16 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { HttpClientModule } from '@angular/common/http';
+import { MatListModule } from '@angular/material/list';
+import { OrderListitemComponent } from './components/order-listitem/order-listitem.component';
 
 @NgModule({
   declarations: [
     InicioPage,
     OpenDeskComponent,
     ChooseDeskComponent,
-    CreateOrderComponent
+    CreateOrderComponent,
+    OrderListitemComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +42,8 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
-    HttpClientModule
+    HttpClientModule,
+    MatListModule
   ],
   providers: [InicioService]
 })

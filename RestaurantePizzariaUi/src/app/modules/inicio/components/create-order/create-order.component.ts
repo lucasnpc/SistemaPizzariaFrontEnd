@@ -21,11 +21,12 @@ export class CreateOrderComponent implements OnInit {
   itemsDescription: string[];
   filteredItems: Observable<string[]>;
   selectedItem: string;
+  selectedItems: MenuItem[]
 
   constructor(private inicioService: InicioService, private storage: BusinessStorage) { }
 
   ngOnInit(): void {
-    this.inicioService.getItens(this.storage.get("businessCnpj")).subscribe(result => {
+    this.inicioService.getItems(this.storage.get("businessCnpj")).subscribe(result => {
       this.items = result.data
       this.itemsDescription = this.items.map(item => item.description)
 
@@ -51,9 +52,11 @@ export class CreateOrderComponent implements OnInit {
     this.indexChanged.emit(this.index)
   }
 
-  selectItem() {
-    console.log(this.selectedItem);
-    this.selectedItem = '';
+  selectItem() {    
+    if (this.selectedItem != undefined) {
+      this.selectedItems = this.items.map(value => value.description == this.selectedItem ? value : null)
+      this.selectedItem = '';
+    }
   }
 
 }
