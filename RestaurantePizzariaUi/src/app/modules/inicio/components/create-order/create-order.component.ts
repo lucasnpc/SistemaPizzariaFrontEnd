@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { BusinessStorage } from 'src/app/core/utils/business-storage';
 import { MenuItem } from 'src/app/modules/cardapio/models/menu-item.model';
+import { Order } from 'src/app/modules/dashboard/models/order.model';
 import { InicioService } from '../../services/inicio.service';
 
 @Component({
@@ -21,7 +22,9 @@ export class CreateOrderComponent implements OnInit {
   itemsDescription: string[];
   filteredItems: Observable<string[]>;
   selectedItem: string;
-  selectedItems: MenuItem[]
+  selectedItems: MenuItem[] = []
+  totalOrder = 0;
+  previousItemQuantity = { itemId: 0, quantity: 0 }
 
   constructor(private inicioService: InicioService, private storage: BusinessStorage) { }
 
@@ -52,11 +55,20 @@ export class CreateOrderComponent implements OnInit {
     this.indexChanged.emit(this.index)
   }
 
-  selectItem() {    
-    if (this.selectedItem != undefined) {
-      this.selectedItems = this.items.map(value => value.description == this.selectedItem ? value : null)
-      this.selectedItem = '';
+  selectItem() {
+    var flag = false
+    this.selectedItems.map(value => value.description == this.selectedItem ? flag = true : undefined)
+    if (this.selectedItem != undefined && !flag) {
+      this.items.map(value => value.description == this.selectedItem ? this.selectedItems.push(value) : undefined)
     }
+    this.selectedItem = '';
   }
 
+  sumOrder(order: Order) {
+    this.selectedItems.map(value => value.itemId == order.itemId ? this.totalOrder += Number(value.price) : undefined)
+  }
+
+  lessOrder(order: Order) {
+    this.selectedItems.map(value => value.itemId == order.itemId ? this.totalOrder -= Number(value.price) : undefined)
+  }
 }

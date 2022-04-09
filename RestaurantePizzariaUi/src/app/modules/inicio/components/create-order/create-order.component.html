@@ -14,14 +14,19 @@
             </mat-autocomplete>
         </mat-form-field>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="3" [rowspan]="9">
+    <mat-grid-tile [colspan]="3" [rowspan]="8">
         <mat-selection-list #item [multiple]="false">
             <mat-list-option *ngFor="let item of selectedItems" [value]="item">
-                <rp-order-listitem [item]="item"></rp-order-listitem>
+                <rp-order-listitem [item]="item" [desk]="desk" (lessOrder)="lessOrder($event)" (sumOrder)="sumOrder($event)"></rp-order-listitem>
             </mat-list-option>
         </mat-selection-list>
     </mat-grid-tile>
+    <mat-grid-tile [colspan]="3" [rowspan]="1"> </mat-grid-tile>
 </mat-grid-list>
+<span>
+    <p class="total-hint">Total</p>
+    <p class="total-value">R{{totalOrder | currency: ''}}</p>
+</span>
 <button mat-button class="button-add" (click)="selectItem()">Adicionar Item</button>
 <button mat-button class="button-cancel" (click)="cancelAttendance()">Cancelar</button>
 <button mat-button class="button-finish" (click)="createOrder()">Finalizar</button>
