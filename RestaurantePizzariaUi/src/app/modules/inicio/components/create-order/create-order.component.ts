@@ -31,6 +31,7 @@ export class CreateOrderComponent implements OnInit {
   selectedItem: string;
   selectedItems: MenuItem[] = []
   totalOrder = 0;
+  itemRequest: ItemRequest[] = []
 
   constructor(private inicioService: InicioService, private storage: BusinessStorage, private dialog: MatDialog) { }
 
@@ -61,6 +62,7 @@ export class CreateOrderComponent implements OnInit {
       data: { desk: this.desk }
     });
 
+
     dialogRef.afterClosed().subscribe(result => {
       if (result)
         this.inicioService.postOrder({
@@ -71,11 +73,11 @@ export class CreateOrderComponent implements OnInit {
           dateTimeOrder: new Date()
         }).subscribe(result => {
           if (result) {
-            this.selectedItems.map(value => {
+            this.itemRequest.map(value => {
               this.inicioService.postOrderMenuItems({
                 orderId: result.orderId,
                 itemId: value.itemId,
-                itemQuantity: 123
+                itemQuantity: value.quantity
               }).subscribe(result => {
                 if (result.sucess)
                   this.cancelAttendance()
@@ -94,19 +96,44 @@ export class CreateOrderComponent implements OnInit {
   }
 
   selectItem() {
-    var flag = false
-    this.selectedItems.map(value => value.description == this.selectedItem ? flag = true : undefined)
-    if (this.selectedItem != undefined && !flag) {
-      this.items.map(value => value.description == this.selectedItem ? this.selectedItems.push(value) : undefined)
+    // verifica se selecionou um item
+    if (!this.selectedItem) {
+      return
     }
+
+    // verifica se o item já esta na lista de items 
+    if (this.selectedItems.some(item => item.description === this.selectedItem)) {
+      alert("Este item já esta na lista")
+      return
+    }
+
+    const item = this.items.find(i => i.description === this.selectedItem)
+    if (!item) {
+      return
+    }
+
+    this.selectedItems.push(item)
+    this.itemRequest.push({ itemId: item.itemId, quantity: 1 })
+
     this.selectedItem = '';
   }
 
-  sumOrder(order: Order) {
+  sumOrder(order: ItemRequest) {
     this.selectedItems.map(value => value.itemId == order.itemId ? this.totalOrder += Number(value.price) : undefined)
+    this._changeQuantity(order)
   }
 
-  lessOrder(order: Order) {
+  lessOrder(order: ItemRequest) {
     this.selectedItems.map(value => value.itemId == order.itemId ? this.totalOrder -= Number(value.price) : undefined)
+    this._changeQuantity(order)
+  }
+
+  _changeQuantity(order: ItemRequest) {
+    const itemIndex = this.itemRequest.findIndex(item => item.itemId === order.itemId)
+    if (itemIndex < 0) {
+      return
+    }
+
+    this.itemRequest[itemIndex].quantity = order.quantity
   }
 }

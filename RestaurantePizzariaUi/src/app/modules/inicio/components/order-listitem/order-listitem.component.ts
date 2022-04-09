@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
-import { BusinessStorage } from 'src/app/core/utils/business-storage';
 import { MenuItem } from 'src/app/modules/cardapio/models/menu-item.model';
-import { Order } from 'src/app/modules/dashboard/models/order.model';
+import { ItemRequest } from '../../models/OrderMenuItem.model';
 
 @Component({
   selector: 'rp-order-listitem',
@@ -11,13 +10,12 @@ import { Order } from 'src/app/modules/dashboard/models/order.model';
 export class OrderListitemComponent implements OnInit {
 
   @Input() item: MenuItem
-  @Input() desk: string
   itemQuantity: number = 0;
-  _order: Order = new Order()
-  @Output() lessOrder = new EventEmitter<Order>()
-  @Output() sumOrder = new EventEmitter<any>();
+  _request: ItemRequest = new ItemRequest()
+  @Output() lessOrder = new EventEmitter<ItemRequest>()
+  @Output() sumOrder = new EventEmitter<ItemRequest>();
 
-  constructor(private storage: BusinessStorage) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
@@ -35,17 +33,11 @@ export class OrderListitemComponent implements OnInit {
   }
 
   emitOrder(sum: boolean) {
-    this._order = {
-      orderId: null,
+    this._request = {
       itemId: this.item.itemId,
-      itemQuantity: this.itemQuantity,
-      employeeCpf: null,
-      deskDescription: this.desk,
-      concluded: false,
-      businessCnpj: this.storage.get("businessCnpj"),
-      dateTimeOrder: new Date()
+      quantity: this.itemQuantity,
     }
-    sum ? this.sumOrder.emit(this._order) : this.lessOrder.emit(this._order)
+    sum ? this.sumOrder.emit(this._request) : this.lessOrder.emit(this._request)
   }
 
 }
