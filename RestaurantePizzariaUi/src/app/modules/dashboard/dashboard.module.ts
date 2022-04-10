@@ -17,6 +17,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { DashboardDetailPage } from './pages/dashboard-detail/dashboard-detail.page';
 import { DashboardService } from './service/dashboard.service';
 import LocalePT from '@angular/common/locales/pt';
+import { MatListModule } from '@angular/material/list';
 registerLocaleData(LocalePT);
 
 @NgModule({
@@ -39,7 +40,8 @@ registerLocaleData(LocalePT);
     NgxChartsModule,
     MatMenuModule,
     MatIconModule,
+    MatListModule
   ],
   providers: [DashboardService],
 })
-export class DashboardModule {}
+export class DashboardModule { }

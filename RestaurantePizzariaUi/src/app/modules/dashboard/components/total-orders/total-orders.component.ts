@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BusinessStorage } from 'src/app/core/utils/business-storage';
+import { Order } from '../../models/order.model';
 import { DashboardService } from '../../service/dashboard.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { DashboardService } from '../../service/dashboard.service';
   styleUrls: ['./total-orders.component.less'],
 })
 export class TotalOrdersComponent implements OnInit {
-  totalOrders = 15;
+  totalOrders: Order[] = [];
 
   constructor(private rest: DashboardService, private storage: BusinessStorage) { }
 

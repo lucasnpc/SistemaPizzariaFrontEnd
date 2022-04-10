@@ -11,14 +11,11 @@ import { DashboardService } from '../../service/dashboard.service';
 export class ConcludedOrdersComponent implements OnInit {
   concludedOrders: Order[]
 
-  totalConcludedOrders = 15;
-
   constructor(private rest: DashboardService, private storage: BusinessStorage) { }
 
   ngOnInit(): void {
     this.rest.getConcludedOrders(this.storage.get("businessCnpj")).subscribe((result) => {
       this.concludedOrders = result.data;
-      this.totalConcludedOrders = this.concludedOrders.length
     });
   }
 }

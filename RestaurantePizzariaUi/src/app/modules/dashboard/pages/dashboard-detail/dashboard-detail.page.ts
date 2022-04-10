@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { BusinessStorage } from 'src/app/core/utils/business-storage';
+import { Order } from '../../models/order.model';
+import { DashboardService } from '../../service/dashboard.service';
 
 @Component({
   templateUrl: './dashboard-detail.page.html',
@@ -6,11 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardDetailPage implements OnInit {
   todayDate = new Date();
-  orders = 15;
-  activeOrders = 15;
-  concludedOrders = 15;
+  totalOrders: Order[] = [];
+  activeOrders: Order[] = [];
+  concludedOrders: Order[] = [];
 
-  constructor() {}
+  constructor(private service: DashboardService, private storage: BusinessStorage) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.service.getActiveOrders(this.storage.get("businessCnpj")).subscribe((result) => {
+      this.activeOrders = result.data;
+    });
+    this.service.getConcludedOrders(this.storage.get("businessCnpj")).subscribe((result) => {
+      this.concludedOrders = result.data;
+    });
+    this.service.getTotalOrders(this.storage.get("businessCnpj")).subscribe((result) => {
+      this.totalOrders = result.data;
+    });
+  }
 }

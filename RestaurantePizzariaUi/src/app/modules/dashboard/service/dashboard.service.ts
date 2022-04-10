@@ -25,7 +25,7 @@ export class DashboardService {
   constructor(private httpClient: HttpClient) { }
 
   getTotalOrders(cnpj: string) {
-    return this.httpClient.get<{ data: number }>(this.getPedidosTotal, { params: {businessCnpj: cnpj} })
+    return this.httpClient.get<{ data: Order[] }>(this.getPedidosTotal, { params: {businessCnpj: cnpj} })
   }
 
   getActiveOrders(cnpj: string) {

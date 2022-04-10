@@ -3,7 +3,7 @@
         <p class="orders-style">Pedidos Ativos</p>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="1" [rowspan]="3">
-        <p class="total-orders-style">{{totalActiveOrders}}</p>
+        <p class="total-orders-style">{{activeOrders.length}}</p>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="1" [rowspan]="1">
         <button mat-raised-button class="button-see-orders" routerLink="detail">Ver todos</button>

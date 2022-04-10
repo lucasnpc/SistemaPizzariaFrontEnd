@@ -1,33 +1,59 @@
 .container {
-    display      : grid;
-    align-items  : start;
+    display: grid;
+    align-items: start;
     justify-items: center;
-    border       : 1px solid #848684;
-    box-sizing   : border-box;
+    border: 1px solid #848684;
+    box-sizing: border-box;
 
     height: 99%;
-    width : 99%;
+    width: 99%;
 }
 
 .content-container {
     width: 90%;
 
-    padding   : 1.2em;
+    padding: 1.2em;
     max-height: 95%;
 }
 
-p {
-    padding      : 16px;
-    font-weight  : 600;
-    font-size    : 22px;
-    line-height  : 28px;
-    background   : #EEF5F8;
-    border-radius: 16px;
-    width        : fit-content;
+P {
+    font-weight: 600;
+    font-size: 18px;
+    width: fit-content;
 
     color: #848684;
 }
 
+p.header {
+    padding: 16px;
+    border-radius: 16px;
+    background: #EEF5F8;
+}
+
 .mat-grid-tile {
     border-radius: 16px;
+}
+
+mat-select {
+    font-size: 17px;
+    line-height: 33px;
+}
+
+mat-list-option {
+    background: #FFFFFF;
+    border: 1px solid #848684;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+
+mat-list-option:hover {
+    background: #FFFFFF;
+    border: 1px solid #3DD743;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+
+mat-selection-list {
+    max-height: 9rem;
+    overflow: auto;
 }

@@ -11,14 +11,11 @@ import { DashboardService } from '../../service/dashboard.service';
 export class ActiveOrdersComponent implements OnInit {
   activeOrders: Order[]
 
-  totalActiveOrders = 15
-
   constructor(private rest: DashboardService, private storage: BusinessStorage) { }
 
   ngOnInit(): void {
     this.rest.getActiveOrders(this.storage.get("businessCnpj")).subscribe((result) => {
       this.activeOrders = result.data;
-      this.totalActiveOrders = this.activeOrders.length
     });
   }
 
