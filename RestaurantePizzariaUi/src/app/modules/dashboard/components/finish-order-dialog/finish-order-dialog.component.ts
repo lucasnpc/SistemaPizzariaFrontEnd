@@ -6,11 +6,11 @@ export interface DialogData {
 }
 
 @Component({
-  selector: 'rp-open-desk-dialog',
-  templateUrl: './open-desk-dialog.component.html',
-  styleUrls: ['./open-desk-dialog.component.less']
+  selector: 'rp-finish-order-dialog',
+  templateUrl: './finish-order-dialog.component.html',
+  styleUrls: ['./finish-order-dialog.component.less']
 })
-export class OpenDeskDialogComponent implements OnInit {
+export class FinishOrderDialogComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 

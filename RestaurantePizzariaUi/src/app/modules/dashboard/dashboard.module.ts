@@ -18,6 +18,8 @@ import { DashboardDetailPage } from './pages/dashboard-detail/dashboard-detail.p
 import { DashboardService } from './service/dashboard.service';
 import LocalePT from '@angular/common/locales/pt';
 import { MatListModule } from '@angular/material/list';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FinishOrderDialogComponent } from './components/finish-order-dialog/finish-order-dialog.component';
 registerLocaleData(LocalePT);
 
 @NgModule({
@@ -29,6 +31,7 @@ registerLocaleData(LocalePT);
     GainsComponent,
     InformativeGraphComponent,
     DashboardDetailPage,
+    FinishOrderDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -40,7 +43,8 @@ registerLocaleData(LocalePT);
     NgxChartsModule,
     MatMenuModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatDialogModule
   ],
   providers: [DashboardService],
 })

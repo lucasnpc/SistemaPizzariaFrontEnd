@@ -2,7 +2,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { MenuItem } from '../../cardapio/models/menu-item.model';
-import { Order } from '../../dashboard/models/order.model';
 
 @Injectable({
   providedIn: 'root'

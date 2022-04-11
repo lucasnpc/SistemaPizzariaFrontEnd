@@ -16,6 +16,8 @@ export class DashboardService {
   getTotalEntradas = environment.url + 'dashboard/getTotalEntradas';
   getTotalSaidas = environment.url + 'dashboard/getTotalSaidas';
 
+  postAtualizaPedidoAtivoConcluido = environment.url + 'dashboard/postAtualizaPedidoAtivoConcluido';
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -25,31 +27,35 @@ export class DashboardService {
   constructor(private httpClient: HttpClient) { }
 
   getTotalOrders(cnpj: string) {
-    return this.httpClient.get<{ data: Order[] }>(this.getPedidosTotal, { params: {businessCnpj: cnpj} })
+    return this.httpClient.get<{ data: Order[] }>(this.getPedidosTotal, { params: { businessCnpj: cnpj } })
   }
 
   getActiveOrders(cnpj: string) {
-    return this.httpClient.get<{ data: Order[] }>(this.getPedidosAtivos, { params: {businessCnpj: cnpj} })
+    return this.httpClient.get<{ data: Order[] }>(this.getPedidosAtivos, { params: { businessCnpj: cnpj } })
   }
 
   getConcludedOrders(cnpj: string) {
-    return this.httpClient.get<{ data: Order[] }>(this.getPedidosConcluidos, { params: {businessCnpj: cnpj} })
+    return this.httpClient.get<{ data: Order[] }>(this.getPedidosConcluidos, { params: { businessCnpj: cnpj } })
   }
 
   getTopMenuItems(cnpj: string) {
-    return this.httpClient.get<{ data: any[] }>(this.getMenuTopItens, { params: {businessCnpj: cnpj} });
+    return this.httpClient.get<{ data: any[] }>(this.getMenuTopItens, { params: { businessCnpj: cnpj } });
   }
 
   getTopSalesDesks(cnpj: string) {
-    return this.httpClient.get<{ data: any[] }>(this.getMesasTopVendas, { params: {businessCnpj: cnpj} });
+    return this.httpClient.get<{ data: any[] }>(this.getMesasTopVendas, { params: { businessCnpj: cnpj } });
   }
 
   getTotalGains(cnpj: string) {
-    return this.httpClient.get<{ data: number }>(this.getTotalEntradas, { params: {businessCnpj: cnpj} });
+    return this.httpClient.get<{ data: number }>(this.getTotalEntradas, { params: { businessCnpj: cnpj } });
   }
 
   getTotalExpenses(cnpj: string) {
-    return this.httpClient.get<{ data: number }>(this.getTotalSaidas, { params: {businessCnpj: cnpj} });
+    return this.httpClient.get<{ data: number }>(this.getTotalSaidas, { params: { businessCnpj: cnpj } });
+  }
+
+  updateActiveOrderToConcluded(id: any) {
+    return this.httpClient.post<any>(this.postAtualizaPedidoAtivoConcluido, id, this.httpOptions)
   }
 
 }
