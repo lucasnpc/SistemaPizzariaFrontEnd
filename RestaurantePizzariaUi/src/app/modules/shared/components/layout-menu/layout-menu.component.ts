@@ -46,6 +46,9 @@ export class LayoutMenuComponent implements OnInit {
       case '/menu/dashboard':
         this.selectedOption = this.options[1];
         break;
+      case '/menu/dashboard/detail':
+        this.selectedOption = this.options[1];
+        break;
       case '/menu/caixa':
         this.selectedOption = this.options[2];
         break;

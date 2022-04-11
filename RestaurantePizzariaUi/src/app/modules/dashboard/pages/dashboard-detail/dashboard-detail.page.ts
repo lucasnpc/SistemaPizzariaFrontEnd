@@ -26,4 +26,12 @@ export class DashboardDetailPage implements OnInit {
       this.totalOrders = result.data;
     });
   }
+
+  updateOrder(order: Order) {
+    console.log(order);
+  }
+
+  finishOrder(order: Order) {
+    console.log(order);
+  }
 }
