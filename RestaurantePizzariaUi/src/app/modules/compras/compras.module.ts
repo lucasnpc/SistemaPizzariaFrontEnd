@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { ContasPage } from './pages/contas/contas.page';
 import { ComprasRoutingModule } from './compras-routing.module';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { ListaContasPagarComponent } from './components/lista-contas-pagar/lista-contas-pagar.component';
-import { ListaContasReceberComponent } from './components/lista-contas-receber/lista-contas-receber.component';
 import { MatTableModule } from '@angular/material/table';
 import { SharedModule } from '../shared/shared.module';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -28,8 +26,6 @@ import { ContasService } from './service/contas.service';
 @NgModule({
   declarations: [
     ContasPage,
-    ListaContasPagarComponent,
-    ListaContasReceberComponent,
     DialogAddInContasComponent,
     ContasBalanceComponent,
     AddBillToPayComponent,
@@ -57,4 +53,4 @@ import { ContasService } from './service/contas.service';
   ],
   providers: [ContasService],
 })
-export class ComprasModule {}
+export class ComprasModule { }

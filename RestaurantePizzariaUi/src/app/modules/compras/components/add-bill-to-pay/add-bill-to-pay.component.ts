@@ -40,22 +40,5 @@ export class AddBillToPayComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  addBillToPay() {
-    var ehFixa;
-    if (this.formRegisterBillsToPay.get('ehFixa').value == 'Sim') ehFixa = true;
-    else ehFixa = false;
 
-    var dados = {
-      ehFixa: ehFixa,
-      descricao: this.formRegisterBillsToPay.get('descricao').value,
-      dataPagamento: this.formRegisterBillsToPay.get('dataPagamento').value,
-      valor: this.formRegisterBillsToPay.get('valor').value,
-      tipoServico: this.formRegisterBillsToPay.get('tipoServico').value,
-    };
-    console.log(dados);
-
-    this.rest.postBillToPay(dados).subscribe((result) => {
-      if (result.success) this.dialogRef.close();
-    });
-  }
 }

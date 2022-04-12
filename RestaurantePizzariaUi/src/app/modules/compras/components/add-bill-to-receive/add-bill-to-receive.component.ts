@@ -27,16 +27,4 @@ export class AddBillToReceiveComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-
-  addBillToReceive() {
-    var dados = {
-      valor: this.formRegisterBillsToReceive.get('valor').value,
-      descricao: this.formRegisterBillsToReceive.get('descricao').value,
-      dataRecebimento:
-        this.formRegisterBillsToReceive.get('dataRecebimento').value,
-    };
-    this.rest.postBillToReceive(dados).subscribe((result) => {
-      if (result.success) this.dialogRef.close();
-    });
-  }
 }
