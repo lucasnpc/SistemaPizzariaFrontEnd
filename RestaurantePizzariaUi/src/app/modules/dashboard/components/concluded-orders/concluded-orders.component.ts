@@ -9,7 +9,7 @@ import { DashboardService } from '../../service/dashboard.service';
   styleUrls: ['./concluded-orders.component.less'],
 })
 export class ConcludedOrdersComponent implements OnInit {
-  concludedOrders: Order[]
+  concludedOrders: Order[] = []
 
   constructor(private rest: DashboardService, private storage: BusinessStorage) { }
 

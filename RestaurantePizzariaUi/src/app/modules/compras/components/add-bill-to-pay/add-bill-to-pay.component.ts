@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { ContasService } from '../../service/contas.service';
+import { ComprasService } from '../../service/contas.service';
 import { DialogAddInContasComponent } from '../dialog-add-in-contas/dialog-add-in-contas.component';
 
 @Component({
@@ -32,7 +32,7 @@ export class AddBillToPayComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     dateAdapter: DateAdapter<any>,
-    private rest: ContasService,
+    private rest: ComprasService,
     public dialogRef: MatDialogRef<DialogAddInContasComponent>
   ) {
     dateAdapter.setLocale('pt-br');

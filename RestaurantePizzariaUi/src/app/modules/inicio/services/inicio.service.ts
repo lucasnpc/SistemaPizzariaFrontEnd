@@ -9,8 +9,10 @@ import { MenuItem } from '../../cardapio/models/menu-item.model';
 export class InicioService {
 
   get = environment.url + 'itens/getItem';
+  getItensComPedidoId = environment.url + 'inicio/getItensComPedidoId';
   postPedido = environment.url + 'inicio/postPedido'
   postPedidoItens = environment.url + 'inicio/postPedidoItens'
+  updatePedidoItens = environment.url + 'inicio/updatePedidoItens'
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -24,12 +26,20 @@ export class InicioService {
     return this.httpClient.get<{ data: MenuItem[] }>(this.get, { params: { businessCnpj: cnpj } });
   }
 
+  public getItemsWithOrderId(id: string) {
+    return this.httpClient.get<{ data: MenuItem[] }>(this.getItensComPedidoId, { params: { orderId: id } });
+  }
+
   public postOrder(order: any) {
     return this.httpClient.post<any>(this.postPedido, order, this.httpOptions)
   }
 
   public postOrderMenuItems(orderMenuItems: any) {
     return this.httpClient.post<any>(this.postPedidoItens, orderMenuItems, this.httpOptions)
+  }
+
+  public updateOrderMenuItems(orderMenuItems: any) {
+    return this.httpClient.post<any>(this.updatePedidoItens, orderMenuItems, this.httpOptions)
   }
 
 }

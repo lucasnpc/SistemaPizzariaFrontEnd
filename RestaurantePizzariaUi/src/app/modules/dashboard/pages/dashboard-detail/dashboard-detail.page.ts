@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { BusinessStorage } from 'src/app/core/utils/business-storage';
+import { ORDER_TAG } from 'src/app/core/utils/constants';
 import { FinishOrderDialogComponent } from '../../components/finish-order-dialog/finish-order-dialog.component';
 import { Order } from '../../models/order.model';
 import { DashboardService } from '../../service/dashboard.service';
@@ -15,7 +17,7 @@ export class DashboardDetailPage implements OnInit {
   activeOrders: Order[] = [];
   concludedOrders: Order[] = [];
 
-  constructor(private service: DashboardService, private storage: BusinessStorage, private dialog: MatDialog) { }
+  constructor(private service: DashboardService, private storage: BusinessStorage, private dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
     this.getOrders()
@@ -34,7 +36,7 @@ export class DashboardDetailPage implements OnInit {
   }
 
   updateOrder(order: Order) {
-    console.log(order);
+    this.router.navigate(['/menu/inicio'], { state: { order: order } })
   }
 
   finishOrder(order: Order) {
@@ -44,7 +46,7 @@ export class DashboardDetailPage implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.service.updateActiveOrderToConcluded({orderId: order.orderId}).subscribe(result => {
+        this.service.updateActiveOrderToConcluded({ orderId: order.orderId }).subscribe(result => {
           if (result) {
             this.getOrders()
           }

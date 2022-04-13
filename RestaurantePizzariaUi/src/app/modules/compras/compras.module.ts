@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ContasPage } from './pages/contas/contas.page';
+import { ComprasPage } from './pages/contas/contas.page';
 import { ComprasRoutingModule } from './compras-routing.module';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTableModule } from '@angular/material/table';
@@ -21,11 +21,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { HttpClientModule } from '@angular/common/http';
-import { ContasService } from './service/contas.service';
+import { ComprasService } from './service/contas.service';
 
 @NgModule({
   declarations: [
-    ContasPage,
+    ComprasPage,
     DialogAddInContasComponent,
     ContasBalanceComponent,
     AddBillToPayComponent,
@@ -51,6 +51,6 @@ import { ContasService } from './service/contas.service';
     MatSelectModule,
     HttpClientModule,
   ],
-  providers: [ContasService],
+  providers: [ComprasService],
 })
 export class ComprasModule { }

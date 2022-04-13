@@ -18,6 +18,12 @@ export class OrderListitemComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    if (this.item.itemQuantity != undefined) {
+      for (let i = 1; i <= this.item.itemQuantity; i++) {
+        this.itemQuantity = i;
+        this.sumOrder.emit({ itemId: this.item.itemId, quantity: this.itemQuantity })
+      }
+    }
   }
 
   lessItemQuantity() {

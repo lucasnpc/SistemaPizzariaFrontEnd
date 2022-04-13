@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 @Injectable()
-export class ContasService {
+export class ComprasService {
   getContasAPagar = environment.url + 'contas/getContasAPagar';
   getContasAReceber = environment.url + 'contas/getContasAReceber';
   postContasAPagar = environment.url + 'contas/postContasAPagar';

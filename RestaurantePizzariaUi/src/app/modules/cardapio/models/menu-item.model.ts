@@ -1,8 +1,8 @@
 export class MenuItem {
   itemId: number;
-  productListNQuantity: string[];
   price: number;
   description: string;
   businessCnpj: string;
+  itemQuantity: number;
   selected: boolean;
 }

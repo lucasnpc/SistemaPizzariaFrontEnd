@@ -7,7 +7,7 @@ import { Product } from '../../models/product.model';
   templateUrl: './contas.page.html',
   styleUrls: ['./contas.page.less'],
 })
-export class ContasPage implements OnInit {
+export class ComprasPage implements OnInit {
   products: Product[] = [
     {
       productId: 1, productName: 'teste', minimumStock: Number(123),

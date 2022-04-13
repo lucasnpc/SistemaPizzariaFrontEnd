@@ -14,7 +14,6 @@ export class TotalOrdersComponent implements OnInit {
   constructor(private rest: DashboardService, private storage: BusinessStorage) { }
 
   ngOnInit(): void {
-
     this.rest.getTotalOrders(this.storage.get("businessCnpj")).subscribe((result) => {
       this.totalOrders = result.data;
     });

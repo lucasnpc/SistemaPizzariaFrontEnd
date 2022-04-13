@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -23,6 +23,7 @@ export class CreateOrderComponent implements OnInit {
   @Input() index: number;
   @Output() indexChanged = new EventEmitter<number>();
   @Input() desk: string;
+  @Input() orderToUpdate: Order
 
   createOrderControl = new FormControl('');
   items: MenuItem[]
@@ -32,8 +33,10 @@ export class CreateOrderComponent implements OnInit {
   selectedItems: MenuItem[] = []
   totalOrder = 0;
   itemRequest: ItemRequest[] = []
+  i = 0;
 
-  constructor(private inicioService: InicioService, private storage: BusinessStorage, private dialog: MatDialog) { }
+  constructor(private inicioService: InicioService, private storage: BusinessStorage, private dialog: MatDialog) {
+  }
 
   ngOnInit(): void {
     this.inicioService.getItems(this.storage.get("businessCnpj")).subscribe(result => {
@@ -45,6 +48,16 @@ export class CreateOrderComponent implements OnInit {
         map(value => this._filter(value))
       )
     })
+
+    if (this.orderToUpdate != undefined) {
+      this.desk = this.orderToUpdate.deskDescription
+      this.inicioService.getItemsWithOrderId(this.orderToUpdate.orderId.toString()).subscribe(result => {
+        if (result) {
+          this.selectedItems = result.data
+          this.itemRequest = result.data.map(item => ({itemId: item.itemId, quantity: item.itemQuantity}))
+        }
+      })
+    }
   }
 
   private _filter(value: string): string[] {
@@ -65,26 +78,7 @@ export class CreateOrderComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result)
-        this.inicioService.postOrder({
-          employeeCpf: null,
-          deskDescription: this.desk,
-          concluded: false,
-          businessCnpj: this.storage.get("businessCnpj"),
-          dateTimeOrder: new Date()
-        }).subscribe(result => {
-          if (result) {
-            this.itemRequest.map(value => {
-              this.inicioService.postOrderMenuItems({
-                orderId: result.orderId,
-                itemId: value.itemId,
-                itemQuantity: value.quantity
-              }).subscribe(result => {
-                if (result.sucess)
-                  this.cancelAttendance()
-              })
-            })
-          }
-        })
+        this.orderToUpdate == undefined ? this._postOrder() : this._updateOrder()
       else
         this.cancelAttendance()
     })
@@ -135,5 +129,44 @@ export class CreateOrderComponent implements OnInit {
     }
 
     this.itemRequest[itemIndex].quantity = order.quantity
+  }
+
+  _postOrder() {
+    console.log("POST_ORDER")
+    this.inicioService.postOrder({
+      employeeCpf: null,
+      deskDescription: this.desk,
+      concluded: false,
+      businessCnpj: this.storage.get("businessCnpj"),
+      dateTimeOrder: new Date()
+    }).subscribe(result => {
+      if (result) {
+        this.itemRequest.map(value => {
+          this.inicioService.postOrderMenuItems({
+            orderId: result.orderId,
+            itemId: value.itemId,
+            itemQuantity: value.quantity
+          }).subscribe(result => {
+            if (result.sucess)
+              this.cancelAttendance()
+          })
+        })
+      }
+    })
+  }
+
+  _updateOrder() {
+    console.log(this.itemRequest);
+    
+    this.itemRequest.map(value => {
+      this.inicioService.updateOrderMenuItems({
+        orderId: this.orderToUpdate.orderId,
+        itemId: value.itemId,
+        itemQuantity: value.quantity
+      }).subscribe(result => {
+        if (result.sucess)
+          this.cancelAttendance()
+      })
+    })
   }
 }
