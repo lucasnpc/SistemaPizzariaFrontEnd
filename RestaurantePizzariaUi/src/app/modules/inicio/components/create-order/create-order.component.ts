@@ -77,6 +77,7 @@ export class CreateOrderComponent implements OnInit {
 
 
     dialogRef.afterClosed().subscribe(result => {
+      console.log(this.orderToUpdate, this.itemRequest)
       if (result)
         this.orderToUpdate == undefined ? this._postOrder() : this._updateOrder()
       else
@@ -88,6 +89,8 @@ export class CreateOrderComponent implements OnInit {
     this.index = 0;
     this.indexChanged.emit(this.index)
   }
+
+
 
   selectItem() {
     // verifica se selecionou um item
@@ -132,7 +135,6 @@ export class CreateOrderComponent implements OnInit {
   }
 
   _postOrder() {
-    console.log("POST_ORDER")
     this.inicioService.postOrder({
       employeeCpf: null,
       deskDescription: this.desk,
@@ -156,17 +158,12 @@ export class CreateOrderComponent implements OnInit {
   }
 
   _updateOrder() {
-    console.log(this.itemRequest);
-    
-    this.itemRequest.map(value => {
-      this.inicioService.updateOrderMenuItems({
-        orderId: this.orderToUpdate.orderId,
-        itemId: value.itemId,
-        itemQuantity: value.quantity
-      }).subscribe(result => {
-        if (result.sucess)
-          this.cancelAttendance()
-      })
+    this.inicioService.updateOrderMenuItems({
+      orderId: this.orderToUpdate.orderId,
+      items: this.itemRequest,
+    }).subscribe(result => {
+      if (result.sucess)
+        this.cancelAttendance()
     })
   }
 }
