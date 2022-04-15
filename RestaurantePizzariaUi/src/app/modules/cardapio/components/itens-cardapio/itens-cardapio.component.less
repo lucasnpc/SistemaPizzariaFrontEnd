@@ -1,28 +1,63 @@
 @import "../../../../../styles/_variaveis.less";
 
-.mat-list-icon {
-  background-color: @primary;
+.card-style {
+  height: 99%;
+  width: 99%;
 }
 
-mat-selection-list {
-  height  : 80%;
-  overflow: auto;
-}
-
-.item-container {
-  padding: 1em;
-  height : 18%;
-
-}
-
-.mat-subheader {
-  font-weight: 500;
-
-  color: #848684;
-}
-
-.mat-line {
+mat-card-title {
+  font-weight: 550;
+  font-size: 24px;
   line-height: 28px;
 
   color: #848684;
+}
+
+table {
+  width: 100%;
+  background: #FFFFFF;
+  border: 1px solid #848684;
+  box-sizing: border-box;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+th {
+  background: #EEF5F8;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 28px;
+
+  color: #848684;
+}
+
+td {
+
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 28px;
+
+  color: #848684;
+}
+
+.item-border-left {
+  border-bottom-left-radius: 16px;
+}
+
+.item-border-right {
+  border-bottom-right-radius: 16px;
+}
+
+.mat-row:hover .mat-cell {
+  border-color: black;
+  cursor: pointer;
+}
+
+.rowSelected {
+  background-color: #EEF5F8;
+}
+
+mat-card-content {
+  overflow: auto;
+  height: 470px;
 }

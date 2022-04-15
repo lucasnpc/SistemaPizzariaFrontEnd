@@ -5,7 +5,7 @@
           <rp-top-bar (openDialog)="openDialog()" (filter)="applyFilter($event)"></rp-top-bar>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="3" [rowspan]="9">
-          <p>Fornecedores Works!!!!</p>
+          <rp-providers-list [filterEvent]="filterEvent"></rp-providers-list>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1" [rowspan]="1"> </mat-grid-tile>
         <mat-grid-tile [colspan]="2" [rowspan]="1"> </mat-grid-tile>

@@ -28,7 +28,6 @@ export class AddInflowComponent implements OnInit {
   filled = false;
   itemIndex: number[];
   itens: MenuItem[];
-  itemCount: number;
   total: number;
 
   desks: Desks[] = [
@@ -61,9 +60,6 @@ export class AddInflowComponent implements OnInit {
   ngOnInit(): void {
     this.rest.getItens(this.storage.get("businessCnpj")).subscribe((result) => {
       this.itens = result.data;
-    });
-    this.rest.getItensCount(this.storage.get("businessCnpj")).subscribe((result) => {
-      this.itemCount = result.data;
     });
   }
 

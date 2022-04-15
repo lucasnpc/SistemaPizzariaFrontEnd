@@ -4,7 +4,6 @@ import { CardapioPage } from './pages/cardapio/cardapio.page';
 import { CardapioRoutingModule } from './cardapio-routing.module';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ItensCardapioComponent } from './components/itens-cardapio/itens-cardapio.component';
-import { MatListModule } from '@angular/material/list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { CardapioService } from './service/menu.service';
@@ -16,6 +15,8 @@ import { DialogAddInCardapioComponent } from './components/dialog-add-in-cardapi
 import { AddItemComponent } from './components/add-item/add-item.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { MatTableModule } from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,6 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
     CommonModule,
     CardapioRoutingModule,
     MatGridListModule,
-    MatListModule,
     MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -38,7 +38,9 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
     MatDialogModule,
     MatFormFieldModule,
     CurrencyMaskModule,
+    MatTableModule,
+    MatCardModule
   ],
   providers: [CardapioService],
 })
-export class CardapioModule {}
+export class CardapioModule { }

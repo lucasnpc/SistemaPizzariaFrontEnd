@@ -17,7 +17,7 @@ export class ClienteService {
   constructor(private httpClient: HttpClient) { }
 
   getCustomers(cnpj: string) {
-    return this.httpClient.get<{ data: Client[] }>(this.getClientes, { params: {businessCnpj: cnpj} });
+    return this.httpClient.get<{ data: Client[] }>(this.getClientes, { params: { businessCnpj: cnpj } });
   }
   postCustomer(cliente: any) {
     return this.httpClient.post<any>(

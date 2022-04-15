@@ -7,6 +7,7 @@ import { DialogAddInCardapioComponent } from '../../components/dialog-add-in-car
   styleUrls: ['./cardapio.page.less']
 })
 export class CardapioPage implements OnInit {
+  filterEvent: Event;
 
   constructor(private dialog: MatDialog) { }
 
@@ -20,5 +21,9 @@ export class CardapioPage implements OnInit {
       console.log(`Dialog cardapio result: ${result}`);
       
     })
+  }
+
+  applyFilter(event: Event) {
+    this.filterEvent = event;
   }
 }

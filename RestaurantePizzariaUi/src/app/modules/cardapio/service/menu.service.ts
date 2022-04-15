@@ -9,7 +9,6 @@ import { MenuItem } from '../models/menu-item.model';
 export class CardapioService {
   post = environment.url + 'itens/postItem';
   get = environment.url + 'itens/getItem';
-  getItemCount = environment.url + 'itens/getItemCount';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -21,10 +20,6 @@ export class CardapioService {
 
   public getItens(cnpj: string){
     return this.httpClient.get<{data: MenuItem[]}>(this.get, { params: {businessCnpj: cnpj} });
-  }
-
-  public getItensCount(cnpj: string){
-    return this.httpClient.get<{data: number}>(this.getItemCount, { params: {businessCnpj: cnpj} });
   }
 
   public postItem(item: any) {

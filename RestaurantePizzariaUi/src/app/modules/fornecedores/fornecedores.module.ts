@@ -7,10 +7,15 @@ import { SharedModule } from '../shared/shared.module';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTableModule } from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
+import { ProvidersListComponent } from './components/providers-list/providers-list.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    FornecedoresPage
+    FornecedoresPage,
+    ProvidersListComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +23,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     SharedModule,
     MatGridListModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule,
+    MatCardModule,
+    HttpClientModule
   ],
   providers: [FornecedoresService]
 })

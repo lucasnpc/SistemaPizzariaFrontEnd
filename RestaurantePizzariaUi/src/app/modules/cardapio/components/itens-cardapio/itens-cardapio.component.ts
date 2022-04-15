@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { BusinessStorage } from 'src/app/core/utils/business-storage';
 import { MenuItem } from '../../models/menu-item.model';
 import { CardapioService } from '../../service/menu.service';
@@ -9,32 +10,36 @@ import { CardapioService } from '../../service/menu.service';
   styleUrls: ['./itens-cardapio.component.less'],
 })
 export class ItensCardapioComponent implements OnInit {
-  itens: MenuItem[];
-  itemCount: number;
+  @Input() filterEvent: Event;
+  filterValue: String;
+  items: MenuItem[];
+  clickedRow: MenuItem;
+  dataSource: any;
+
+  displayedColumns: string[] = [
+    'description',
+    'price'
+  ]
 
   constructor(private rest: CardapioService, private storage: BusinessStorage) { }
 
   ngOnInit(): void {
     this.rest.getItens(this.storage.get("businessCnpj")).subscribe((result) => {
-      this.itens = result.data;
-    });
-    this.rest.getItensCount(this.storage.get("businessCnpj")).subscribe((result) => {
-      this.itemCount = result.data;
+      this.items = result.data;
+      this.dataSource = new MatTableDataSource(this.items)
     });
   }
 
-  adicionarItem(dados: MenuItem) {
-    this.itemCount += 1;
-
-    this.rest.postItem(dados).subscribe(
-      (result) => {
-        if (result) console.log('Item adicionado');
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+  ngOnChanges() {
+    if (this.filterEvent != null) this.applyFilter(this.filterEvent);
   }
-  alterarItem(dados: MenuItem) { }
-  removerItem(dados: MenuItem) { }
+
+  applyFilter(event: Event) {
+    this.filterValue = (event.target as HTMLInputElement).value.toString();
+    this.dataSource.filter = this.filterValue.trim().toLowerCase();
+  }
+
+  setRow(row: MenuItem) {
+    this.clickedRow = row;
+  }
 }

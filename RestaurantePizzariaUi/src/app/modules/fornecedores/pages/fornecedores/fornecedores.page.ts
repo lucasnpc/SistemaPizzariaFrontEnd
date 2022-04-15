@@ -8,9 +8,9 @@ import { MatDialog } from '@angular/material/dialog';
 export class FornecedoresPage implements OnInit {
   filterEvent: Event;
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   openDialog() {
     console.log("open dialog");
