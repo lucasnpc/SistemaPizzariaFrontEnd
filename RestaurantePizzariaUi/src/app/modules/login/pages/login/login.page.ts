@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BusinessStorage } from 'src/app/core/utils/business-storage';
+import { BUSINESS_CNPJ, USER_ROLE } from 'src/app/core/utils/constants';
 import { User } from '../../models/usuario.model';
 import { LoginService } from '../../services/login.service';
 
@@ -18,8 +19,8 @@ export class LoginPage implements OnInit {
       (result) => {
         console.log(result);
         if (result) {
-          this.storage.set('businessCnpj', result.data.businessCnpj)
-          this.storage.set('userRole', result.data.userType)
+          this.storage.set(BUSINESS_CNPJ, result.data.businessCnpj)
+          this.storage.set(USER_ROLE, result.data.userType)
           this.router.navigate(['/menu/dashboard']);
         }
       },

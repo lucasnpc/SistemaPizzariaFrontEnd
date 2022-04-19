@@ -18,6 +18,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FuncionarioService } from './service/funcionario.service';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { FuncionarioService } from './service/funcionario.service';
     MatDatepickerModule,
     MatNativeDateModule,
     HttpClientModule,
+    CurrencyMaskModule,
+    MatSelectModule
   ],
   providers: [FuncionarioService],
 })
-export class FuncionariosModule {}
+export class FuncionariosModule { }

@@ -9,9 +9,9 @@ import { DialogAddInFuncionariosComponent } from '../../components/dialog-add-in
 export class FuncionariosPage implements OnInit {
   filterEvent: Event;
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   openDialog() {
     const dialogRef = this.dialog.open(DialogAddInFuncionariosComponent);
@@ -20,6 +20,7 @@ export class FuncionariosPage implements OnInit {
       console.log(`Dialog funcionários result: ${result}`);
     });
   }
+
   applyFilter(event: Event) {
     this.filterEvent = event;
   }

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { BusinessStorage } from 'src/app/core/utils/business-storage';
+import { BUSINESS_CNPJ } from 'src/app/core/utils/constants';
 import { Employee } from '../../models/employee.model';
 import { FuncionarioService } from '../../service/funcionario.service';
 
@@ -19,10 +20,7 @@ export class ListaFuncionariosComponent implements OnInit {
   constructor(private rest: FuncionarioService, private storage: BusinessStorage) { }
 
   ngOnInit(): void {
-    this.rest.getEmployees(this.storage.get("businessCnpj")).subscribe((result) => {
-      this.funcionarios = result.data;
-      this.dataSource = new MatTableDataSource(this.funcionarios);
-    });
+    this.getEmployees()
   }
 
   ngOnChanges() {
@@ -45,6 +43,13 @@ export class ListaFuncionariosComponent implements OnInit {
   applyFilter(event: Event) {
     this.filterValue = (event.target as HTMLInputElement).value.toString();
     this.dataSource.filter = this.filterValue.trim().toLowerCase();
+  }
+
+  getEmployees() {
+    this.rest.getEmployees(this.storage.get(BUSINESS_CNPJ)).subscribe((result) => {
+      this.funcionarios = result.data;
+      this.dataSource = new MatTableDataSource(this.funcionarios);
+    });
   }
 
   setRow(row: Employee) {

@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { BusinessStorage } from 'src/app/core/utils/business-storage';
+import { BUSINESS_CNPJ } from 'src/app/core/utils/constants';
 import { Employee } from '../../models/employee.model';
 import { FuncionarioService } from '../../service/funcionario.service';
 import { DialogAddInFuncionariosComponent } from '../dialog-add-in-funcionarios/dialog-add-in-funcionarios.component';
@@ -23,13 +25,20 @@ export class AddFuncionarioComponent implements OnInit {
     cargo: ['', Validators.required],
     dataAdmissao: ['', Validators.required],
     dataNascimento: ['', Validators.required],
+    salary: ['', Validators.required],
+    isOutsource: ['', Validators.required]
   });
+
+  options = ['Sim', 'Não'];
+
+  @Output() registerEmployee = new EventEmitter<Employee>()
 
   constructor(
     private fb: FormBuilder,
     dateAdapter: DateAdapter<any>,
     private rest: FuncionarioService,
-    public dialogRef: MatDialogRef<DialogAddInFuncionariosComponent>
+    public dialogRef: MatDialogRef<DialogAddInFuncionariosComponent>,
+    private storage: BusinessStorage
   ) {
     dateAdapter.setLocale('pt-br');
   }
@@ -49,14 +58,14 @@ export class AddFuncionarioComponent implements OnInit {
       admissionDate: this.formRegisterEmployees.get('dataAdmissao').value,
       birthDate: this.formRegisterEmployees.get('dataNascimento').value,
       terminationDate: null,
-      salary: 0,
-      isOutsource: false,
+      salary: this.formRegisterEmployees.get('salary').value,
+      isOutsource: this.formRegisterEmployees.get('isOutsource').value == "Sim",
       isActive: true,
-      businessCnpj: ''
+      businessCnpj: this.storage.get(BUSINESS_CNPJ)
     };
 
     this.rest.postEmployee(dados).subscribe((result) => {
-      if (result.success) this.dialogRef.close();
+      if (result.success) this.dialogRef.close(true);
     });
   }
 }

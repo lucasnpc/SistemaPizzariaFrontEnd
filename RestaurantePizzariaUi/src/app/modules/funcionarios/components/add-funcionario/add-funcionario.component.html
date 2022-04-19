@@ -21,91 +21,59 @@
         </mat-form-field>
         <mat-form-field appearance="outline" floatLabel="always">
           <mat-label>Número de endereço</mat-label>
-          <input
-            matInput
-            formControlName="numero"
-            placeholder="Número"
-            required
-          />
+          <input matInput formControlName="numero" placeholder="Número" required />
         </mat-form-field>
 
         <mat-form-field appearance="outline" floatLabel="always">
           <mat-label>Bairro de endereço</mat-label>
-          <input
-            matInput
-            formControlName="bairro"
-            placeholder="Bairro"
-            required
-          />
+          <input matInput formControlName="bairro" placeholder="Bairro" required />
         </mat-form-field>
         <mat-form-field appearance="outline" floatLabel="always">
           <mat-label>Cidade de enredeço</mat-label>
-          <input
-            matInput
-            formControlName="cidade"
-            placeholder="Cidade"
-            required
-          />
+          <input matInput formControlName="cidade" placeholder="Cidade" required />
         </mat-form-field>
         <mat-form-field appearance="outline" floatLabel="always">
           <mat-label>Telefone</mat-label>
-          <input
-            matInput
-            formControlName="telefone"
-            placeholder="Telefone"
-            required
-          />
+          <input matInput formControlName="telefone" placeholder="Telefone" required />
         </mat-form-field>
         <mat-form-field appearance="outline" floatLabel="always">
           <mat-label>Cargo</mat-label>
-          <input
-            matInput
-            formControlName="cargo"
-            placeholder="Cargo"
-            required
-          />
+          <input matInput formControlName="cargo" placeholder="Cargo" required />
         </mat-form-field>
         <mat-form-field appearance="outline" floatLabel="always">
           <mat-label>Data de Admissão</mat-label>
-          <input
-            matInput
-            [matDatepicker]="pickAdmissionDate"
-            formControlName="dataAdmissao"
-            placeholder="Data de Admissão"
-            required
-          />
-          <mat-datepicker-toggle
-            matSuffix
-            [for]="pickAdmissionDate"
-          ></mat-datepicker-toggle>
+          <input matInput [matDatepicker]="pickAdmissionDate" formControlName="dataAdmissao"
+            placeholder="Data de Admissão" required />
+          <mat-datepicker-toggle matSuffix [for]="pickAdmissionDate"></mat-datepicker-toggle>
           <mat-datepicker touchUi #pickAdmissionDate></mat-datepicker>
         </mat-form-field>
         <mat-form-field appearance="outline" floatLabel="always">
           <mat-label>Data de Nascimento</mat-label>
-          <input
-            matInput
-            [matDatepicker]="pickBornDate"
-            formControlName="dataNascimento"
-            placeholder="Data de Nascimento"
-            required
-          />
-          <mat-datepicker-toggle
-            matSuffix
-            [for]="pickBornDate"
-          ></mat-datepicker-toggle>
+          <input matInput [matDatepicker]="pickBornDate" formControlName="dataNascimento"
+            placeholder="Data de Nascimento" required />
+          <mat-datepicker-toggle matSuffix [for]="pickBornDate"></mat-datepicker-toggle>
           <mat-datepicker touchUi #pickBornDate></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Salário</mat-label>
+          <input matInput currencyMask formControlName="salary" placeholder="0"
+            [options]="{ prefix: '', thousands: '', decimal: '.' }" required />
+          <span matPrefix>R$&nbsp;</span>
+        </mat-form-field>
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Terceirizado?</mat-label>
+          <mat-select #selectIsOutSource formControlName="isOutsource" required>
+            <mat-option *ngFor="let option of options" [value]="option">
+              {{ option }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
       </form>
     </mat-dialog-content>
   </mat-grid-tile>
   <mat-grid-tile [colspan]="4" [rowspan]="1">
     <mat-dialog-actions align="end">
-      <button
-        mat-button
-        (click)="addEmployee()"
-        type="submit"
-        [disabled]="!formRegisterEmployees.valid"
-      >
+      <button mat-button (click)="addEmployee()" type="submit" [disabled]="!formRegisterEmployees.valid">
         Registrar
       </button>
     </mat-dialog-actions>
