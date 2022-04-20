@@ -1,0 +1,57 @@
+<mat-dialog-content>
+    <mat-grid-list cols="4" rowHeight="4rem">
+        <mat-grid-tile mat-dialog-title [colspan]="4" [rowspan]="1">
+            <div class="gray-bar-large">
+                <h2>Registro de Fornecedores</h2>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="4" [rowspan]="8">
+            <mat-dialog-content>
+                <form [formGroup]="formRegisterProviders">
+                    <mat-form-field appearance="outline">
+                        <mat-label>CNPJ</mat-label>
+                        <input matInput formControlName="providerCnpj" placeholder="CNPJ" required />
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" floatLabel="always">
+                        <mat-label>Nome Corporativo</mat-label>
+                        <input matInput formControlName="corporateName" placeholder="Nome" required />
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" floatLabel="always">
+                        <mat-label>Rua de enredeço</mat-label>
+                        <input matInput formControlName="street" placeholder="Rua" required />
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" floatLabel="always">
+                        <mat-label>Número de endereço</mat-label>
+                        <input matInput formControlName="number" placeholder="Número" required />
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" floatLabel="always">
+                        <mat-label>Bairro de endereço</mat-label>
+                        <input matInput formControlName="district" placeholder="Bairro" required />
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" floatLabel="always">
+                        <mat-label>Cidade de enredeço</mat-label>
+                        <input matInput formControlName="city" placeholder="Cidade" required />
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" floatLabel="always">
+                        <mat-label>Estado do endereço</mat-label>
+                        <input matInput formControlName="state" placeholder="Estado" required />
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" floatLabel="always">
+                        <mat-label>Telefone</mat-label>
+                        <input matInput formControlName="phone" placeholder="Telefone" required />
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" floatLabel="always">
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email" placeholder="Email" required />
+                    </mat-form-field>
+                </form>
+            </mat-dialog-content>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="4" [rowspan]="1">
+            <mat-dialog-actions align="end">
+                <button mat-button [mat-dialog-close]="true" cdkFocusInitial [disabled]="!formRegisterProviders.valid">Confirmar</button>
+            </mat-dialog-actions>
+        </mat-grid-tile>
+    </mat-grid-list>
+</mat-dialog-content>

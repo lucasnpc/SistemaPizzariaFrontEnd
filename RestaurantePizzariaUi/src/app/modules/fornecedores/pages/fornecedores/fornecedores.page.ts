@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AddProviderDialogComponent } from '../../components/add-provider-dialog/add-provider-dialog.component';
 
 @Component({
   templateUrl: './fornecedores.page.html',
@@ -13,7 +14,11 @@ export class FornecedoresPage implements OnInit {
   ngOnInit(): void { }
 
   openDialog() {
-    console.log("open dialog");
+    const dialogRef = this.dialog.open(AddProviderDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    })
   }
   applyFilter(event: Event) {
     this.filterEvent = event;

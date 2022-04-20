@@ -11,11 +11,16 @@ import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { ProvidersListComponent } from './components/providers-list/providers-list.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AddProviderDialogComponent } from './components/add-provider-dialog/add-provider-dialog.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
     FornecedoresPage,
-    ProvidersListComponent
+    ProvidersListComponent,
+    AddProviderDialogComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +31,12 @@ import { HttpClientModule } from '@angular/common/http';
     MatDialogModule,
     MatTableModule,
     MatCardModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatFormFieldModule
   ],
   providers: [FornecedoresService]
 })
