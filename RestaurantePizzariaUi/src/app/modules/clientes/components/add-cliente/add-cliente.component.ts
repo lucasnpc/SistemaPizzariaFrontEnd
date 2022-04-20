@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { BusinessStorage } from 'src/app/core/utils/business-storage';
+import { BUSINESS_CNPJ } from 'src/app/core/utils/constants';
+import { Client } from '../../models/client.model';
 import { ClienteService } from '../../service/cliente.service';
 import { DialogAddInClientesComponent } from '../dialog-add-in-clientes/dialog-add-in-clientes.component';
 
@@ -22,23 +25,26 @@ export class AddClienteComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private rest: ClienteService,
-    public dialogRef: MatDialogRef<DialogAddInClientesComponent>
-  ) {}
+    public dialogRef: MatDialogRef<DialogAddInClientesComponent>,
+    private storage: BusinessStorage
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   addClient() {
-    var dados = {
-      telefone: this.formRegisterClients.get('telefone').value,
-      nome: this.formRegisterClients.get('nome').value,
-      numero: this.formRegisterClients.get('numero').value,
-      rua: this.formRegisterClients.get('rua').value,
-      bairro: this.formRegisterClients.get('bairro').value,
-      cidade: this.formRegisterClients.get('cidade').value,
+    var data: Client = {
+      clientId: null,
+      name: this.formRegisterClients.get('nome').value,
+      street: this.formRegisterClients.get('rua').value,
+      number: this.formRegisterClients.get('numero').value,
+      district: this.formRegisterClients.get('bairro').value,
+      city: this.formRegisterClients.get('cidade').value,
+      phone: this.formRegisterClients.get('telefone').value,
+      businessCnpj: this.storage.get(BUSINESS_CNPJ)
     };
-    this.rest.postCustomer(dados).subscribe((result) => {
+    
+    this.rest.postCustomer(data).subscribe((result) => {
       if (result.success) this.dialogRef.close();
     });
-    console.log('Add Client');
   }
 }

@@ -9,12 +9,7 @@
       <form [formGroup]="formRegisterClients">
         <mat-form-field appearance="outline">
           <mat-label>Telefone</mat-label>
-          <input
-            matInput
-            formControlName="telefone"
-            placeholder="Telefone"
-            required
-          />
+          <input matInput formControlName="telefone" placeholder="Telefone" required />
         </mat-form-field>
         <mat-form-field appearance="outline" floatLabel="always">
           <mat-label>Nome</mat-label>
@@ -22,12 +17,7 @@
         </mat-form-field>
         <mat-form-field appearance="outline" floatLabel="always">
           <mat-label>Número de endereço</mat-label>
-          <input
-            matInput
-            formControlName="numero"
-            placeholder="Número"
-            required
-          />
+          <input matInput formControlName="numero" placeholder="Número" required />
         </mat-form-field>
         <mat-form-field appearance="outline" floatLabel="always">
           <mat-label>Rua de enredeço</mat-label>
@@ -35,33 +25,18 @@
         </mat-form-field>
         <mat-form-field appearance="outline" floatLabel="always">
           <mat-label>Bairro de endereço</mat-label>
-          <input
-            matInput
-            formControlName="bairro"
-            placeholder="Bairro"
-            required
-          />
+          <input matInput formControlName="bairro" placeholder="Bairro" required />
         </mat-form-field>
         <mat-form-field appearance="outline" floatLabel="always">
           <mat-label>Cidade de enredeço</mat-label>
-          <input
-            matInput
-            formControlName="cidade"
-            placeholder="Cidade"
-            required
-          />
+          <input matInput formControlName="cidade" placeholder="Cidade" required />
         </mat-form-field>
       </form>
     </mat-dialog-content>
   </mat-grid-tile>
   <mat-grid-tile [colspan]="4" [rowspan]="1">
     <mat-dialog-actions align="end">
-      <button
-        mat-button
-        (click)="addClient()"
-        type="submit"
-        [disabled]="!formRegisterClients.valid"
-      >
+      <button mat-button (click)="addClient()" type="submit" [disabled]="!formRegisterClients.valid">
         Registrar
       </button>
     </mat-dialog-actions>

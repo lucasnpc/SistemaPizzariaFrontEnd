@@ -19,10 +19,10 @@ export class ClienteService {
   getCustomers(cnpj: string) {
     return this.httpClient.get<{ data: Client[] }>(this.getClientes, { params: { businessCnpj: cnpj } });
   }
-  postCustomer(cliente: any) {
+  postCustomer(client: Client) {
     return this.httpClient.post<any>(
       this.postCliente,
-      cliente,
+      client,
       this.httpOptions
     );
   }

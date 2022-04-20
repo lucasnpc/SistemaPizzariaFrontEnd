@@ -19,10 +19,10 @@ export class FuncionarioService {
   getEmployees(cnpj: string) {
     return this.httpClient.get<{ data: Employee[] }>(this.getFuncionarios, { params: {businessCnpj: cnpj} });
   }
-  postEmployee(cliente: Employee) {
+  postEmployee(employee: Employee) {
     return this.httpClient.post<any>(
       this.postFuncionario,
-      cliente,
+      employee,
       this.httpOptions
     );
   }
