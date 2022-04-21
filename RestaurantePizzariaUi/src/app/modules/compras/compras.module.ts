@@ -1,19 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ComprasPage } from './pages/contas/contas.page';
+import { ComprasPage } from './pages/contas/compras.page';
 import { ComprasRoutingModule } from './compras-routing.module';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTableModule } from '@angular/material/table';
 import { SharedModule } from '../shared/shared.module';
 import { MatDialogModule } from '@angular/material/dialog';
-import { DialogAddInContasComponent } from './components/dialog-add-in-contas/dialog-add-in-contas.component';
+import { AddPurchaseDialog } from './components/add-purchase-dialog/add-purchase-dialog.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { ContasBalanceComponent } from './components/contas-balance/contas-balance.component';
-import { MatTabsModule } from '@angular/material/tabs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AddBillToPayComponent } from './components/add-bill-to-pay/add-bill-to-pay.component';
-import { AddBillToReceiveComponent } from './components/add-bill-to-receive/add-bill-to-receive.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
@@ -26,10 +22,7 @@ import { ComprasService } from './service/contas.service';
 @NgModule({
   declarations: [
     ComprasPage,
-    DialogAddInContasComponent,
-    ContasBalanceComponent,
-    AddBillToPayComponent,
-    AddBillToReceiveComponent,
+    AddPurchaseDialog,
   ],
   imports: [
     CommonModule,
@@ -40,7 +33,6 @@ import { ComprasService } from './service/contas.service';
     MatDialogModule,
     MatButtonModule,
     MatCardModule,
-    MatTabsModule,
     FormsModule,
     ReactiveFormsModule,
     MatDatepickerModule,
