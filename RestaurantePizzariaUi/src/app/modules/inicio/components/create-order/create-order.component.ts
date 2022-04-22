@@ -149,7 +149,7 @@ export class CreateOrderComponent implements OnInit {
             itemId: value.itemId,
             itemQuantity: value.quantity
           }).subscribe(result => {
-            if (result.sucess)
+            if (result.success)
               this.cancelAttendance()
           })
         })
@@ -162,7 +162,7 @@ export class CreateOrderComponent implements OnInit {
       orderId: this.orderToUpdate.orderId,
       items: this.itemRequest,
     }).subscribe(result => {
-      if (result.sucess)
+      if (result.success)
         this.cancelAttendance()
     })
   }

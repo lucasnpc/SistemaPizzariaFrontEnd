@@ -39,7 +39,7 @@
   </mat-grid-tile>
   <mat-grid-tile [colspan]="4" [rowspan]="1">
     <mat-dialog-actions align="end">
-      <button mat-button type="submit" [disabled]="!formRegisterProduct.valid">
+      <button mat-button (click)="addProduct()" type="submit" [disabled]="!formRegisterProduct.valid">
         Registrar
       </button>
     </mat-dialog-actions>

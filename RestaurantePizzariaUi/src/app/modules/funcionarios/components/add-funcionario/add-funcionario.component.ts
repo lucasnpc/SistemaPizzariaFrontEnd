@@ -37,7 +37,7 @@ export class AddFuncionarioComponent implements OnInit {
     private fb: FormBuilder,
     dateAdapter: DateAdapter<any>,
     private rest: FuncionarioService,
-    public dialogRef: MatDialogRef<DialogAddInFuncionariosComponent>,
+    private dialogRef: MatDialogRef<DialogAddInFuncionariosComponent>,
     private storage: BusinessStorage
   ) {
     dateAdapter.setLocale('pt-br');
@@ -46,7 +46,7 @@ export class AddFuncionarioComponent implements OnInit {
   ngOnInit(): void { }
 
   addEmployee() {
-    var dados: Employee = {
+    var data: Employee = {
       cpf: this.formRegisterEmployees.get('cpf').value,
       name: this.formRegisterEmployees.get('nome').value,
       street: this.formRegisterEmployees.get('rua').value,
@@ -64,7 +64,7 @@ export class AddFuncionarioComponent implements OnInit {
       businessCnpj: this.storage.get(BUSINESS_CNPJ)
     };
 
-    this.rest.postEmployee(dados).subscribe((result) => {
+    this.rest.postEmployee(data).subscribe((result) => {
       if (result.success) this.dialogRef.close(true);
     });
   }

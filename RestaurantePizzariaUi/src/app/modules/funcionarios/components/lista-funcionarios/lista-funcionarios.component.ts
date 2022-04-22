@@ -47,8 +47,10 @@ export class ListaFuncionariosComponent implements OnInit {
 
   getEmployees() {
     this.rest.getEmployees(this.storage.get(BUSINESS_CNPJ)).subscribe((result) => {
-      this.funcionarios = result.data;
-      this.dataSource = new MatTableDataSource(this.funcionarios);
+      if(result){
+        this.funcionarios = result.data;
+        this.dataSource = new MatTableDataSource(this.funcionarios);
+      }
     });
   }
 
