@@ -13,6 +13,11 @@ interface ProductRequest {
   quantity: number
 }
 
+const formatter = new Intl.NumberFormat('en-US', {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
+
 @Component({
   templateUrl: './compras.page.html',
   styleUrls: ['./compras.page.less'],
@@ -48,7 +53,7 @@ export class ComprasPage implements OnInit {
 
   lessProductQuantity(product: Product) {
     const p = this.products.find(p => product.productId === p.productId)
-    if (product.currentStock <= p.currentStock)
+    if (formatter.format(product.currentStock) <= formatter.format(p.currentStock))
       return
     switch (product.measurementUnit) {
       case 'Unidade':
