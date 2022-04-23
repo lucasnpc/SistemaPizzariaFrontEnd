@@ -1,4 +1,4 @@
-export class Provider{
+export class Provider {
     providerCnpj: string;
     businessCnpj: string;
     corporateName: string;

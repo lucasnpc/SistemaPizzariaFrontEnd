@@ -1,9 +1,10 @@
-import { Component, OnInit, Provider } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { BusinessStorage } from 'src/app/core/utils/business-storage';
 import { AddProviderDialogComponent } from '../../components/add-provider-dialog/add-provider-dialog.component';
-import { FornecedoresService } from '../../services/fornecedores.service';
+import { Provider } from '../../models/provider.model';
+import { ProvidersService } from '../../services/fornecedores.service';
 
 @Component({
   templateUrl: './fornecedores.page.html',
@@ -28,7 +29,7 @@ export class FornecedoresPage implements OnInit {
     'email'
   ]
 
-  constructor(private dialog: MatDialog, private service: FornecedoresService, private storage: BusinessStorage) { }
+  constructor(private dialog: MatDialog, private service: ProvidersService, private storage: BusinessStorage) { }
 
   ngOnInit(): void {
     this.getProviders()

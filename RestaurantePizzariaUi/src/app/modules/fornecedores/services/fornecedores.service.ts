@@ -1,13 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable, Provider } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { Provider } from '../models/provider.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class FornecedoresService {
+export class ProvidersService {
 
   getFornecedores = environment.url + 'fornecedores/getFornecedores';
+  postFornecedor = environment.url + 'fornecedores/postFornecedor'
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -19,5 +21,9 @@ export class FornecedoresService {
 
   getProviders(cnpj: string) {
     return this.httpClient.get<{ data: Provider[] }>(this.getFornecedores, { params: { businessCnpj: cnpj } });
+  }
+
+  postProvider(provider: Provider) {
+    return this.httpClient.post<any>(this.postFornecedor, provider, this.httpOptions)
   }
 }

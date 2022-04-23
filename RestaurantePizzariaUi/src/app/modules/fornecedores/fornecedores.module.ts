@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FornecedoresPage } from './pages/fornecedores/fornecedores.page';
-import { FornecedoresService } from './services/fornecedores.service';
+import { ProvidersService } from './services/fornecedores.service';
 import { FornecedoresRoutingModule } from './fornecedores-routing';
 import { SharedModule } from '../shared/shared.module';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -36,7 +36,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatInputModule,
     MatFormFieldModule
   ],
-  providers: [FornecedoresService]
+  providers: [ProvidersService]
 })
 
 export class FornecedoresModule { }
