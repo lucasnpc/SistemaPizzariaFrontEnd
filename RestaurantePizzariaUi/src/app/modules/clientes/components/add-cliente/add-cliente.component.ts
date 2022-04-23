@@ -42,9 +42,9 @@ export class AddClienteComponent implements OnInit {
       phone: this.formRegisterClients.get('telefone').value,
       businessCnpj: this.storage.get(BUSINESS_CNPJ)
     };
-    
+
     this.rest.postCustomer(data).subscribe((result) => {
-      if (result.success) this.dialogRef.close();
+      if (result.success) this.dialogRef.close(true);
     });
   }
 }

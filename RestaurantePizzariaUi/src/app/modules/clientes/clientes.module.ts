@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { ClientesPage } from './pages/clientes/clientes.page';
 import { ClientesRoutingModule } from './clientes-routing.module';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { ListaClientesComponent } from './components/lista-clientes/lista-clientes.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -20,7 +19,6 @@ import { ClienteService } from './service/cliente.service';
 @NgModule({
   declarations: [
     ClientesPage,
-    ListaClientesComponent,
     DialogAddInClientesComponent,
     AddClienteComponent,
   ],
