@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FuncionariosPage } from './pages/funcionarios/funcionarios.page';
 import { FuncionariosRoutingModule } from './funcionarios-routing.module';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { ListaFuncionariosComponent } from './components/lista-funcionarios/lista-funcionarios.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -24,7 +23,6 @@ import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   declarations: [
     FuncionariosPage,
-    ListaFuncionariosComponent,
     DialogAddInFuncionariosComponent,
     AddFuncionarioComponent,
   ],
