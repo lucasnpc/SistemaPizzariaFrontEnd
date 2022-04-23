@@ -9,7 +9,7 @@ import { Order } from 'src/app/modules/dashboard/models/order.model';
 import { InicioService } from '../../services/inicio.service';
 import { OpenDeskDialogComponent } from '../open-desk-dialog/open-desk-dialog.component';
 
-export interface ItemRequest {
+interface ItemRequest {
   itemId: number,
   quantity: number
 }
@@ -54,7 +54,7 @@ export class CreateOrderComponent implements OnInit {
       this.inicioService.getItemsWithOrderId(this.orderToUpdate.orderId.toString()).subscribe(result => {
         if (result) {
           this.selectedItems = result.data
-          this.itemRequest = result.data.map(item => ({itemId: item.itemId, quantity: item.itemQuantity}))
+          this.itemRequest = result.data.map(item => ({ itemId: item.itemId, quantity: item.itemQuantity }))
         }
       })
     }

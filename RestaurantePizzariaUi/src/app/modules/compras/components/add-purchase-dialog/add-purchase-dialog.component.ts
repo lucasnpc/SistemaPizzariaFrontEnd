@@ -28,7 +28,8 @@ export class AddPurchaseDialog implements OnInit {
   measureOpts: MeasureUnit[] = [
     { name: 'Quilos' },
     { name: 'Litros' },
-    { name: 'Gramas' }
+    { name: 'Gramas' },
+    { name: 'Unidade' }
   ]
 
   constructor(private fb: FormBuilder, private storage: BusinessStorage, private service: ComprasService,
