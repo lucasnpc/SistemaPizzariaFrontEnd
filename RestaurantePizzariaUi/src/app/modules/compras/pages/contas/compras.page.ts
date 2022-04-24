@@ -2,14 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BusinessStorage } from 'src/app/core/utils/business-storage';
 import { BUSINESS_CNPJ } from 'src/app/core/utils/constants';
-import { AddPurchaseDialog } from '../../components/add-purchase-dialog/add-purchase-dialog.component';
+import { AddProductDialog } from '../../components/add-product-dialog/add-product-dialog.component';
 import { Product } from '../../models/product.model';
 import { ComprasService } from '../../service/compras.service';
 import { deepCopy } from '@angular-devkit/core/src/utils/object';
+import { AddPurchaseDialogComponent } from '../../components/add-purchase-dialog/add-purchase-dialog.component';
 
 
 interface ProductRequest {
   productId: number,
+  productName: string,
   quantity: number
 }
 
@@ -34,7 +36,7 @@ export class ComprasPage implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(AddPurchaseDialog);
+    const dialogRef = this.dialog.open(AddProductDialog);
 
     dialogRef.afterClosed().subscribe(result => {
       if (result)
@@ -89,5 +91,22 @@ export class ComprasPage implements OnInit {
   }
 
   concludePurchase() {
+    this.productsToSelect.map(p => {
+      const index = this.products.findIndex(p2 => p2.productId == p.productId)
+      if (this.productsToSelect[index].currentStock > this.products[index].currentStock)
+        this.productRequest.push({
+          productId: this.productsToSelect[index].productId,
+          productName: this.productsToSelect[index].productName,
+          quantity: Number(formatter.format(this.productsToSelect[index].currentStock - this.products[index].currentStock))
+        })
+    })
+    const dialogRef = this.dialog.open(AddPurchaseDialogComponent, {
+      data: this.productRequest
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.getProducts()
+      this.productRequest = []
+    });
   }
 }

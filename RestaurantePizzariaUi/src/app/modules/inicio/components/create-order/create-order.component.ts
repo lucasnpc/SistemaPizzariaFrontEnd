@@ -90,8 +90,6 @@ export class CreateOrderComponent implements OnInit {
     this.indexChanged.emit(this.index)
   }
 
-
-
   selectItem() {
     // verifica se selecionou um item
     if (!this.selectedItem) {

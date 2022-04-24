@@ -6,7 +6,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTableModule } from '@angular/material/table';
 import { SharedModule } from '../shared/shared.module';
 import { MatDialogModule } from '@angular/material/dialog';
-import { AddPurchaseDialog } from './components/add-purchase-dialog/add-purchase-dialog.component';
+import { AddProductDialog } from './components/add-product-dialog/add-product-dialog.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -18,11 +18,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { HttpClientModule } from '@angular/common/http';
 import { ComprasService } from './service/compras.service';
+import { MatListModule } from '@angular/material/list';
+import { AddPurchaseDialogComponent } from './components/add-purchase-dialog/add-purchase-dialog.component';
 
 @NgModule({
   declarations: [
     ComprasPage,
-    AddPurchaseDialog,
+    AddProductDialog,
+    AddPurchaseDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -42,6 +45,7 @@ import { ComprasService } from './service/compras.service';
     MatInputModule,
     MatSelectModule,
     HttpClientModule,
+    MatListModule
   ],
   providers: [ComprasService],
 })
