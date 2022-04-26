@@ -12,7 +12,8 @@ import { AddPurchaseDialogComponent } from '../../components/add-purchase-dialog
 interface ProductRequest {
   productId: number,
   productName: string,
-  quantity: number
+  quantity: number,
+  totalCostValue: number;
 }
 
 const formatter = new Intl.NumberFormat('en-US', {
@@ -96,11 +97,13 @@ export class ComprasPage implements OnInit {
   concludePurchase() {
     this.productsToSelect.map(p => {
       const index = this.products.findIndex(p2 => p2.productId == p.productId)
+      const quantityPurchased = Number(formatter.format(this.productsToSelect[index].currentStock - this.products[index].currentStock))
       if (this.productsToSelect[index].currentStock > this.products[index].currentStock)
         this.productRequest.push({
           productId: this.productsToSelect[index].productId,
           productName: this.productsToSelect[index].productName,
-          quantity: Number(formatter.format(this.productsToSelect[index].currentStock - this.products[index].currentStock))
+          quantity: quantityPurchased,
+          totalCostValue: this.productsToSelect[index].costValue * quantityPurchased
         })
     })
     const dialogRef = this.dialog.open(AddPurchaseDialogComponent, {

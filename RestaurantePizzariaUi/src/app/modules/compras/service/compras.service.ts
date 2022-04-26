@@ -8,6 +8,7 @@ import { Product } from '../models/product.model';
 export class ComprasService {
   getProdutos = environment.url + 'produtos/getProdutos';
   postProduto = environment.url + 'produtos/postProduto';
+  postCompra = environment.url + 'compras/postCompra'
 
   getFornecedores = environment.url + 'fornecedores/getFornecedores';
 
@@ -28,5 +29,9 @@ export class ComprasService {
 
   postProduct(product: Product) {
     return this.httpClient.post<any>(this.postProduto, product, this.httpOptions)
+  }
+
+  postPurchase(purchase: any) {
+    return this.httpClient.post<any>(this.postCompra, purchase, this.httpOptions)
   }
 }

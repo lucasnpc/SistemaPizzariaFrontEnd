@@ -1,5 +1,17 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { BusinessStorage } from 'src/app/core/utils/business-storage';
+import { BUSINESS_CNPJ } from 'src/app/core/utils/constants';
+import { ComprasService } from '../../service/compras.service';
+
+interface Purchase {
+  description: string;
+  quantityPurchased: number;
+  totalCostValue: number;
+  productId: number;
+  businessCnpj: string;
+  datePurchased: Date;
+}
 
 @Component({
   selector: 'rp-add-purchase-dialog',
@@ -8,9 +20,25 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class AddPurchaseDialogComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any[], private storage: BusinessStorage, private service: ComprasService) { }
 
   ngOnInit(): void {
   }
 
+  addPurchase() {
+    this.data.map(p => {
+      const purchase: Purchase = {
+        description: p.productName,
+        quantityPurchased: p.quantity,
+        totalCostValue: p.totalCostValue,
+        productId: p.productId,
+        businessCnpj: this.storage.get(BUSINESS_CNPJ),
+        datePurchased: new Date()
+      }
+      this.service.postPurchase(purchase).subscribe(result => {
+        if (result.success)
+          alert('Compra registrada com sucesso!')
+      })
+    })
+  }
 }
