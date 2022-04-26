@@ -12,6 +12,8 @@ export class ComprasService {
 
   getFornecedores = environment.url + 'fornecedores/getFornecedores';
 
+  updateEstoqueAtualProduto = environment.url + 'produtos/updateEstoqueAtualProduto'
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -33,5 +35,9 @@ export class ComprasService {
 
   postPurchase(purchase: any) {
     return this.httpClient.post<any>(this.postCompra, purchase, this.httpOptions)
+  }
+
+  updateProductCurrentStock(stock: any) {
+    return this.httpClient.put(this.updateEstoqueAtualProduto, stock, this.httpOptions)
   }
 }

@@ -13,6 +13,11 @@ interface Purchase {
   datePurchased: Date;
 }
 
+const formatter = new Intl.NumberFormat('en-US', {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
+
 @Component({
   selector: 'rp-add-purchase-dialog',
   templateUrl: './add-purchase-dialog.component.html',
@@ -35,6 +40,9 @@ export class AddPurchaseDialogComponent implements OnInit {
         businessCnpj: this.storage.get(BUSINESS_CNPJ),
         datePurchased: new Date()
       }
+      
+      this.service.updateProductCurrentStock({ stock: Number(p.currentStock) + p.quantity, id: p.productId }).subscribe()
+
       this.service.postPurchase(purchase).subscribe(result => {
         if (result.success)
           alert('Compra registrada com sucesso!')

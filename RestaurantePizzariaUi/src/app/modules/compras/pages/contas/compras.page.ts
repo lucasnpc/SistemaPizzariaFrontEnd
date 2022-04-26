@@ -14,6 +14,7 @@ interface ProductRequest {
   productName: string,
   quantity: number,
   totalCostValue: number;
+  currentStock: number;
 }
 
 const formatter = new Intl.NumberFormat('en-US', {
@@ -103,7 +104,8 @@ export class ComprasPage implements OnInit {
           productId: this.productsToSelect[index].productId,
           productName: this.productsToSelect[index].productName,
           quantity: quantityPurchased,
-          totalCostValue: this.productsToSelect[index].costValue * quantityPurchased
+          totalCostValue: this.productsToSelect[index].costValue * quantityPurchased,
+          currentStock: this.products[index].currentStock
         })
     })
     const dialogRef = this.dialog.open(AddPurchaseDialogComponent, {
