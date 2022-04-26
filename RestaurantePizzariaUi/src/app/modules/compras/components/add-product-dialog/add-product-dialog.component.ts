@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { BusinessStorage } from 'src/app/core/utils/business-storage';
 import { BUSINESS_CNPJ } from 'src/app/core/utils/constants';
+import { Provider } from 'src/app/modules/fornecedores/models/provider.model';
 import { Product } from '../../models/product.model';
 import { ComprasService } from '../../service/compras.service';
 
@@ -23,6 +24,10 @@ export class AddProductDialog implements OnInit {
     maximumStock: ['', Validators.required],
     currentStock: ['', Validators.required],
     measurementUnit: ['', Validators.required],
+    barcode: [''],
+    productBatch: [''],
+    costValue: ['', Validators.required],
+    providerCnpj: ['']
   });
 
   measureOpts: MeasureUnit[] = [
@@ -32,11 +37,17 @@ export class AddProductDialog implements OnInit {
     { name: 'Unidade' }
   ]
 
+  providerOpts: Provider[] = []
+
   constructor(private fb: FormBuilder, private storage: BusinessStorage, private service: ComprasService,
     private dialogRef: MatDialogRef<AddProductDialog>,
   ) { }
 
   ngOnInit(): void {
+    this.service.getProviders(this.storage.get(BUSINESS_CNPJ)).subscribe(result => {
+      if (result)
+        this.providerOpts = result.data
+    })
   }
 
   addProduct() {
@@ -47,11 +58,21 @@ export class AddProductDialog implements OnInit {
       maximumStock: this.formRegisterProduct.get('maximumStock').value,
       currentStock: this.formRegisterProduct.get('currentStock').value,
       measurementUnit: this.formRegisterProduct.get('measurementUnit').value.name,
-      businessCnpj: this.storage.get(BUSINESS_CNPJ)
+      businessCnpj: this.storage.get(BUSINESS_CNPJ),
+      barcode: this.formRegisterProduct.get('barcode').value,
+      productBatch: this.formRegisterProduct.get('productBatch').value,
+      costValue: this.formRegisterProduct.get('costValue').value,
+      providerCnpj: this.formRegisterProduct.get('providerCnpj').value.providerCnpj
     };
-
-    console.log(data);
-
+    if (data.barcode == '') {
+      data.barcode = undefined
+    }
+    if (data.productBatch === '') {
+      data.productBatch = undefined
+    }
+    if (data.businessCnpj === undefined) {
+      data.businessCnpj = undefined
+    }
 
     this.service.postProduct(data).subscribe(result => {
       if (result.success) this.dialogRef.close(true)

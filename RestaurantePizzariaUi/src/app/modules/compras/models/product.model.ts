@@ -5,5 +5,9 @@ export class Product {
     maximumStock: number
     currentStock: number;
     measurementUnit: string;
-    businessCnpj: string
+    businessCnpj: string;
+    barcode: string;
+    productBatch: string;
+    costValue: number;
+    providerCnpj: string;
 }
