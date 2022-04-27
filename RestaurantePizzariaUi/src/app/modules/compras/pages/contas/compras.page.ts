@@ -55,6 +55,11 @@ export class ComprasPage implements OnInit {
     })
   }
 
+  changeColor(item: Product) {
+    this.productsToSelect.find(p => p.selected === true ? p.selected = false : undefined)
+    item.selected = true
+  }
+
   lessProductQuantity(product: Product) {
     const p = this.products.find(p => product.productId === p.productId)
     if (formatter.format(product.currentStock) <= formatter.format(p.currentStock))

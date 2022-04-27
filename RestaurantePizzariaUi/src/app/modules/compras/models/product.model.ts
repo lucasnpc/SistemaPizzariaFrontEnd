@@ -10,4 +10,5 @@ export class Product {
     productBatch: string;
     costValue: number;
     providerCnpj: string;
+    selected: boolean;
 }

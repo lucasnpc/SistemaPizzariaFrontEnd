@@ -62,7 +62,8 @@ export class AddProductDialog implements OnInit {
       barcode: this.formRegisterProduct.get('barcode').value,
       productBatch: this.formRegisterProduct.get('productBatch').value,
       costValue: this.formRegisterProduct.get('costValue').value,
-      providerCnpj: this.formRegisterProduct.get('providerCnpj').value.providerCnpj
+      providerCnpj: this.formRegisterProduct.get('providerCnpj').value.providerCnpj,
+      selected: undefined
     };
     if (data.barcode == '') {
       data.barcode = undefined
