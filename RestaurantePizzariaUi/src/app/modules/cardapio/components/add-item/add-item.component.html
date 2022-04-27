@@ -7,27 +7,25 @@
   <mat-grid-tile [colspan]="4" [rowspan]="8">
     <mat-dialog-content>
       <form [formGroup]="formRegisterItems">
-        <mat-form-field appearance="outline">
-          <mat-label>Preço</mat-label>
-          <input
-            matInput
-            currencyMask
-            class="example-right-align"
-            formControlName="preco"
-            placeholder="0"
-            [options]="{ prefix: '', thousands: '', decimal: '.' }"
-            required
-          />
-          <span matPrefix>R$&nbsp;</span>
-        </mat-form-field>
         <mat-form-field appearance="outline" floatLabel="always">
           <mat-label>Descrição</mat-label>
-          <input
-            matInput
-            formControlName="descricao"
-            placeholder="Descrição do Item"
-            required
-          />
+          <input matInput formControlName="descricao" placeholder="Descrição do Item" required />
+        </mat-form-field>
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Pesquisar no Cardápio</mat-label>
+          <input [(ngModel)]="selectedProduct" type="text" placeholder="Pick one" aria-label="Number" matInput
+            [formControl]="createMenuItemControl" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)='setProduct($event.option.value)'>
+            <mat-option *ngFor="let product of filteredProducts | async" [value]="product">
+              {{product}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Preço</mat-label>
+          <input matInput currencyMask class="example-right-align" formControlName="preco" placeholder="0"
+            [options]="{ prefix: '', thousands: '', decimal: '.' }" required />
+          <span matPrefix>R$&nbsp;</span>
         </mat-form-field>
       </form>
     </mat-dialog-content>

@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { Product } from '../../compras/models/product.model';
 import { MenuItem } from '../models/menu-item.model';
 
 @Injectable({
@@ -9,6 +10,7 @@ import { MenuItem } from '../models/menu-item.model';
 export class CardapioService {
   post = environment.url + 'itens/postItem';
   get = environment.url + 'itens/getItem';
+  getProdutos = environment.url + 'produtos/getProdutos';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -16,10 +18,14 @@ export class CardapioService {
     }),
   };
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
-  public getItens(cnpj: string){
-    return this.httpClient.get<{data: MenuItem[]}>(this.get, { params: {businessCnpj: cnpj} });
+  public getItens(cnpj: string) {
+    return this.httpClient.get<{ data: MenuItem[] }>(this.get, { params: { businessCnpj: cnpj } });
+  }
+
+  getProducts(cnpj: string) {
+    return this.httpClient.get<{ data: Product[] }>(this.getProdutos, { params: { businessCnpj: cnpj } })
   }
 
   public postItem(item: any) {

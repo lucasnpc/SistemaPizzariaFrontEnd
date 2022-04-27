@@ -33,7 +33,6 @@ export class CreateOrderComponent implements OnInit {
   selectedItems: MenuItem[] = []
   totalOrder = 0;
   itemRequest: ItemRequest[] = []
-  i = 0;
 
   constructor(private inicioService: InicioService, private storage: BusinessStorage, private dialog: MatDialog) {
   }
