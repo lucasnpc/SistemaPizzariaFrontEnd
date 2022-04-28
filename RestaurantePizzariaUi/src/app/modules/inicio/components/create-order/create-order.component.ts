@@ -6,13 +6,9 @@ import { map, startWith } from 'rxjs/operators';
 import { BusinessStorage } from 'src/app/core/utils/business-storage';
 import { MenuItem } from 'src/app/modules/cardapio/models/menu-item.model';
 import { Order } from 'src/app/modules/dashboard/models/order.model';
+import { ItemRequest } from '../../models/OrderMenuItem.model';
 import { InicioService } from '../../services/inicio.service';
 import { OpenDeskDialogComponent } from '../open-desk-dialog/open-desk-dialog.component';
-
-interface ItemRequest {
-  itemId: number,
-  quantity: number
-}
 
 @Component({
   selector: 'rp-create-order',

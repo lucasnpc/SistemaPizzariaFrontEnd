@@ -24,6 +24,8 @@ export class OrderListitemComponent implements OnInit {
         this.sumOrder.emit({ itemId: this.item.itemId, quantity: this.itemQuantity })
       }
     }
+    else
+      this.increaseItemQuantity()
   }
 
   lessItemQuantity() {

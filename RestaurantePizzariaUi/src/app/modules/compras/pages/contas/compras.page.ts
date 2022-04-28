@@ -113,6 +113,12 @@ export class ComprasPage implements OnInit {
           currentStock: this.products[index].currentStock
         })
     })
+
+    if (this.productRequest.length == 0) {
+      alert('Altere os produtos do estoque antes de concluir uma compra')
+      return
+    }
+
     const dialogRef = this.dialog.open(AddPurchaseDialogComponent, {
       data: this.productRequest
     });

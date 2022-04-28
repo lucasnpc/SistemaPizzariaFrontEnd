@@ -8,9 +8,11 @@ import { MenuItem } from '../models/menu-item.model';
   providedIn: 'root'
 })
 export class CardapioService {
-  post = environment.url + 'itens/postItem';
   get = environment.url + 'itens/getItem';
   getProdutos = environment.url + 'produtos/getProdutos';
+
+  post = environment.url + 'itens/postItem';
+  postProdutoItem = environment.url + 'itens/postProdutoItem'
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -30,5 +32,8 @@ export class CardapioService {
 
   public postItem(item: any) {
     return this.httpClient.post<any>(this.post, item, this.httpOptions);
+  }
+  postMenuItemProduct(productMenuItem: any) {
+    return this.httpClient.post<any>(this.postProdutoItem, productMenuItem, this.httpOptions);
   }
 }

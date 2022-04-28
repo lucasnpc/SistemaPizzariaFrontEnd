@@ -6,13 +6,15 @@ import { map, startWith } from 'rxjs/operators';
 import { BusinessStorage } from 'src/app/core/utils/business-storage';
 import { BUSINESS_CNPJ } from 'src/app/core/utils/constants';
 import { Product } from 'src/app/modules/compras/models/product.model';
+import { ProductRequest } from '../../models/menu-item-product.model';
+import { MenuItem } from '../../models/menu-item.model';
 import { CardapioService } from '../../service/menu.service';
 import { DialogAddInCardapioComponent } from '../dialog-add-in-cardapio/dialog-add-in-cardapio.component';
 
-interface ProductRequest {
-  productId: number,
-  quantity: number
-}
+const formatter = new Intl.NumberFormat('en-US', {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
 
 @Component({
   selector: 'rp-add-item',
@@ -32,8 +34,7 @@ export class AddItemComponent implements OnInit {
   selectedProducts: Product[] = []
   createMenuItemControl = new FormControl('');
 
-  itemRequest: ProductRequest[] = []
-
+  productRequest: ProductRequest[] = []
 
   constructor(
     private fb: FormBuilder,
@@ -56,14 +57,37 @@ export class AddItemComponent implements OnInit {
   }
 
   addItem() {
-    var dados = {
-      preco: this.formRegisterItems.get('preco').value,
-      descricao: this.formRegisterItems.get('descricao').value,
+    if (this.selectedProducts.length == 0) {
+      alert('Selecione produtos para compôr seu item')
+      return
+    }
+
+    var dados: MenuItem = {
+      itemId: undefined,
+      price: this.formRegisterItems.get('preco').value,
+      description: this.formRegisterItems.get('descricao').value,
+      itemQuantity: undefined,
+      businessCnpj: this.storage.get(BUSINESS_CNPJ),
+      selected: undefined
     };
-    this.rest.postItem(dados).subscribe((result) => {
-      if (result.success) this.dialogRef.close();
-    });
-    console.log('Add Item');
+    this.postItem(dados)
+  }
+
+  postItem(data: any) {
+    this.rest.postItem(data).subscribe((result) => {
+      if (result) {
+        this.productRequest.map(p => {
+          this.rest.postMenuItemProduct({
+            itemId: result.itemId,
+            productId: p.productId,
+            productQuantity: p.quantity
+          }).subscribe(result => {
+            if (result.success)
+              this.dialogRef.close(true)
+          })
+        })
+      }
+    })
   }
 
   setProduct(p: string) {
@@ -81,7 +105,26 @@ export class AddItemComponent implements OnInit {
     }
 
     this.selectedProducts.push(product)
-    this.itemRequest.push({ productId: product.productId, quantity: 1 })
+    this.productRequest.push({ productId: product.productId, quantity: 1 })
+  }
+
+  sumQuantity(p: ProductRequest) {
+    // this.selectedProducts.map(value => value.productId == order.productId ? this.totalOrder += Number(value.price) : undefined)
+    this._changeQuantity(p)
+  }
+
+  lessQuantity(p: ProductRequest) {
+    //this.selectedItems.map(value => value.itemId == order.itemId ? this.totalOrder -= Number(value.price) : undefined)
+    this._changeQuantity(p)
+  }
+
+  _changeQuantity(p: ProductRequest) {
+    const itemIndex = this.productRequest.findIndex(product => product.productId === p.productId)
+    if (itemIndex < 0) {
+      return
+    }
+
+    this.productRequest[itemIndex].quantity = Number(formatter.format(p.quantity))
   }
 
   private _filter(value: string): string[] {

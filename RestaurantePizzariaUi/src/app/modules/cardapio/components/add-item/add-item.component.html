@@ -4,9 +4,9 @@
       <h2>Registro de Itens no Cardápio</h2>
     </div>
   </mat-grid-tile>
-  <mat-grid-tile [colspan]="4" [rowspan]="8">
-    <mat-dialog-content>
-      <form [formGroup]="formRegisterItems">
+  <mat-dialog-content>
+    <form [formGroup]="formRegisterItems">
+      <mat-grid-tile [colspan]="4" [rowspan]="1">
         <mat-form-field appearance="outline" floatLabel="always">
           <mat-label>Descrição</mat-label>
           <input matInput formControlName="descricao" placeholder="Descrição do Item" required />
@@ -21,15 +21,25 @@
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="4" [rowspan]="6">
+        <mat-selection-list #product [multiple]="false">
+          <mat-list-option *ngFor="let product of selectedProducts" [value]="product">
+            <rp-product-listitem [product]="product" (lessQuantity)="lessQuantity($event)"
+              (sumQuantity)="sumQuantity($event)"></rp-product-listitem>
+          </mat-list-option>
+        </mat-selection-list>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="4" [rowspan]="1">
         <mat-form-field appearance="outline">
           <mat-label>Preço</mat-label>
-          <input matInput currencyMask class="example-right-align" formControlName="preco" placeholder="0"
+          <input matInput currencyMask formControlName="preco" placeholder="0"
             [options]="{ prefix: '', thousands: '', decimal: '.' }" required />
           <span matPrefix>R$&nbsp;</span>
         </mat-form-field>
-      </form>
-    </mat-dialog-content>
-  </mat-grid-tile>
+      </mat-grid-tile>
+    </form>
+  </mat-dialog-content>
   <mat-grid-tile [colspan]="4" [rowspan]="1">
     <mat-dialog-actions align="end">
       <button mat-button (click)="addItem()" type="submit" [disabled]="!formRegisterItems.valid">

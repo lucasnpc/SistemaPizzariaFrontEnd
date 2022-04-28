@@ -18,12 +18,15 @@ import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatListModule } from '@angular/material/list';
+import { ProductListitemComponent } from './components/product-listitem/product-listitem.component';
 
 @NgModule({
   declarations: [
     CardapioPage,
     DialogAddInCardapioComponent,
     AddItemComponent,
+    ProductListitemComponent,
   ],
   imports: [
     CommonModule,
@@ -40,7 +43,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     CurrencyMaskModule,
     MatTableModule,
     MatCardModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatListModule
   ],
   providers: [CardapioService],
 })
