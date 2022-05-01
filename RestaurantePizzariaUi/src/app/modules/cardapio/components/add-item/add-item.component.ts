@@ -30,7 +30,6 @@ export class AddItemComponent implements OnInit {
   products: Product[]
   filteredProducts: Observable<string[]>;
   productsDescription: string[];
-  selectedProduct: string;
   selectedProducts: Product[] = []
   createMenuItemControl = new FormControl('');
 

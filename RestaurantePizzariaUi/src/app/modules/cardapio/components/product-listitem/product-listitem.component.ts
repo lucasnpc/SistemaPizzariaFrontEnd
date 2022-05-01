@@ -22,21 +22,23 @@ export class ProductListitemComponent implements OnInit {
   }
 
   lessItemQuantity() {
-    if (this.productQuantity > 0) {
-      switch (this.product.measurementUnit) {
-        case 'Unidade':
-          this.productQuantity -= Number(1);
-          break;
-        case 'Quilos':
-          this.productQuantity -= Number(0.5)
-          break;
-        case 'Gramas':
-          this.productQuantity -= Number(0.1)
-          break;
-        case 'Litros':
-          this.productQuantity -= Number(0.5)
-          break
-      }
+    var lessUnit = 0;
+    switch (this.product.measurementUnit) {
+      case 'Unidade':
+        lessUnit = 1;
+        break;
+      case 'Quilos':
+        lessUnit = 0.5
+        break;
+      case 'Gramas':
+        lessUnit = 0.1
+        break;
+      case 'Litros':
+        lessUnit = 0.5
+        break
+    }
+    if (this.productQuantity > lessUnit) {
+      this.productQuantity -= Number(lessUnit)
       this.emitProductQuantity(false)
     }
   }

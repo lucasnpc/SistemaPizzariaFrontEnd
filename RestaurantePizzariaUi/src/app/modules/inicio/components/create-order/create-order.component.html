@@ -5,9 +5,9 @@
     <mat-grid-tile [colspan]="3" [rowspan]="1">
         <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Pesquisar no Cardápio</mat-label>
-            <input [(ngModel)]="selectedItem" type="text" placeholder="Pick one" aria-label="Number" matInput
+            <input type="text" placeholder="Selecione um item" aria-label="Number" matInput
                 [formControl]="createOrderControl" [matAutocomplete]="auto">
-            <mat-autocomplete #auto="matAutocomplete">
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="setItem($event.option.value)">
                 <mat-option *ngFor="let item of filteredItems | async" [value]="item">
                     {{item}}
                 </mat-option>
@@ -27,6 +27,5 @@
     <p class="total-hint">Total</p>
     <p class="total-value">R{{totalOrder | currency: ''}}</p>
 </span>
-<button mat-button class="button-add" (click)="selectItem()">Adicionar Item</button>
 <button mat-button class="button-cancel" (click)="cancelAttendance()">Cancelar</button>
 <button mat-button class="button-finish" (click)="createOrder()">Finalizar</button>

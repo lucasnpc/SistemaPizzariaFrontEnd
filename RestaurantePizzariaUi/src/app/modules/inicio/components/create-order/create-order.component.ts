@@ -25,7 +25,6 @@ export class CreateOrderComponent implements OnInit {
   items: MenuItem[]
   itemsDescription: string[];
   filteredItems: Observable<string[]>;
-  selectedItem: string;
   selectedItems: MenuItem[] = []
   totalOrder = 0;
   itemRequest: ItemRequest[] = []
@@ -85,19 +84,16 @@ export class CreateOrderComponent implements OnInit {
     this.indexChanged.emit(this.index)
   }
 
-  selectItem() {
-    // verifica se selecionou um item
-    if (!this.selectedItem) {
-      return
-    }
+  setItem(i: string) {
+    this.createOrderControl.setValue('', { emitEvent: true })
 
     // verifica se o item já esta na lista de items 
-    if (this.selectedItems.some(item => item.description === this.selectedItem)) {
+    if (this.selectedItems.some(item => item.description === i)) {
       alert("Este item já esta na lista")
       return
     }
 
-    const item = this.items.find(i => i.description === this.selectedItem)
+    const item = this.items.find(item => item.description === i)
     if (!item) {
       return
     }
@@ -105,7 +101,6 @@ export class CreateOrderComponent implements OnInit {
     this.selectedItems.push(item)
     this.itemRequest.push({ itemId: item.itemId, quantity: 1 })
 
-    this.selectedItem = '';
   }
 
   sumOrder(order: ItemRequest) {

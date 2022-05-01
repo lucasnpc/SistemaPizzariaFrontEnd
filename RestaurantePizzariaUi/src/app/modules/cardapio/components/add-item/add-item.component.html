@@ -13,7 +13,7 @@
         </mat-form-field>
         <mat-form-field appearance="outline" floatLabel="always">
           <mat-label>Pesquisar no Cardápio</mat-label>
-          <input [(ngModel)]="selectedProduct" type="text" placeholder="Pick one" aria-label="Number" matInput
+          <input type="text" placeholder="Selecione um produto" aria-label="Number" matInput
             [formControl]="createMenuItemControl" [matAutocomplete]="auto">
           <mat-autocomplete #auto="matAutocomplete" (optionSelected)='setProduct($event.option.value)'>
             <mat-option *ngFor="let product of filteredProducts | async" [value]="product">
