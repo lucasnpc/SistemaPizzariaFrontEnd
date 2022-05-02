@@ -2,7 +2,7 @@
   <div class="content-container">
     <mat-grid-list cols="3" rowHeight="68px">
       <mat-grid-tile [colspan]="3" [rowspan]="1">
-        <rp-top-bar (openDialog)="openDialog()" (filter)="applyFilter($event)"></rp-top-bar>
+        <rp-top-bar (openDialog)="openDialog(false)" (filter)="applyFilter($event)"></rp-top-bar>
       </mat-grid-tile>
       <mat-grid-tile [colspan]="3" [rowspan]="9">
         <mat-card class="card-style">
@@ -83,7 +83,7 @@
       <mat-grid-tile [colspan]="1" [rowspan]="1"> </mat-grid-tile>
       <mat-grid-tile [colspan]="2" [rowspan]="1"> </mat-grid-tile>
     </mat-grid-list>
-    <button mat-button class="button-editar">Editar</button>
+    <button mat-button class="button-editar" (click)="openDialog(true)">Editar</button>
     <button mat-button class="button-excluir">Excluir</button>
   </div>
 </div>

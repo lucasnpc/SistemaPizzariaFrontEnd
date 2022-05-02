@@ -7,6 +7,7 @@ import { Client } from '../models/client.model';
 export class ClienteService {
   getClientes = environment.url + 'clientes/getClientes';
   postCliente = environment.url + 'clientes/postCliente';
+  putCliente = environment.url + 'clientes/putCliente';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -22,6 +23,13 @@ export class ClienteService {
   postCustomer(client: Client) {
     return this.httpClient.post<any>(
       this.postCliente,
+      client,
+      this.httpOptions
+    );
+  }
+  updateCustomer(client: Client) {
+    return this.httpClient.put<any>(
+      this.putCliente,
       client,
       this.httpOptions
     );

@@ -46,8 +46,18 @@ export class FornecedoresPage implements OnInit {
     });
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(AddProviderDialogComponent);
+  openDialog(edit: boolean) {
+    var dialogRef
+    if (edit === true) {
+      if (this.clickedRow === undefined) { alert('Selecione um registro para editar!!'); return }
+      dialogRef = this.dialog.open(AddProviderDialogComponent, {
+        data: this.clickedRow
+      })
+    }
+    else
+      dialogRef = this.dialog.open(AddProviderDialogComponent, {
+        data: {}
+      });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result)

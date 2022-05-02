@@ -1,7 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BusinessStorage } from 'src/app/core/utils/business-storage';
 import { BUSINESS_CNPJ } from 'src/app/core/utils/constants';
 import { Employee } from '../../models/employee.model';
@@ -16,20 +16,19 @@ import { DialogAddInFuncionariosComponent } from '../dialog-add-in-funcionarios/
 export class AddFuncionarioComponent implements OnInit {
   formRegisterEmployees = this.fb.group({
     cpf: ['', Validators.required],
-    nome: ['', Validators.required],
-    rua: ['', Validators.required],
-    numero: ['', Validators.required],
-    bairro: ['', Validators.required],
-    cidade: ['', Validators.required],
-    telefone: ['', Validators.required],
-    cargo: ['', Validators.required],
-    dataAdmissao: ['', Validators.required],
-    dataNascimento: ['', Validators.required],
+    name: ['', Validators.required],
+    street: ['', Validators.required],
+    number: ['', Validators.required],
+    district: ['', Validators.required],
+    city: ['', Validators.required],
+    phone: ['', Validators.required],
+    role: ['', Validators.required],
+    admissionDate: ['', Validators.required],
+    birthDate: ['', Validators.required],
     salary: ['', Validators.required],
     isOutsource: ['', Validators.required]
   });
-
-  options = ['Sim', 'Não'];
+  isEditting = false;
 
   @Output() registerEmployee = new EventEmitter<Employee>()
 
@@ -38,25 +37,32 @@ export class AddFuncionarioComponent implements OnInit {
     dateAdapter: DateAdapter<any>,
     private rest: FuncionarioService,
     private dialogRef: MatDialogRef<DialogAddInFuncionariosComponent>,
-    private storage: BusinessStorage
+    private storage: BusinessStorage,
+    @Inject(MAT_DIALOG_DATA) public data: Employee
   ) {
     dateAdapter.setLocale('pt-br');
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    if (this.data.cpf != undefined) {
+      this.data.isOutsource ? this.formRegisterEmployees.controls['isOutsource'].setValue('option1')
+        : this.formRegisterEmployees.controls['isOutsource'].setValue('option2')
+      this.isEditting = true
+    }
+  }
 
-  addEmployee() {
-    var data: Employee = {
+  sendEmployee(edit: boolean) {
+    var employee: Employee = {
       cpf: this.formRegisterEmployees.get('cpf').value,
-      name: this.formRegisterEmployees.get('nome').value,
-      street: this.formRegisterEmployees.get('rua').value,
-      number: this.formRegisterEmployees.get('numero').value,
-      district: this.formRegisterEmployees.get('bairro').value,
-      city: this.formRegisterEmployees.get('cidade').value,
-      phone: this.formRegisterEmployees.get('telefone').value,
-      role: this.formRegisterEmployees.get('cargo').value,
-      admissionDate: this.formRegisterEmployees.get('dataAdmissao').value,
-      birthDate: this.formRegisterEmployees.get('dataNascimento').value,
+      name: this.formRegisterEmployees.get('name').value,
+      street: this.formRegisterEmployees.get('street').value,
+      number: this.formRegisterEmployees.get('number').value,
+      district: this.formRegisterEmployees.get('district').value,
+      city: this.formRegisterEmployees.get('city').value,
+      phone: this.formRegisterEmployees.get('phone').value,
+      role: this.formRegisterEmployees.get('role').value,
+      admissionDate: this.formRegisterEmployees.get('admissionDate').value,
+      birthDate: this.formRegisterEmployees.get('birthDate').value,
       terminationDate: null,
       salary: this.formRegisterEmployees.get('salary').value,
       isOutsource: this.formRegisterEmployees.get('isOutsource').value == "Sim",
@@ -64,7 +70,17 @@ export class AddFuncionarioComponent implements OnInit {
       businessCnpj: this.storage.get(BUSINESS_CNPJ)
     };
 
-    this.rest.postEmployee(data).subscribe((result) => {
+    edit ? this.updateEmployee(employee) : this.addEmployee(employee)
+  }
+
+  addEmployee(employee: Employee) {
+    this.rest.postEmployee(employee).subscribe((result) => {
+      if (result.success) this.dialogRef.close(true);
+    });
+  }
+
+  updateEmployee(employee: Employee) {
+    this.rest.updateEmployee(employee).subscribe((result) => {
       if (result.success) this.dialogRef.close(true);
     });
   }

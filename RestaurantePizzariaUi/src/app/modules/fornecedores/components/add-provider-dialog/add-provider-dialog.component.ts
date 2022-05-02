@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BusinessStorage } from 'src/app/core/utils/business-storage';
 import { BUSINESS_CNPJ } from 'src/app/core/utils/constants';
 import { Provider } from '../../models/provider.model';
@@ -12,7 +12,6 @@ import { ProvidersService } from '../../services/fornecedores.service';
   styleUrls: ['./add-provider-dialog.component.less']
 })
 export class AddProviderDialogComponent implements OnInit {
-
   formRegisterProviders = this.fb.group({
     providerCnpj: ['', Validators.required],
     corporateName: ['', Validators.required],
@@ -24,15 +23,18 @@ export class AddProviderDialogComponent implements OnInit {
     phone: ['', Validators.required],
     email: ['', Validators.required],
   });
+  isEditting = false;
 
   constructor(private fb: FormBuilder, private storage: BusinessStorage, private service: ProvidersService,
     public dialogRef: MatDialogRef<AddProviderDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Provider
   ) { }
 
   ngOnInit(): void {
+    if (this.data.providerCnpj != undefined) this.isEditting = true
   }
 
-  addProvider() {
+  sendProvider(edit: boolean) {
     var data: Provider = {
       providerCnpj: this.formRegisterProviders.get('providerCnpj').value,
       businessCnpj: this.storage.get(BUSINESS_CNPJ),
@@ -46,9 +48,19 @@ export class AddProviderDialogComponent implements OnInit {
       email: this.formRegisterProviders.get('phone').value
     }
 
-    this.service.postProvider(data).subscribe(result => {
+    edit ? this.updateProvider(data) : this.addProvider(data)
+
+  }
+
+  addProvider(provider: Provider) {
+    this.service.postProvider(provider).subscribe(result => {
       if (result.success) this.dialogRef.close(true)
     })
   }
 
+  updateProvider(provider: Provider) {
+    this.service.updateProvider(provider).subscribe(result => {
+      if (result.success) this.dialogRef.close(true)
+    })
+  }
 }

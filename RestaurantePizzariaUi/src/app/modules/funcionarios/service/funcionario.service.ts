@@ -7,6 +7,7 @@ import { Employee } from '../models/employee.model';
 export class FuncionarioService {
   getFuncionarios = environment.url + 'funcionarios/getFuncionarios';
   postFuncionario = environment.url + 'funcionarios/postFuncionario';
+  putFuncionario = environment.url + 'funcionarios/putFuncionario'
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -14,10 +15,10 @@ export class FuncionarioService {
     }),
   };
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   getEmployees(cnpj: string) {
-    return this.httpClient.get<{ data: Employee[] }>(this.getFuncionarios, { params: {businessCnpj: cnpj} });
+    return this.httpClient.get<{ data: Employee[] }>(this.getFuncionarios, { params: { businessCnpj: cnpj } });
   }
   postEmployee(employee: Employee) {
     return this.httpClient.post<any>(
@@ -25,5 +26,9 @@ export class FuncionarioService {
       employee,
       this.httpOptions
     );
+  }
+
+  updateEmployee(employee: Employee) {
+    return this.httpClient.put<any>(this.putFuncionario, employee, this.httpOptions)
   }
 }

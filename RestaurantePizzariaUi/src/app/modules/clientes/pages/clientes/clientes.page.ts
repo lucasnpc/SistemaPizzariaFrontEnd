@@ -43,8 +43,18 @@ export class ClientesPage implements OnInit {
     });
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(DialogAddInClientesComponent);
+  openDialog(edit: boolean) {
+    var dialogRef
+    if (edit === true) {
+      if (this.clickedRow === undefined) { alert('Selecione um registro para editar!!'); return }
+      dialogRef = this.dialog.open(DialogAddInClientesComponent, {
+        data: this.clickedRow
+      })
+    }
+    else
+      dialogRef = this.dialog.open(DialogAddInClientesComponent, {
+        data: {}
+      });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result)

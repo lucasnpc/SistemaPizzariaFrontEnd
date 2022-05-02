@@ -10,6 +10,7 @@ export class ProvidersService {
 
   getFornecedores = environment.url + 'fornecedores/getFornecedores';
   postFornecedor = environment.url + 'fornecedores/postFornecedor'
+  putFornecedor = environment.url + 'fornecedores/putFornecedor'
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -25,5 +26,9 @@ export class ProvidersService {
 
   postProvider(provider: Provider) {
     return this.httpClient.post<any>(this.postFornecedor, provider, this.httpOptions)
+  }
+
+  updateProvider(provider: Provider) {
+    return this.httpClient.put<any>(this.putFornecedor, provider, this.httpOptions)
   }
 }
