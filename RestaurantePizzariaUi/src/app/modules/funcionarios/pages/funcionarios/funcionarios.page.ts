@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { BusinessStorage } from 'src/app/core/utils/business-storage';
 import { BUSINESS_CNPJ } from 'src/app/core/utils/constants';
+import { SharedDialogComponent } from 'src/app/modules/shared/components/shared-dialog/shared-dialog.component';
 import { DialogAddInFuncionariosComponent } from '../../components/dialog-add-in-funcionarios/dialog-add-in-funcionarios.component';
 import { Employee } from '../../models/employee.model';
 import { FuncionarioService } from '../../service/funcionario.service';
@@ -77,6 +78,18 @@ export class FuncionariosPage implements OnInit {
   setRow(row: Employee) {
     this.formatDate(row.admissionDate);
     this.clickedRow = row;
+  }
+
+  openExcludingDialog() {
+    if (this.clickedRow === undefined) { alert('Selecione um registro para editar!!'); return }
+
+    const dialogRef = this.dialog.open(SharedDialogComponent, {
+      data: this.clickedRow
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    })
   }
 
   formatDate(date: Date) {

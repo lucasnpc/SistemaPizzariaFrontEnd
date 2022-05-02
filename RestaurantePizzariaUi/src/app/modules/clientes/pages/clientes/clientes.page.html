@@ -11,7 +11,7 @@
             <table mat-table [dataSource]="dataSource">
               <!--- Note that these columns can be defined in any order.
                           The actual rendered columns are set as a property on the row definition" -->
-        
+
               <!-- Telefone Column -->
               <ng-container matColumnDef="telefone">
                 <th mat-header-cell *matHeaderCellDef>Telefone</th>
@@ -46,11 +46,11 @@
                   {{ element.city }}
                 </td>
               </ng-container>
-        
+
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
               <tr mat-row (click)="setRow(row)" [ngClass]="{ rowSelected: clickedRow == row }"
                 *matRowDef="let row; columns: displayedColumns"></tr>
-        
+
               <tr class="mat-row" *matNoDataRow>
                 <td class="mat-cell" colspan="4">
                   No data matching the filter "{{ filterValue }}"
@@ -65,6 +65,6 @@
       <mat-grid-tile [colspan]="2" [rowspan]="1"> </mat-grid-tile>
     </mat-grid-list>
     <button mat-button class="button-editar" (click)="openDialog(true)">Editar</button>
-    <button mat-button class="button-excluir">Excluir</button>
+    <button mat-button class="button-excluir" (click)="openExcludingDialog()">Excluir</button>
   </div>
 </div>

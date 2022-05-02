@@ -8,9 +8,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
+import { SharedDialogComponent } from './components/shared-dialog/shared-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
-  declarations: [LayoutMenuComponent, TopBarComponent],
+  declarations: [LayoutMenuComponent, TopBarComponent, SharedDialogComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -19,6 +21,7 @@ import { TopBarComponent } from './components/top-bar/top-bar.component';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
+    MatDialogModule
   ],
   exports: [LayoutMenuComponent, TopBarComponent],
 })
