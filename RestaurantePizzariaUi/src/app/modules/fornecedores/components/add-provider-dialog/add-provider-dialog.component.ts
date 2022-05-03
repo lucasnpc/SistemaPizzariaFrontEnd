@@ -45,7 +45,8 @@ export class AddProviderDialogComponent implements OnInit {
       city: this.formRegisterProviders.get('city').value,
       state: this.formRegisterProviders.get('state').value,
       phone: this.formRegisterProviders.get('phone').value,
-      email: this.formRegisterProviders.get('phone').value
+      email: this.formRegisterProviders.get('phone').value,
+      decommissioned: false
     }
 
     edit ? this.updateProvider(data) : this.addProvider(data)

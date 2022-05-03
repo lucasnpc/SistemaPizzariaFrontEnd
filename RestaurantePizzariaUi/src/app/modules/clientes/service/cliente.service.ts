@@ -5,9 +5,11 @@ import { Client } from '../models/client.model';
 
 @Injectable()
 export class ClienteService {
+
   getClientes = environment.url + 'clientes/getClientes';
   postCliente = environment.url + 'clientes/postCliente';
   putCliente = environment.url + 'clientes/putCliente';
+  deleteCliente = environment.url + 'clientes/deleteCliente';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -33,5 +35,8 @@ export class ClienteService {
       client,
       this.httpOptions
     );
+  }
+  deleteCustomer(clientId: any) {
+    return this.httpClient.delete<any>(this.deleteCliente, { params: { id: clientId } })
   }
 }

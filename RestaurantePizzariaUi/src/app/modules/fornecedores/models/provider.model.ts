@@ -9,4 +9,5 @@ export class Provider {
     state: string;
     phone: string;
     email: string;
+    decommissioned: boolean;
 }

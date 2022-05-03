@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { BusinessStorage } from 'src/app/core/utils/business-storage';
+import { PROVIDER_KEY } from 'src/app/core/utils/constants';
 import { SharedDialogComponent } from 'src/app/modules/shared/components/shared-dialog/shared-dialog.component';
 import { AddProviderDialogComponent } from '../../components/add-provider-dialog/add-provider-dialog.component';
 import { Provider } from '../../models/provider.model';
@@ -79,11 +80,20 @@ export class FornecedoresPage implements OnInit {
     if (this.clickedRow === undefined) { alert('Selecione um registro para editar!!'); return }
 
     const dialogRef = this.dialog.open(SharedDialogComponent, {
-      data: this.clickedRow
+      data: {
+        id: this.clickedRow.providerCnpj,
+        name: this.clickedRow.corporateName,
+        type: PROVIDER_KEY
+      }
     })
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      if (result) {
+        this.service.disableProvider(this.clickedRow.providerCnpj).subscribe(r => {
+          if (r.success)
+            this.getProviders()
+        })
+      }
     })
   }
 }

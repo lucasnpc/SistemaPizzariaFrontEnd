@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { BusinessStorage } from 'src/app/core/utils/business-storage';
-import { BUSINESS_CNPJ } from 'src/app/core/utils/constants';
+import { BUSINESS_CNPJ, EMPLOYEE_KEY } from 'src/app/core/utils/constants';
 import { SharedDialogComponent } from 'src/app/modules/shared/components/shared-dialog/shared-dialog.component';
 import { DialogAddInFuncionariosComponent } from '../../components/dialog-add-in-funcionarios/dialog-add-in-funcionarios.component';
 import { Employee } from '../../models/employee.model';
@@ -84,11 +84,20 @@ export class FuncionariosPage implements OnInit {
     if (this.clickedRow === undefined) { alert('Selecione um registro para editar!!'); return }
 
     const dialogRef = this.dialog.open(SharedDialogComponent, {
-      data: this.clickedRow
+      data: {
+        id: this.clickedRow.cpf,
+        name: this.clickedRow.name,
+        type: EMPLOYEE_KEY
+      }
     })
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      if (result) {
+        this.rest.unactivateEmployee(this.clickedRow.cpf).subscribe(r => {
+          if (r.success)
+            this.getEmployees()
+        })
+      }
     })
   }
 

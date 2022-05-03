@@ -11,6 +11,7 @@ export class ProvidersService {
   getFornecedores = environment.url + 'fornecedores/getFornecedores';
   postFornecedor = environment.url + 'fornecedores/postFornecedor'
   putFornecedor = environment.url + 'fornecedores/putFornecedor'
+  deleteFornecedor = environment.url + 'fornecedores/deleteFornecedor'
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -30,5 +31,9 @@ export class ProvidersService {
 
   updateProvider(provider: Provider) {
     return this.httpClient.put<any>(this.putFornecedor, provider, this.httpOptions)
+  }
+
+  disableProvider(providerCnpj: string) {
+    return this.httpClient.delete<any>(this.deleteFornecedor, { params: { id: providerCnpj } });
   }
 }
