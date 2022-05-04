@@ -7,17 +7,28 @@
         <button mat-icon-button class="user-button">
         </button>
         <h3>{{userRole}}</h3>
-        <button mat-button *ngFor="let option of options" [routerLink]="[option.routerLink]" class="buttom-nav-style"
-          (click)="clickEvent(option)" [ngClass]="
+        <span *ngIf="userRole==='Administrador'">
+          <button mat-button *ngFor="let option of adminOptions" [routerLink]="[option.routerLink]"
+            class="buttom-nav-style" (click)="clickEvent(option)" [ngClass]="
+              selectedOption == option
+                ? 'buttom-nav-style'
+                : 'buttom-nav-style-unselected'
+            ">
+            {{option.name}}
+          </button>
+        </span>
+        <span *ngIf="userRole!='Administrador'">
+          <button mat-button *ngFor="let option of notAdminOptions" [routerLink]="[option.routerLink]"
+            class="buttom-nav-style" (click)="clickEvent(option)" [ngClass]="
             selectedOption == option
               ? 'buttom-nav-style'
               : 'buttom-nav-style-unselected'
           ">
-          {{option.name}}
-        </button>
+            {{option.name}}
+          </button>
+        </span>
       </mat-nav-list>
     </mat-sidenav>
-
     <mat-sidenav-content>
       <router-outlet></router-outlet>
     </mat-sidenav-content>

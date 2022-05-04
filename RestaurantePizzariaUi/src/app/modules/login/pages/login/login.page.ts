@@ -21,7 +21,11 @@ export class LoginPage implements OnInit {
         if (result) {
           this.storage.set(BUSINESS_CNPJ, result.data.businessCnpj)
           this.storage.set(USER_ROLE, result.data.userType)
-          this.router.navigate(['/menu/dashboard']);
+          if (result.data.userType === 'Administrador') {
+            this.router.navigate(['/menu/dashboard']);
+            return
+          }
+          this.router.navigate(['menu/inicio'])
         }
       },
       (error) => {

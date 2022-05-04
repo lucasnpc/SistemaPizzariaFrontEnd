@@ -2,6 +2,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BusinessStorage } from 'src/app/core/utils/business-storage';
+import { USER_ROLE } from 'src/app/core/utils/constants';
 
 @Component({
   selector: 'rp-layout-menu',
@@ -9,10 +10,9 @@ import { BusinessStorage } from 'src/app/core/utils/business-storage';
   styleUrls: ['./layout-menu.component.less'],
 })
 export class LayoutMenuComponent implements OnInit {
-  userRole = "teste";
+  userRole = '';
   mobileQuery: MediaQueryList;
-  options = [
-    { name: 'Início', routerLink: 'inicio' },
+  adminOptions = [
     { name: 'Dashboard', routerLink: 'dashboard' },
     { name: 'Caixa', routerLink: 'caixa' },
     { name: 'Clientes', routerLink: 'clientes' },
@@ -21,6 +21,9 @@ export class LayoutMenuComponent implements OnInit {
     { name: 'Funcionários', routerLink: 'funcionarios' },
     { name: 'Fornecedores', routerLink: 'fornecedores' },
   ];
+  notAdminOptions = [
+    { name: 'Início', routerLink: 'inicio' },
+  ]
   selectedOption: any;
 
   private _mobileQueryListener: () => void;
@@ -38,34 +41,34 @@ export class LayoutMenuComponent implements OnInit {
     this.mobileQuery.addEventListener('change', this._mobileQueryListener);
   }
   ngOnInit(): void {
-    this.userRole = this.storage.get("userRole");
+    this.userRole = this.storage.get(USER_ROLE);
     switch (this.router.url) {
       case '/menu/inicio':
-        this.selectedOption = this.options[0]
+        this.selectedOption = this.notAdminOptions[0]
         break;
       case '/menu/dashboard':
-        this.selectedOption = this.options[1];
+        this.selectedOption = this.adminOptions[0];
         break;
       case '/menu/dashboard/detail':
-        this.selectedOption = this.options[1];
+        this.selectedOption = this.adminOptions[0];
         break;
       case '/menu/caixa':
-        this.selectedOption = this.options[2];
+        this.selectedOption = this.adminOptions[1];
         break;
       case '/menu/clientes':
-        this.selectedOption = this.options[3];
+        this.selectedOption = this.adminOptions[2];
         break;
       case '/menu/cardapio':
-        this.selectedOption = this.options[4];
+        this.selectedOption = this.adminOptions[3];
         break;
       case '/menu/compras':
-        this.selectedOption = this.options[5];
+        this.selectedOption = this.adminOptions[4];
         break;
       case '/menu/funcionarios':
-        this.selectedOption = this.options[6];
+        this.selectedOption = this.adminOptions[5];
         break;
       case '/menu/fornecedores':
-        this.selectedOption = this.options[7];
+        this.selectedOption = this.adminOptions[6];
         break;
     }
   }
@@ -74,7 +77,7 @@ export class LayoutMenuComponent implements OnInit {
     this.mobileQuery.removeEventListener('change', this._mobileQueryListener);
   }
 
-  clickEvent(button: any) {
-    this.selectedOption = button;
+  clickEvent(opt: any) {
+    this.selectedOption = opt;
   }
 }
