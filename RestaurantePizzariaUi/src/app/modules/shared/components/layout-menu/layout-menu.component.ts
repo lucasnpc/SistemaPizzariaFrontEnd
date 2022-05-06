@@ -50,6 +50,10 @@ export class LayoutMenuComponent implements OnInit {
         this.selectedOption = this.adminOptions[0];
         break;
       case '/menu/dashboard/detail':
+        if (this.storage.get(USER_ROLE) === 'Caixa') {
+          this.selectedOption = this.notAdminOptions[0]
+          return
+        }
         this.selectedOption = this.adminOptions[0];
         break;
       case '/menu/caixa':

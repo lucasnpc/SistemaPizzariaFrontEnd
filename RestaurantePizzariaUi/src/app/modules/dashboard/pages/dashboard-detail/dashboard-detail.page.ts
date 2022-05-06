@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { BusinessStorage } from 'src/app/core/utils/business-storage';
+import { USER_ROLE } from 'src/app/core/utils/constants';
 import { FinishOrderDialogComponent } from '../../components/finish-order-dialog/finish-order-dialog.component';
 import { Order } from '../../models/order.model';
 import { DashboardService } from '../../service/dashboard.service';
@@ -15,22 +16,24 @@ export class DashboardDetailPage implements OnInit {
   totalOrders: Order[] = [];
   activeOrders: Order[] = [];
   concludedOrders: Order[] = [];
+  userRole = ''
 
   constructor(private service: DashboardService, private storage: BusinessStorage, private dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
+    this.userRole = this.storage.get(USER_ROLE)
     this.getOrders()
   }
 
   getOrders() {
-    this.service.getActiveOrders(this.storage.get("businessCnpj")).subscribe((result) => {
-      this.activeOrders = result.data;
-    });
+    if (this.userRole === 'Caixa') {
+      this.service.getActiveOrders(this.storage.get("businessCnpj")).subscribe((result) => {
+        this.activeOrders = result.data;
+      });
+      return
+    }
     this.service.getConcludedOrders(this.storage.get("businessCnpj")).subscribe((result) => {
       this.concludedOrders = result.data;
-    });
-    this.service.getTotalOrders(this.storage.get("businessCnpj")).subscribe((result) => {
-      this.totalOrders = result.data;
     });
   }
 

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'rp-open-desk',
@@ -9,7 +10,7 @@ export class OpenDeskComponent implements OnInit {
   @Input() index: number;
   @Output() indexChanged = new EventEmitter<number>();
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -17,5 +18,8 @@ export class OpenDeskComponent implements OnInit {
   openDesk() {
     this.index += 1
     this.indexChanged.emit(this.index);
+  }
+  openActiveOrders() {
+    this.router.navigate(['/menu/dashboard/detail'])
   }
 }

@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatListModule } from '@angular/material/list';
 import { OrderListitemComponent } from './components/order-listitem/order-listitem.component';
 import { OpenDeskDialogComponent } from './components/open-desk-dialog/open-desk-dialog.component';
+import { KitchenListComponent } from './components/kitchen-list/kitchen-list.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { OpenDeskDialogComponent } from './components/open-desk-dialog/open-desk
     ChooseDeskComponent,
     CreateOrderComponent,
     OrderListitemComponent,
-    OpenDeskDialogComponent
+    OpenDeskDialogComponent,
+    KitchenListComponent
   ],
   imports: [
     CommonModule,
