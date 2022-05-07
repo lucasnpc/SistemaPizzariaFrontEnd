@@ -78,7 +78,6 @@ export class ClientesPage implements OnInit {
 
     const dialogRef = this.dialog.open(SharedDialogComponent, {
       data: {
-        id: this.clickedRow.clientId,
         name: this.clickedRow.name,
         type: CLIENT_KEY
       }

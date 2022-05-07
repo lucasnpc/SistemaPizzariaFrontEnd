@@ -1,12 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CLIENT_KEY, EMPLOYEE_KEY, PROVIDER_KEY } from 'src/app/core/utils/constants';
-import { Client } from 'src/app/modules/clientes/models/client.model';
-import { Provider } from 'src/app/modules/fornecedores/models/provider.model';
-import { Employee } from 'src/app/modules/funcionarios/models/employee.model';
+import { ADD_ITEMS_TO_ORDER_KEY, CLIENT_KEY, DELETE_ORDER_KEY, EMPLOYEE_KEY, OPEN_DESK_KEY, PROVIDER_KEY } from 'src/app/core/utils/constants';
 
 interface DialogData {
-  id: any;
   name: string;
   type: string;
 }
@@ -36,6 +32,18 @@ export class SharedDialogComponent implements OnInit {
       case CLIENT_KEY:
         this.message = 'Cliente'
         this.message2 = 'Será excluído(a)!'
+        break;
+      case DELETE_ORDER_KEY:
+        this.message = 'Os itens para'
+        this.message2 = 'Serão cancelados!'
+        break;
+      case ADD_ITEMS_TO_ORDER_KEY:
+        this.message = 'Os Itens para'
+        this.message2 = 'Serão Adicionados!'
+        break;
+      case OPEN_DESK_KEY:
+        this.message = 'A mesa'
+        this.message2 = 'Será aberta!'
         break
     }
   }

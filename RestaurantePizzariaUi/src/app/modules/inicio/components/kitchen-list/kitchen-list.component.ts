@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { KitchenService } from '../../services/kitchen.service';
 
-interface FakeOrder {
-  desk: string;
-  id: number;
+interface ClientOrder {
+  clientOrderId: string;
+  deskDescription: number;
 }
 
 @Component({
@@ -12,43 +13,27 @@ interface FakeOrder {
 })
 export class KitchenListComponent implements OnInit {
 
-  fakeOrders: FakeOrder[] = [
-    { desk: 'Mesa 2222', id: 123 },
-    { desk: 'Mesa 1111', id: 132 },
-    { desk: 'Mesa 1111', id: 132 },
-    { desk: 'Mesa 1111', id: 132 },
-    { desk: 'Mesa 1111', id: 132 },
-    { desk: 'Mesa 1111', id: 132 },
-    { desk: 'Mesa 1111', id: 132 },
-    { desk: 'Mesa 1111', id: 132 },
-    { desk: 'Mesa 1111', id: 132 },
-    { desk: 'Mesa 1111', id: 132 },
-    { desk: 'Mesa 1111', id: 132 },
-    { desk: 'Mesa 1111', id: 132 },
-    { desk: 'Mesa 1111', id: 132 },
-    { desk: 'Mesa 1111', id: 132 },
-    { desk: 'Mesa 1111', id: 1332322 },
-    { desk: 'Mesa 1111', id: 132 },
-    { desk: 'Mesa 1111', id: 132 },
-    { desk: 'Mesa 1111', id: 132 },
-    { desk: 'Mesa 1111', id: 132 },
-    { desk: 'Mesa 1111', id: 132 },
-  ]
+  fakeOrders: ClientOrder[]
 
-  constructor() { }
+  constructor(private service: KitchenService) { }
 
   ngOnInit(): void {
+    this.service.getSentClientOrders().subscribe(result => {
+      if (result) {
+        this.fakeOrders = result.data
+      }
+    })
   }
 
-  seeOrderDetail(order: FakeOrder) {
+  seeOrderDetail(order: ClientOrder) {
     console.log('See order detail');
   }
 
-  startOrderPreparing(order: FakeOrder) {
+  startOrderPreparing(order: ClientOrder) {
     console.log('start order preparing');
   }
 
-  concludeOrderPreparing(order: FakeOrder) {
+  concludeOrderPreparing(order: ClientOrder) {
     console.log('finish order preparing');
   }
 

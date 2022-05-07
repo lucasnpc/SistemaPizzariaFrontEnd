@@ -1,5 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { BusinessStorage } from 'src/app/core/utils/business-storage';
+import { BUSINESS_CNPJ, OPEN_DESK_KEY } from 'src/app/core/utils/constants';
+import { Order } from 'src/app/modules/dashboard/models/order.model';
+import { SharedDialogComponent } from 'src/app/modules/shared/components/shared-dialog/shared-dialog.component';
+import { InicioService } from '../../services/inicio.service';
 
 interface Desks {
   name: string;
@@ -16,6 +22,7 @@ export class ChooseDeskComponent implements OnInit {
   desksControl = new FormControl('', [Validators.required]);
   selectedDesk = "";
   @Output() deskChoosed = new EventEmitter<string>();
+  @Output() orderCreated = new EventEmitter<Order>();
 
   desks: Desks[] = [
     { name: 'Delivery' },
@@ -32,7 +39,7 @@ export class ChooseDeskComponent implements OnInit {
   ];
 
 
-  constructor() { }
+  constructor(private storage: BusinessStorage, private dialog: MatDialog, private service: InicioService) { }
 
   ngOnInit(): void {
   }
@@ -43,9 +50,31 @@ export class ChooseDeskComponent implements OnInit {
       return
     }
 
-    this.index += 1;
-    this.indexChanged.emit(this.index)
-    this.deskChoosed.emit(this.selectedDesk)
+    const dialogRef = this.dialog.open(SharedDialogComponent, {
+      data: { name: this.selectedDesk, type: OPEN_DESK_KEY }
+    });
+
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.service.postOrder({
+          orderId: undefined,
+          employeeCpf: undefined,
+          deskDescription: this.selectedDesk,
+          concluded: false,
+          businessCnpj: this.storage.get(BUSINESS_CNPJ),
+          dateTimeOrder: new Date()
+        }).subscribe(result => {
+          if (result) {
+            this.orderCreated.emit(result.data)
+            this.index += 1;
+            this.indexChanged.emit(this.index)
+          }
+        })
+      }
+      else
+        this.cancelAttendance()
+    })
   }
 
   cancelAttendance() {

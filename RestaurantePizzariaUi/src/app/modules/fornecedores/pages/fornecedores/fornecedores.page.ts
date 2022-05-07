@@ -81,7 +81,6 @@ export class FornecedoresPage implements OnInit {
 
     const dialogRef = this.dialog.open(SharedDialogComponent, {
       data: {
-        id: this.clickedRow.providerCnpj,
         name: this.clickedRow.corporateName,
         type: PROVIDER_KEY
       }

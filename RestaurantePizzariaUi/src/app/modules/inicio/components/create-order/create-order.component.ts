@@ -4,11 +4,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { BusinessStorage } from 'src/app/core/utils/business-storage';
+import { ADD_ITEMS_TO_ORDER_KEY, DELETE_ORDER_KEY, STATUS_STARTING } from 'src/app/core/utils/constants';
 import { MenuItem } from 'src/app/modules/cardapio/models/menu-item.model';
 import { Order } from 'src/app/modules/dashboard/models/order.model';
+import { SharedDialogComponent } from 'src/app/modules/shared/components/shared-dialog/shared-dialog.component';
 import { ItemRequest } from '../../models/OrderMenuItem.model';
 import { InicioService } from '../../services/inicio.service';
-import { OpenDeskDialogComponent } from '../open-desk-dialog/open-desk-dialog.component';
 
 @Component({
   selector: 'rp-create-order',
@@ -18,7 +19,7 @@ import { OpenDeskDialogComponent } from '../open-desk-dialog/open-desk-dialog.co
 export class CreateOrderComponent implements OnInit {
   @Input() index: number;
   @Output() indexChanged = new EventEmitter<number>();
-  @Input() desk: string;
+  @Input() createdOrder: Order;
   @Input() orderToUpdate: Order
 
   createOrderControl = new FormControl('');
@@ -44,7 +45,7 @@ export class CreateOrderComponent implements OnInit {
     })
 
     if (this.orderToUpdate != undefined) {
-      this.desk = this.orderToUpdate.deskDescription
+      this.createdOrder = this.orderToUpdate
       this.inicioService.getItemsWithOrderId(this.orderToUpdate.orderId.toString()).subscribe(result => {
         if (result) {
           this.selectedItems = result.data
@@ -65,23 +66,36 @@ export class CreateOrderComponent implements OnInit {
       alert('Impossível continuar para registro de pedido')
       return
     }
-    const dialogRef = this.dialog.open(OpenDeskDialogComponent, {
-      data: { desk: this.desk }
+    const dialogRef = this.dialog.open(SharedDialogComponent, {
+      data: { name: this.createdOrder.deskDescription, type: ADD_ITEMS_TO_ORDER_KEY }
     });
 
-
     dialogRef.afterClosed().subscribe(result => {
-      console.log(this.orderToUpdate, this.itemRequest)
       if (result)
-        this.orderToUpdate == undefined ? this._postOrder() : this._updateOrder()
-      else
-        this.cancelAttendance()
+        this.orderToUpdate === undefined ? this._postOrder() : this._updateOrder()
     })
   }
 
-  cancelAttendance() {
-    this.index = 0;
-    this.indexChanged.emit(this.index)
+  cancelAttendance(cancelOrder: boolean) {
+
+    if (cancelOrder) {
+      const dialogRef = this.dialog.open(SharedDialogComponent, {
+        data: { name: this.createdOrder.deskDescription, type: DELETE_ORDER_KEY }
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          console.log('delete order');
+          this.index = 0;
+          this.indexChanged.emit(this.index)
+        }
+      })
+    }
+    else {
+      this.index = 0;
+      this.indexChanged.emit(this.index)
+    }
+
   }
 
   setItem(i: string) {
@@ -123,22 +137,17 @@ export class CreateOrderComponent implements OnInit {
   }
 
   _postOrder() {
-    this.inicioService.postOrder({
-      employeeCpf: null,
-      deskDescription: this.desk,
-      concluded: false,
-      businessCnpj: this.storage.get("businessCnpj"),
-      dateTimeOrder: new Date()
-    }).subscribe(result => {
-      if (result) {
+    this.inicioService.postClientOrder({ orderId: this.createdOrder.orderId, clientOrder: undefined }).subscribe(result => {
+      if (result.success) {
         this.itemRequest.map(value => {
-          this.inicioService.postOrderMenuItems({
-            orderId: result.orderId,
+          this.inicioService.postClientOrdersItems({
+            clientOrderId: result.id,
             itemId: value.itemId,
-            itemQuantity: value.quantity
-          }).subscribe(result => {
-            if (result.success)
-              this.cancelAttendance()
+            itemQuantity: value.quantity,
+            orderStatus: STATUS_STARTING
+          }).subscribe(r2 => {
+            if (r2.success)
+              this.cancelAttendance(false)
           })
         })
       }
@@ -151,7 +160,7 @@ export class CreateOrderComponent implements OnInit {
       items: this.itemRequest,
     }).subscribe(result => {
       if (result.success)
-        this.cancelAttendance()
+        this.cancelAttendance(false)
     })
   }
 }

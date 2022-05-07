@@ -22,8 +22,8 @@ export class InicioPage implements OnInit {
 
   tabs = ['First', 'Second', 'Third'];
   selected = 0;
-  desk = '';
-  order: Order
+  createdOrder: Order;
+  orderToUpdate: Order
   userRole = ''
 
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private storage: BusinessStorage, private router: Router) {
@@ -33,7 +33,7 @@ export class InicioPage implements OnInit {
 
   ngOnInit(): void {
     if (history.state.order) {
-      this.order = history.state.order
+      this.orderToUpdate = history.state.order
       this.selected = 2
     }
     this.userRole = this.storage.get(USER_ROLE)
@@ -43,8 +43,8 @@ export class InicioPage implements OnInit {
     this.selected = index
   }
 
-  setDesk(deskChoosed: string) {
-    this.desk = deskChoosed;
+  setOrder(orderCreated: Order) {
+    this.createdOrder = orderCreated;
   }
 
 }

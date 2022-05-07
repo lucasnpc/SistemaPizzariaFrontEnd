@@ -85,7 +85,6 @@ export class FuncionariosPage implements OnInit {
 
     const dialogRef = this.dialog.open(SharedDialogComponent, {
       data: {
-        id: this.clickedRow.cpf,
         name: this.clickedRow.name,
         type: EMPLOYEE_KEY
       }
