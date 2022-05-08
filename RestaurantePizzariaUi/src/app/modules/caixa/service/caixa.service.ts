@@ -4,12 +4,14 @@ import { environment } from 'src/environments/environment';
 import { Gain } from '../models/gain.model';
 import { Expense } from '../models/expense.model';
 
+const getEntradas = environment.url + 'caixa/getEntradas';
+const getSaidas = environment.url + 'caixa/getSaidas';
+
+const postEntrada = environment.url + 'caixa/postEntrada';
+const postSaida = environment.url + 'caixa/postSaida';
+
 @Injectable()
 export class CaixaService {
-  getEntradas = environment.url + 'caixa/getEntradas';
-  getSaidas = environment.url + 'caixa/getSaidas';
-  postEntrada = environment.url + 'caixa/postEntrada';
-  postSaida = environment.url + 'caixa/postSaida';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -17,22 +19,22 @@ export class CaixaService {
     }),
   };
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   getGains(cnpj: string) {
-    return this.httpClient.get<{ data: Gain[] }>(this.getEntradas, { params: {businessCnpj: cnpj} });
+    return this.httpClient.get<{ data: Gain[] }>(getEntradas, { params: { businessCnpj: cnpj } });
   }
   getExpenses(cnpj: string) {
-    return this.httpClient.get<{ data: Expense[] }>(this.getSaidas, { params: {businessCnpj: cnpj} });
+    return this.httpClient.get<{ data: Expense[] }>(getSaidas, { params: { businessCnpj: cnpj } });
   }
   postInflow(entrada: any) {
     return this.httpClient.post<any>(
-      this.postEntrada,
+      postEntrada,
       entrada,
       this.httpOptions
     );
   }
   postExpense(saida: any) {
-    return this.httpClient.post<any>(this.postSaida, saida, this.httpOptions);
+    return this.httpClient.post<any>(postSaida, saida, this.httpOptions);
   }
 }

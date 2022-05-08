@@ -17,7 +17,6 @@ export class LoginPage implements OnInit {
   logarSistema(login: User) {
     this.rest.authUser(login).subscribe(
       (result) => {
-        console.log(result);
         if (result) {
           this.storage.set(BUSINESS_CNPJ, result.data.businessCnpj)
           this.storage.set(USER_ROLE, result.data.userType)

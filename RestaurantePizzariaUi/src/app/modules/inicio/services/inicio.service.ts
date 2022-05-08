@@ -6,17 +6,19 @@ import { Order } from '../../dashboard/models/order.model';
 import { ClientOrder } from '../models/ClientOrder.model';
 import { ClientOrdersItems } from '../models/OrderMenuItem.model';
 
+const get = environment.url + 'itens/getItem';
+const getPedidosCliente = environment.url + 'inicio/getPedidosCliente';
+const getItensComPedidoClienteId = environment.url + 'inicio/getItensComPedidoClienteId';
+const postPedido = environment.url + 'inicio/postPedido'
+const postPedidoCliente = environment.url + 'inicio/postPedidoCliente'
+const postItensPedidosCliente = environment.url + 'inicio/postItensPedidosCliente'
+const updatePedidoItens = environment.url + 'inicio/updatePedidoItens'
 @Injectable({
   providedIn: 'root'
 })
 export class InicioService {
 
-  get = environment.url + 'itens/getItem';
-  getItensComPedidoId = environment.url + 'inicio/getItensComPedidoId';
-  postPedido = environment.url + 'inicio/postPedido'
-  postPedidoCliente = environment.url + 'inicio/postPedidoCliente'
-  postItensPedidosCliente = environment.url + 'inicio/postItensPedidosCliente'
-  updatePedidoItens = environment.url + 'inicio/updatePedidoItens'
+
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -27,26 +29,29 @@ export class InicioService {
   constructor(private httpClient: HttpClient) { }
 
   public getItems(cnpj: string) {
-    return this.httpClient.get<{ data: MenuItem[] }>(this.get, { params: { businessCnpj: cnpj } });
+    return this.httpClient.get<{ data: MenuItem[] }>(get, { params: { businessCnpj: cnpj } });
   }
 
-  public getItemsWithOrderId(id: string) {
-    return this.httpClient.get<{ data: MenuItem[] }>(this.getItensComPedidoId, { params: { orderId: id } });
+  public getClientOrders(id: string) {
+    return this.httpClient.get<{ data: any[] }>(getPedidosCliente, { params: { orderId: id } });
+  }
+  public getItemsWithClientOrderId(id: string) {
+    return this.httpClient.get<{ data: MenuItem[] }>(getItensComPedidoClienteId, { params: { clientOrderId: id } });
   }
 
   public postOrder(order: Order) {
-    return this.httpClient.post<any>(this.postPedido, order, this.httpOptions)
+    return this.httpClient.post<any>(postPedido, order, this.httpOptions)
   }
 
   public postClientOrder(clientOrder: ClientOrder) {
-    return this.httpClient.post<any>(this.postPedidoCliente, clientOrder, this.httpOptions)
+    return this.httpClient.post<any>(postPedidoCliente, clientOrder, this.httpOptions)
   }
 
   public postClientOrdersItems(clientOrdersItems: ClientOrdersItems) {
-    return this.httpClient.post<any>(this.postItensPedidosCliente, clientOrdersItems, this.httpOptions)
+    return this.httpClient.post<any>(postItensPedidosCliente, clientOrdersItems, this.httpOptions)
   }
 
   public updateOrderMenuItems(orderMenuItems: any) {
-    return this.httpClient.post<any>(this.updatePedidoItens, orderMenuItems, this.httpOptions)
+    return this.httpClient.post<any>(updatePedidoItens, orderMenuItems, this.httpOptions)
   }
 }

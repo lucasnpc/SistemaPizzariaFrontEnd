@@ -2,12 +2,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
+const getPedidosEnviados = environment.url + 'cozinha/getPedidosEnviados'
+
 @Injectable({
   providedIn: 'root'
 })
 export class KitchenService {
 
-  getPedidosEnviados = environment.url + 'cozinha/getPedidosEnviados'
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -18,6 +19,6 @@ export class KitchenService {
   constructor(private httpClient: HttpClient) { }
 
   getSentClientOrders() {
-    return this.httpClient.get<{ data: any[] }>(this.getPedidosEnviados);
+    return this.httpClient.get<{ data: any[] }>(getPedidosEnviados);
   }
 }

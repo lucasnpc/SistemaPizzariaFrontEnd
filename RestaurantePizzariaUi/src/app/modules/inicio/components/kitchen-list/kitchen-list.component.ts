@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { InicioService } from '../../services/inicio.service';
 import { KitchenService } from '../../services/kitchen.service';
 
 interface ClientOrder {
@@ -15,7 +16,7 @@ export class KitchenListComponent implements OnInit {
 
   fakeOrders: ClientOrder[]
 
-  constructor(private service: KitchenService) { }
+  constructor(private service: KitchenService, private inicioService: InicioService) { }
 
   ngOnInit(): void {
     this.service.getSentClientOrders().subscribe(result => {
@@ -26,7 +27,9 @@ export class KitchenListComponent implements OnInit {
   }
 
   seeOrderDetail(order: ClientOrder) {
-    console.log('See order detail');
+    this.inicioService.getItemsWithClientOrderId(order.clientOrderId).subscribe(r =>{
+      console.log(r.data);
+    })
   }
 
   startOrderPreparing(order: ClientOrder) {

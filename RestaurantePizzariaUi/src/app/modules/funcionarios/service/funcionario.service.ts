@@ -4,12 +4,13 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Employee } from '../models/employee.model';
 
+const getFuncionarios = environment.url + 'funcionarios/getFuncionarios';
+const postFuncionario = environment.url + 'funcionarios/postFuncionario';
+const putFuncionario = environment.url + 'funcionarios/putFuncionario'
+const deleteFuncionario = environment.url + 'funcionarios/deleteFuncionario'
+
 @Injectable()
 export class FuncionarioService {
-  getFuncionarios = environment.url + 'funcionarios/getFuncionarios';
-  postFuncionario = environment.url + 'funcionarios/postFuncionario';
-  putFuncionario = environment.url + 'funcionarios/putFuncionario'
-  deleteFuncionario = environment.url + 'funcionarios/deleteFuncionario'
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -20,22 +21,22 @@ export class FuncionarioService {
   constructor(private httpClient: HttpClient) { }
 
   getEmployees(cnpj: string) {
-    return this.httpClient.get<{ data: Employee[] }>(this.getFuncionarios, { params: { businessCnpj: cnpj } });
+    return this.httpClient.get<{ data: Employee[] }>(getFuncionarios, { params: { businessCnpj: cnpj } });
   }
   postEmployee(employee: Employee) {
     return this.httpClient.post<any>(
-      this.postFuncionario,
+      postFuncionario,
       employee,
       this.httpOptions
     );
   }
 
   updateEmployee(employee: Employee) {
-    return this.httpClient.put<any>(this.putFuncionario, employee, this.httpOptions)
+    return this.httpClient.put<any>(putFuncionario, employee, this.httpOptions)
   }
 
   unactivateEmployee(cpf: string) {
     const pipe = new DatePipe('en-US')
-    return this.httpClient.delete<any>(this.deleteFuncionario, { params: { id: cpf, date: pipe.transform(Date.now(), 'yyyy-MM-dd') } })
+    return this.httpClient.delete<any>(deleteFuncionario, { params: { id: cpf, date: pipe.transform(Date.now(), 'yyyy-MM-dd') } })
   }
 }

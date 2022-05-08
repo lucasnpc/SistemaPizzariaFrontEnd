@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Client } from '../models/client.model';
 
+const getClientes = environment.url + 'clientes/getClientes';
+const postCliente = environment.url + 'clientes/postCliente';
+const putCliente = environment.url + 'clientes/putCliente';
+const deleteCliente = environment.url + 'clientes/deleteCliente';
+
 @Injectable()
 export class ClienteService {
 
-  getClientes = environment.url + 'clientes/getClientes';
-  postCliente = environment.url + 'clientes/postCliente';
-  putCliente = environment.url + 'clientes/putCliente';
-  deleteCliente = environment.url + 'clientes/deleteCliente';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -20,23 +21,23 @@ export class ClienteService {
   constructor(private httpClient: HttpClient) { }
 
   getCustomers(cnpj: string) {
-    return this.httpClient.get<{ data: Client[] }>(this.getClientes, { params: { businessCnpj: cnpj } });
+    return this.httpClient.get<{ data: Client[] }>(getClientes, { params: { businessCnpj: cnpj } });
   }
   postCustomer(client: Client) {
     return this.httpClient.post<any>(
-      this.postCliente,
+      postCliente,
       client,
       this.httpOptions
     );
   }
   updateCustomer(client: Client) {
     return this.httpClient.put<any>(
-      this.putCliente,
+      putCliente,
       client,
       this.httpOptions
     );
   }
   deleteCustomer(clientId: any) {
-    return this.httpClient.delete<any>(this.deleteCliente, { params: { id: clientId } })
+    return this.httpClient.delete<any>(deleteCliente, { params: { id: clientId } })
   }
 }

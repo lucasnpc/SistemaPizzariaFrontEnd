@@ -30,11 +30,11 @@ export class CreateOrderComponent implements OnInit {
   totalOrder = 0;
   itemRequest: ItemRequest[] = []
 
-  constructor(private inicioService: InicioService, private storage: BusinessStorage, private dialog: MatDialog) {
+  constructor(private service: InicioService, private storage: BusinessStorage, private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
-    this.inicioService.getItems(this.storage.get("businessCnpj")).subscribe(result => {
+    this.service.getItems(this.storage.get("businessCnpj")).subscribe(result => {
       this.items = result.data
       this.itemsDescription = this.items.map(item => item.description)
 
@@ -44,13 +44,18 @@ export class CreateOrderComponent implements OnInit {
       )
     })
 
-    if (this.orderToUpdate != undefined) {
+    if (this.orderToUpdate != undefined && this.createdOrder == undefined) {
       this.createdOrder = this.orderToUpdate
-      this.inicioService.getItemsWithOrderId(this.orderToUpdate.orderId.toString()).subscribe(result => {
-        if (result) {
-          this.selectedItems = result.data
-          this.itemRequest = result.data.map(item => ({ itemId: item.itemId, quantity: item.itemQuantity }))
-        }
+      this.service.getClientOrders(this.orderToUpdate.orderId.toString()).subscribe(result => {
+        if (result)
+          result.data.map(v => {
+            this.service.getItemsWithClientOrderId(v.clientOrderId).subscribe(result => {
+              if (result) {
+                this.selectedItems = result.data
+                this.itemRequest = result.data.map(item => ({ itemId: item.itemId, quantity: item.itemQuantity }))
+              }
+            })
+          })
       })
     }
   }
@@ -95,7 +100,6 @@ export class CreateOrderComponent implements OnInit {
       this.index = 0;
       this.indexChanged.emit(this.index)
     }
-
   }
 
   setItem(i: string) {
@@ -137,10 +141,10 @@ export class CreateOrderComponent implements OnInit {
   }
 
   _postOrder() {
-    this.inicioService.postClientOrder({ orderId: this.createdOrder.orderId, clientOrder: undefined }).subscribe(result => {
+    this.service.postClientOrder({ orderId: this.createdOrder.orderId, clientOrder: undefined }).subscribe(result => {
       if (result.success) {
         this.itemRequest.map(value => {
-          this.inicioService.postClientOrdersItems({
+          this.service.postClientOrdersItems({
             clientOrderId: result.id,
             itemId: value.itemId,
             itemQuantity: value.quantity,
@@ -155,7 +159,7 @@ export class CreateOrderComponent implements OnInit {
   }
 
   _updateOrder() {
-    this.inicioService.updateOrderMenuItems({
+    this.service.updateOrderMenuItems({
       orderId: this.orderToUpdate.orderId,
       items: this.itemRequest,
     }).subscribe(result => {
