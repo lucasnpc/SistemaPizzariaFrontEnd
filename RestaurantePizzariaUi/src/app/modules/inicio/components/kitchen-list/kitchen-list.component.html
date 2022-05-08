@@ -4,7 +4,7 @@
     </mat-grid-tile>
     <mat-grid-tile class="grid-tile-orders" [colspan]="3" [rowspan]="10">
         <ul>
-            <li *ngFor="let order of fakeOrders">
+            <li *ngFor="let order of clientOrders">
                 <div class="order-container">
                     <p>{{order.deskDescription}}</p>
                     <p>#{{order.clientOrderId}}</p>

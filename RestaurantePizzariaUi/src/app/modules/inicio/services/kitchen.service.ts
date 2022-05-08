@@ -4,6 +4,8 @@ import { environment } from 'src/environments/environment';
 
 const getPedidosEnviados = environment.url + 'cozinha/getPedidosEnviados'
 
+const updatePedidoStatus = environment.url + 'cozinha/updatePedidoStatus'
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,5 +22,9 @@ export class KitchenService {
 
   getSentClientOrders() {
     return this.httpClient.get<{ data: any[] }>(getPedidosEnviados);
+  }
+
+  updateOrderStatus(id: any) {
+    return this.httpClient.put<any>(updatePedidoStatus, id, this.httpOptions)
   }
 }

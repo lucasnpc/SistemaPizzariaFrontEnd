@@ -38,10 +38,18 @@ export class ChooseDeskComponent implements OnInit {
     { name: 'Mesa - 9' },
   ];
 
-
   constructor(private storage: BusinessStorage, private dialog: MatDialog, private service: InicioService) { }
 
   ngOnInit(): void {
+    this.service.getOccupiedDesks().subscribe(r => {
+      if (r) {
+        r.data.map(desk => {
+          const index = this.desks.findIndex(v => desk.deskDescription === v.name)
+          if (index > -1)
+            this.desks.splice(index, 1)
+        })
+      }
+    })
   }
 
   initializeOrder() {

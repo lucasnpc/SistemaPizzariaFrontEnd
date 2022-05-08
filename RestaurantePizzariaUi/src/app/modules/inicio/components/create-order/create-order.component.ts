@@ -46,7 +46,7 @@ export class CreateOrderComponent implements OnInit {
 
     if (this.orderToUpdate != undefined && this.createdOrder == undefined) {
       this.createdOrder = this.orderToUpdate
-      this.service.getClientOrders(this.orderToUpdate.orderId.toString()).subscribe(result => {
+      this.service.getClientOrdersWithOrderId(this.orderToUpdate.orderId.toString()).subscribe(result => {
         if (result)
           result.data.map(v => {
             this.service.getItemsWithClientOrderId(v.clientOrderId).subscribe(result => {
@@ -85,7 +85,7 @@ export class CreateOrderComponent implements OnInit {
 
     if (cancelOrder) {
       const dialogRef = this.dialog.open(SharedDialogComponent, {
-        data: { name: this.createdOrder.deskDescription, type: DELETE_ORDER_KEY }
+        data: { name: 'Deseja cancelar o pedido?', type: DELETE_ORDER_KEY }
       });
 
       dialogRef.afterClosed().subscribe(result => {

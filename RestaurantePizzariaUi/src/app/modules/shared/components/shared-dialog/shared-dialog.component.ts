@@ -16,6 +16,8 @@ export class SharedDialogComponent implements OnInit {
 
   message = ''
   message2 = ''
+  bCancel = 'Cancelar'
+  bConfirm = 'Confirmar'
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
@@ -34,8 +36,8 @@ export class SharedDialogComponent implements OnInit {
         this.message2 = 'Será excluído(a)!'
         break;
       case DELETE_ORDER_KEY:
-        this.message = 'Os itens para'
-        this.message2 = 'Serão cancelados!'
+        this.bCancel = 'Não'
+        this.bConfirm = 'Sim'
         break;
       case ADD_ITEMS_TO_ORDER_KEY:
         this.message = 'Os Itens para'

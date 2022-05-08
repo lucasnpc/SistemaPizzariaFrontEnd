@@ -7,7 +7,8 @@ import { ClientOrder } from '../models/ClientOrder.model';
 import { ClientOrdersItems } from '../models/OrderMenuItem.model';
 
 const get = environment.url + 'itens/getItem';
-const getPedidosCliente = environment.url + 'inicio/getPedidosCliente';
+const getMesasOcupadas = environment.url + 'inicio/getMesasOcupadas'
+const getPedidosClienteComPedidoId = environment.url + 'inicio/getPedidosClienteComPedidoId';
 const getItensComPedidoClienteId = environment.url + 'inicio/getItensComPedidoClienteId';
 const postPedido = environment.url + 'inicio/postPedido'
 const postPedidoCliente = environment.url + 'inicio/postPedidoCliente'
@@ -17,8 +18,6 @@ const updatePedidoItens = environment.url + 'inicio/updatePedidoItens'
   providedIn: 'root'
 })
 export class InicioService {
-
-
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -32,8 +31,12 @@ export class InicioService {
     return this.httpClient.get<{ data: MenuItem[] }>(get, { params: { businessCnpj: cnpj } });
   }
 
-  public getClientOrders(id: string) {
-    return this.httpClient.get<{ data: any[] }>(getPedidosCliente, { params: { orderId: id } });
+  public getOccupiedDesks() {
+    return this.httpClient.get<{ data: any[] }>(getMesasOcupadas)
+  }
+
+  public getClientOrdersWithOrderId(id: string) {
+    return this.httpClient.get<{ data: any[] }>(getPedidosClienteComPedidoId, { params: { orderId: id } });
   }
   public getItemsWithClientOrderId(id: string) {
     return this.httpClient.get<{ data: MenuItem[] }>(getItensComPedidoClienteId, { params: { clientOrderId: id } });

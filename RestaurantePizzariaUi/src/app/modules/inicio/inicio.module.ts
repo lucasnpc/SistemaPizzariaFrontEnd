@@ -21,6 +21,8 @@ import { MatListModule } from '@angular/material/list';
 import { OrderListitemComponent } from './components/order-listitem/order-listitem.component';
 import { KitchenListComponent } from './components/kitchen-list/kitchen-list.component';
 import { KitchenService } from './services/kitchen.service';
+import { KitchenOrderDialogComponent } from './components/kitchen-order-dialog/kitchen-order-dialog.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { KitchenService } from './services/kitchen.service';
     ChooseDeskComponent,
     CreateOrderComponent,
     OrderListitemComponent,
-    KitchenListComponent
+    KitchenListComponent,
+    KitchenOrderDialogComponent
   ],
   imports: [
     CommonModule,
@@ -47,7 +50,8 @@ import { KitchenService } from './services/kitchen.service';
     MatAutocompleteModule,
     HttpClientModule,
     MatListModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
   ],
   providers: [InicioService, KitchenService]
 })
