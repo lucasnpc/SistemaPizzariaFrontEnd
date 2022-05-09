@@ -40,6 +40,8 @@ export class InicioPage implements OnInit {
   }
 
   changeIndex(index: number) {
+    if (index === 0)
+      this.orderToUpdate = undefined
     this.selected = index
   }
 

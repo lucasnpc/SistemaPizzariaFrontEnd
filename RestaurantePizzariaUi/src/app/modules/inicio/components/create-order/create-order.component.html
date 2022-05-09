@@ -3,7 +3,7 @@
         <h2>Mesa escolhida: {{createdOrder.deskDescription}}</h2>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="3" [rowspan]="1">
-        <mat-form-field class="example-full-width" appearance="outline">
+        <mat-form-field class="example-full-width" appearance="outline" *ngIf="orderToUpdate==undefined">
             <mat-label>Pesquisar no Cardápio</mat-label>
             <input type="text" placeholder="Selecione um item" aria-label="Number" matInput
                 [formControl]="createOrderControl" [matAutocomplete]="auto">
