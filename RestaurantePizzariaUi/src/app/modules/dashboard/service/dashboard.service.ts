@@ -18,8 +18,6 @@ const postAtualizaPedidoAtivoConcluido = environment.url + 'dashboard/postAtuali
 @Injectable()
 export class DashboardService {
 
-
-
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',

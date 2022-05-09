@@ -19,7 +19,6 @@ import { MatListModule } from '@angular/material/list';
 import { CardapioService } from '../cardapio/service/menu.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSelectModule } from '@angular/material/select';
-import { DialogInvoiceComponent } from './components/dialog-invoice/dialog-invoice.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTabsModule } from '@angular/material/tabs';
 import { AddInflowComponent } from './components/add-inflow/add-inflow.component';
@@ -36,7 +35,6 @@ import { CaixaService } from './service/caixa.service';
     ListEntradasComponent,
     CaixaBalanceComponent,
     DialogAddInCaixaComponent,
-    DialogInvoiceComponent,
     AddInflowComponent,
     AddExpenseComponent,
   ],

@@ -27,10 +27,10 @@ export class CaixaService {
   getExpenses(cnpj: string) {
     return this.httpClient.get<{ data: Expense[] }>(getSaidas, { params: { businessCnpj: cnpj } });
   }
-  postInflow(entrada: any) {
+  postGain(gain: Gain) {
     return this.httpClient.post<any>(
       postEntrada,
-      entrada,
+      gain,
       this.httpOptions
     );
   }

@@ -19,7 +19,13 @@ import { DashboardService } from './service/dashboard.service';
 import LocalePT from '@angular/common/locales/pt';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
-import { FinishOrderDialogComponent } from './components/finish-order-dialog/finish-order-dialog.component';
+import { InvoiceDialogComponent } from './components/invoice-dialog/invoice-dialog.component';
+import { CaixaService } from '../caixa/service/caixa.service';
+import { MatRadioModule } from '@angular/material/radio';
+import { FormsModule } from '@angular/forms';
+import { InicioService } from '../inicio/services/inicio.service';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 registerLocaleData(LocalePT);
 
 @NgModule({
@@ -31,7 +37,7 @@ registerLocaleData(LocalePT);
     GainsComponent,
     InformativeGraphComponent,
     DashboardDetailPage,
-    FinishOrderDialogComponent,
+    InvoiceDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -44,8 +50,12 @@ registerLocaleData(LocalePT);
     MatMenuModule,
     MatIconModule,
     MatListModule,
-    MatDialogModule
+    MatDialogModule,
+    MatRadioModule,
+    FormsModule,
+    MatCheckboxModule,
+    MatSnackBarModule
   ],
-  providers: [DashboardService],
+  providers: [DashboardService, CaixaService, InicioService],
 })
 export class DashboardModule { }
