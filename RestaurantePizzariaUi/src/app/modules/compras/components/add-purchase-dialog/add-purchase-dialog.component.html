@@ -11,7 +11,6 @@
                     <div mat-line>
                         Descrição: {{ product.productName }};
                         <span class="end">x{{ product.quantity}}
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             Total:R${{product.totalCostValue}}</span>
                     </div>
                 </mat-list-option>
@@ -21,7 +20,8 @@
     <mat-grid-tile [colspan]="4" [rowspan]="1">
         <mat-dialog-actions align="end">
             <button mat-button class="cancel" mat-dialog-close>Cancelar</button>
-            <button mat-button class="confirm" (click)="addPurchase()" [mat-dialog-close]="true" cdkFocusInitial>Confirmar</button>
+            <button mat-button class="confirm" (click)="addPurchase()" [mat-dialog-close]="true"
+                cdkFocusInitial>Confirmar</button>
         </mat-dialog-actions>
     </mat-grid-tile>
 </mat-grid-list>

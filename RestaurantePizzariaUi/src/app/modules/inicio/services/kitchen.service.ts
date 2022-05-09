@@ -20,8 +20,8 @@ export class KitchenService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getSentClientOrders() {
-    return this.httpClient.get<{ data: any[] }>(getPedidosEnviados);
+  getSentClientOrders(cnpj: string) {
+    return this.httpClient.get<{ data: any[] }>(getPedidosEnviados, { params: { businessCnpj: cnpj } });
   }
 
   updateOrderStatus(id: any) {

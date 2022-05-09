@@ -62,7 +62,7 @@ export class ComprasPage implements OnInit {
 
   lessProductQuantity(product: Product) {
     const p = this.products.find(p => product.productId === p.productId)
-    if (formatter.format(product.currentStock) <= formatter.format(p.currentStock))
+    if (Number(product.currentStock) <= Number(p.currentStock))
       return
     switch (product.measurementUnit) {
       case 'Unidade':
@@ -82,7 +82,7 @@ export class ComprasPage implements OnInit {
 
   increaseProductQuantity(product: Product) {
     const p = this.products.find(p => product.productId === p.productId)
-    if (formatter.format(product.currentStock) >= formatter.format(p.maximumStock))
+    if (Number(product.currentStock) >= Number(p.maximumStock))
       return
     switch (product.measurementUnit) {
       case 'Unidade':

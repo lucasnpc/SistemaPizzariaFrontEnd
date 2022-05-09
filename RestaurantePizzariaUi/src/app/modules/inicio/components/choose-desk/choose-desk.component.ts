@@ -41,7 +41,7 @@ export class ChooseDeskComponent implements OnInit {
   constructor(private storage: BusinessStorage, private dialog: MatDialog, private service: InicioService) { }
 
   ngOnInit(): void {
-    this.service.getOccupiedDesks().subscribe(r => {
+    this.service.getOccupiedDesks(this.storage.get(BUSINESS_CNPJ)).subscribe(r => {
       if (r) {
         r.data.map(desk => {
           const index = this.desks.findIndex(v => desk.deskDescription === v.name)

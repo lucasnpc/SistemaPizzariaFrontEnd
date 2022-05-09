@@ -31,8 +31,8 @@ export class InicioService {
     return this.httpClient.get<{ data: MenuItem[] }>(get, { params: { businessCnpj: cnpj } });
   }
 
-  public getOccupiedDesks() {
-    return this.httpClient.get<{ data: any[] }>(getMesasOcupadas)
+  public getOccupiedDesks(cnpj: string) {
+    return this.httpClient.get<{ data: any[] }>(getMesasOcupadas, { params: { businessCnpj: cnpj } })
   }
 
   public getClientOrdersWithOrderId(id: string) {

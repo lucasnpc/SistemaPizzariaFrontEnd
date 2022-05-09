@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { STATUS_PREPARED, STATUS_PREPARING } from 'src/app/core/utils/constants';
+import { BusinessStorage } from 'src/app/core/utils/business-storage';
+import { BUSINESS_CNPJ, STATUS_PREPARED, STATUS_PREPARING } from 'src/app/core/utils/constants';
 import { InicioService } from '../../services/inicio.service';
 import { KitchenService } from '../../services/kitchen.service';
 import { KitchenOrderDialogComponent } from '../kitchen-order-dialog/kitchen-order-dialog.component';
@@ -22,7 +23,7 @@ export class KitchenListComponent implements OnInit {
   clientOrders: ClientOrder[]
 
   constructor(private kitchenService: KitchenService, private inicioService: InicioService, private dialog: MatDialog,
-    private snackBar: MatSnackBar) { }
+    private snackBar: MatSnackBar, private storage: BusinessStorage) { }
 
   ngOnInit(): void {
     this.getClientOrders()
@@ -52,7 +53,7 @@ export class KitchenListComponent implements OnInit {
   }
 
   getClientOrders() {
-    this.kitchenService.getSentClientOrders().subscribe(result => {
+    this.kitchenService.getSentClientOrders(this.storage.get(BUSINESS_CNPJ)).subscribe(result => {
       if (result) {
         this.clientOrders = result.data
       }
