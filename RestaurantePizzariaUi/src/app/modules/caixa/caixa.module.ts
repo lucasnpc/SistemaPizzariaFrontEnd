@@ -27,6 +27,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { CaixaService } from './service/caixa.service';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,9 @@ import { CaixaService } from './service/caixa.service';
     FormsModule,
     ReactiveFormsModule,
     CurrencyMaskModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [CardapioService, CaixaService],
 })
-export class CaixaModule {}
+export class CaixaModule { }

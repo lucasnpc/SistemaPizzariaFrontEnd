@@ -21,7 +21,6 @@ export class ListSaidasComponent implements OnInit {
   ngOnInit(): void {
     this.rest.getExpenses(this.storage.get("businessCnpj")).subscribe((result) => {
       this.saidas = result.data;
-      console.log(result.data);
 
       this.dataSource = new MatTableDataSource(this.saidas);
     });
