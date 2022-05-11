@@ -10,8 +10,8 @@
                 <mat-list-option *ngFor="let product of data" [value]="product">
                     <div mat-line>
                         Descrição: {{ product.productName }};
-                        <span class="end">x{{ product.quantity}}
-                            Total:R${{product.totalCostValue}}</span>
+                        <span class="end">Qtd.{{ product.quantity}}
+                            Total:R${{product.totalCostValue | number:'1.2-2' }}</span>
                     </div>
                 </mat-list-option>
             </mat-selection-list>
