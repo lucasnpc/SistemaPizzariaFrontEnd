@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { DashboardService } from '../../service/dashboard.service';
@@ -18,7 +18,8 @@ const EXPORT_ICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
 })
 export class InformativeGraphComponent implements OnInit {
   data: any[];
-  todayDate = new DatePipe('pt-br').transform(Date());
+  @Input() selectedDate: Date
+  todayDate: string
 
   // options
   showXAxis = true;
@@ -50,6 +51,10 @@ export class InformativeGraphComponent implements OnInit {
     this.rest.getTopSalesDesks(this.storage.get("businessCnpj")).subscribe((result) => {
       this.data = result.data;
     });
+  }
+
+  ngOnChanges() {
+    this.todayDate = new DatePipe('pt-br').transform(this.selectedDate);
   }
 
   onSelect(event: any) {

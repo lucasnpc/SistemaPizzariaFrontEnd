@@ -7,11 +7,17 @@ import { BusinessStorage } from 'src/app/core/utils/business-storage';
 })
 export class DashboardPage implements OnInit {
 
+  selectedDate: Date = new Date()
+
   constructor(private storage: BusinessStorage) { }
 
   ngOnInit(): void {
     console.log(this.storage.get('businessCnpj'));
     console.log(this.storage.get('userRole'));
+  }
+
+  changeDate(changedDate: Date) {
+    this.selectedDate = changedDate
   }
 
 }

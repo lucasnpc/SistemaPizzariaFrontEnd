@@ -22,10 +22,14 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { InvoiceDialogComponent } from './components/invoice-dialog/invoice-dialog.component';
 import { CaixaService } from '../caixa/service/caixa.service';
 import { MatRadioModule } from '@angular/material/radio';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InicioService } from '../inicio/services/inicio.service';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule, NativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 registerLocaleData(LocalePT);
 
 @NgModule({
@@ -53,8 +57,13 @@ registerLocaleData(LocalePT);
     MatDialogModule,
     MatRadioModule,
     FormsModule,
+    ReactiveFormsModule,
     MatCheckboxModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatFormFieldModule
   ],
   providers: [DashboardService, CaixaService, InicioService],
 })

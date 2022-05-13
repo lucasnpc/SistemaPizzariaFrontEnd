@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { BusinessStorage } from 'src/app/core/utils/business-storage';
 import { DashboardService } from '../../service/dashboard.service';
 
@@ -10,6 +11,7 @@ import { DashboardService } from '../../service/dashboard.service';
 export class GainsComponent implements OnInit {
   gains = 0;
   expenses = 0;
+  @Output() changedDate = new EventEmitter<Date>()
 
   constructor(private rest: DashboardService, private storage: BusinessStorage) { }
 
@@ -22,5 +24,9 @@ export class GainsComponent implements OnInit {
       if (result.data != null)
         this.expenses = result.data;
     })
+  }
+
+  changeDate(date: MatDatepickerInputEvent<Date>) {
+    this.changedDate.emit(date.value)
   }
 }

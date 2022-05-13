@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { BusinessStorage } from 'src/app/core/utils/business-storage';
 import { Order } from '../../models/order.model';
 import { DashboardService } from '../../service/dashboard.service';
@@ -10,6 +10,7 @@ import { DashboardService } from '../../service/dashboard.service';
 })
 export class ActiveOrdersComponent implements OnInit {
   activeOrders: Order[] = []
+  @Input() selectedDate: Date
 
   constructor(private rest: DashboardService, private storage: BusinessStorage) { }
 
