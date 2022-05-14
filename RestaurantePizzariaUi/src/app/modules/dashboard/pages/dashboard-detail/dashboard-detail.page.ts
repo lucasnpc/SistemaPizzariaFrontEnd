@@ -30,12 +30,12 @@ export class DashboardDetailPage implements OnInit {
 
   getOrders() {
     if (this.userRole === 'Caixa') {
-      this.dashboardService.getActiveOrders(this.storage.get("businessCnpj")).subscribe((result) => {
+      this.dashboardService.getActiveOrders(this.storage.get("businessCnpj"), this.todayDate).subscribe((result) => {
         this.activeOrders = result.data;
       });
       return
     }
-    this.dashboardService.getConcludedOrders(this.storage.get("businessCnpj")).subscribe((result) => {
+    this.dashboardService.getConcludedOrders(this.storage.get("businessCnpj"), this.todayDate).subscribe((result) => {
       this.concludedOrders = result.data;
     });
   }

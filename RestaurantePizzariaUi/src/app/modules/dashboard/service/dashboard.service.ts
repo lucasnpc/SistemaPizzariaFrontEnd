@@ -1,4 +1,5 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Order } from '../models/order.model';
@@ -15,6 +16,8 @@ const getTotalSaidas = environment.url + 'dashboard/getTotalSaidas';
 
 const postAtualizaPedidoAtivoConcluido = environment.url + 'dashboard/postAtualizaPedidoAtivoConcluido';
 
+const pipe = new DatePipe('en-US')
+
 @Injectable()
 export class DashboardService {
 
@@ -26,16 +29,16 @@ export class DashboardService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getTotalOrders(cnpj: string) {
-    return this.httpClient.get<{ data: Order[] }>(getPedidosTotal, { params: { businessCnpj: cnpj } })
+  getTotalOrders(cnpj: string, date: Date) {
+    return this.httpClient.get<{ data: Order[] }>(getPedidosTotal, { params: { businessCnpj: cnpj, dateOrder: pipe.transform(date, 'yyyy-MM-dd') } })
   }
 
-  getActiveOrders(cnpj: string) {
-    return this.httpClient.get<{ data: Order[] }>(getPedidosAtivos, { params: { businessCnpj: cnpj } })
+  getActiveOrders(cnpj: string, date: Date) {
+    return this.httpClient.get<{ data: Order[] }>(getPedidosAtivos, { params: { businessCnpj: cnpj, dateOrder: pipe.transform(date, 'yyyy-MM-dd') } })
   }
 
-  getConcludedOrders(cnpj: string) {
-    return this.httpClient.get<{ data: Order[] }>(getPedidosConcluidos, { params: { businessCnpj: cnpj } })
+  getConcludedOrders(cnpj: string, date: Date) {
+    return this.httpClient.get<{ data: Order[] }>(getPedidosConcluidos, { params: { businessCnpj: cnpj, dateOrder: pipe.transform(date, 'yyyy-MM-dd') } })
   }
 
   getTopMenuItems(cnpj: string) {
@@ -46,12 +49,12 @@ export class DashboardService {
     return this.httpClient.get<{ data: any[] }>(getMesasTopVendas, { params: { businessCnpj: cnpj } });
   }
 
-  getTotalGains(cnpj: string) {
-    return this.httpClient.get<{ data: number }>(getTotalEntradas, { params: { businessCnpj: cnpj } });
+  getTotalGains(cnpj: string, date: Date) {
+    return this.httpClient.get<{ data: number }>(getTotalEntradas, { params: { businessCnpj: cnpj, dateGain: pipe.transform(date, 'yyyy-MM-dd') } });
   }
 
-  getTotalExpenses(cnpj: string) {
-    return this.httpClient.get<{ data: number }>(getTotalSaidas, { params: { businessCnpj: cnpj } });
+  getTotalExpenses(cnpj: string, date: Date) {
+    return this.httpClient.get<{ data: number }>(getTotalSaidas, { params: { businessCnpj: cnpj, dateExpense: pipe.transform(date, 'yyyy-MM-dd') } });
   }
 
   updateActiveOrderToConcluded(id: any) {

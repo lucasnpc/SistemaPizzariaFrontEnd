@@ -17,7 +17,8 @@ export class DashboardPage implements OnInit {
   }
 
   changeDate(changedDate: Date) {
-    this.selectedDate = changedDate
+    if (changedDate != this.selectedDate)
+      this.selectedDate = changedDate
   }
 
 }

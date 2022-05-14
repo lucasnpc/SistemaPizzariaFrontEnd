@@ -14,7 +14,7 @@
         <rp-informative-graph [selectedDate]="selectedDate"></rp-informative-graph>
       </mat-grid-tile>
       <mat-grid-tile [colspan]="1" [rowspan]="7">
-        <rp-gains (changedDate)="changeDate($event)"></rp-gains>
+        <rp-gains (changedDate)="changeDate($event)" [selectedDate]="selectedDate"></rp-gains>
       </mat-grid-tile>
     </mat-grid-list>
   </div>

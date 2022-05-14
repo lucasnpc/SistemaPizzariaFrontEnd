@@ -15,7 +15,15 @@ export class ActiveOrdersComponent implements OnInit {
   constructor(private rest: DashboardService, private storage: BusinessStorage) { }
 
   ngOnInit(): void {
-    this.rest.getActiveOrders(this.storage.get("businessCnpj")).subscribe((result) => {
+    this.getActiveOrders()
+  }
+
+  ngOnChages() {
+    this.getActiveOrders()
+  }
+
+  getActiveOrders() {
+    this.rest.getActiveOrders(this.storage.get("businessCnpj"), this.selectedDate).subscribe((result) => {
       this.activeOrders = result.data;
     });
   }
